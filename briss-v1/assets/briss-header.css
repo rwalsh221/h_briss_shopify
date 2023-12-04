@@ -1,0 +1,48 @@
+.header {
+  background-color: var(--main-color-white);
+  border-bottom: var(--border-red-5px);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.header-container {
+  text-align: center;
+}
+
+.heading__primary {
+  font-size: 8rem;
+  color: var(--main-color-red);
+  border-bottom: var(--border-red-5px);
+  font-weight: bolder;
+  -webkit-text-stroke: 1.5px var(--textStroke-color-grey);
+  text-shadow: 2px 2px 3px var(--shadow-color-black);
+  padding: 0 2rem;
+}
+
+.heading__secondary {
+  font-size: 4rem;
+  margin: 1rem 0;
+  font-weight: lighter;
+  color: var(--main-color-red);
+  font-family: 'Dancing Script', cursive;
+}
+
+.heading__tertiary {
+  font-family: var(--font-dancing-script);
+  font-size: 3rem;
+  color: var(--main-color-red);
+}
+
+.icon__header {
+  margin: 0 1rem;
+  display: inline-block;
+  width: max-content;
+  /* icon is png so cant be color normal way. filter changes color used https://codepen.io/sosuke/pen/Pjoqqp to generate filter */
+  filter: invert(12%) sepia(81%) saturate(3552%) hue-rotate(350deg) brightness(92%) contrast(103%);
+}
+
+.icon__header img {
+  margin: 0 1rem;
+  width: 6rem;
+}

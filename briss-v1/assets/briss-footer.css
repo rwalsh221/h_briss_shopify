@@ -1,0 +1,18 @@
+footer {
+  padding: 1rem;
+  background-color: var(--main-color-white);
+  border-top: var(--border-red-5px);
+}
+
+.footer__header {
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.icon__info {
+  margin: 0 auto;
+  width: max-content;
+  color: var(--main-color-red);
+  font-family: var(--font-dancing-script);
+  font-size: 2rem;
+}
