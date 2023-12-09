@@ -65,7 +65,7 @@
     {{ 'index.css' | asset_url | stylesheet_tag }}
 
 </head>
-<body>
+<body class="body__grid">
     {% sections 'header-group' %}
     <main class="grid__main">
         {{ content_for_layout }}

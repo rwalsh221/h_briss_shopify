@@ -1,3 +1,8 @@
+.home {
+  display: flex;
+  flex-direction: column;
+}
+
 .home__heading {
   align-self: center;
   background-color: var(--main-color-white);
@@ -11,7 +16,7 @@
 
 .home__img {
   align-self: center;
-  width: 40%;
+  /* width: 40%; */
   border-radius: 100%;
   border: var(--border-red-5px);
   padding: 1rem;

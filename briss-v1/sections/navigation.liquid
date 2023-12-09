@@ -1,6 +1,13 @@
 {{ 'briss-navigation.css' | asset_url | stylesheet_tag }}
 
-<nav class="nav-bar">
+
+{%- style -%}
+  .nav_grid_area {
+    grid-area: nav;
+  }
+{%- endstyle -%}
+
+<nav class="nav-bar nav_grid_area">
     <div class="dash-short"></div>
     <div class="nav-bar__btn" id="btn__about">About</div>
     <div class="dash"></div>
@@ -9,3 +16,10 @@
     <div class="nav-bar__btn" id="btn__contact">Contact</div>
     <div class="dash-short"></div>
 </nav>
+
+{% schema %}
+    {
+        "name": "navigation",
+        "class": "grid__nav"
+    }
+{% endschema %}

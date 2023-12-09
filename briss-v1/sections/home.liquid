@@ -1,7 +1,14 @@
 {{ 'briss-home.css' | asset_url | stylesheet_tag }}
 
-<section class="content content__grid">
+<section class="home content__grid">
     <h2 class="home__heading heading__secondary" id="hover">WELCOME!</h2>
-    <img src="img/hillary_welcome.jpg" alt="Picture of the owner" class="home__img tab-fade"/>
+    {{ images['hillary_welcome.jpg'] | image_url: width: 600, height: 400 | image_tag: class: 'home__img' }}
     <div class="home__text tab-fade">It's like I always say. I'm a business man</div>
 </section>
+
+{% schema %}
+    {
+        "name": "home",
+        "class": "grid__home"
+    }
+{% endschema %}

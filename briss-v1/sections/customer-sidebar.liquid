@@ -1,0 +1,14 @@
+{{ 'briss-customer-sidebar.css' | asset_url | stylesheet_tag }}
+
+
+<aside class="sidebar">
+    <h3 class="heading__tertiary review__heading">Happy Customers</h3>
+    <div class="review__container"></div>
+</aside>
+
+{% schema %}
+    {
+        "name": "customer-sidebar",
+        "class": "grid__customers"
+    }
+{% endschema %}
