@@ -2,36 +2,102 @@
 
 <header class="grid__header header" id="btn__home">
     <div class="icon__header">
-      <img
-        src="https://img.icons8.com/material/48/000000/cow.png"
-        alt="cow icon"
-      />
-      <img
-        src="https://img.icons8.com/material/48/000000/chicken.png"
-        alt="chicken icon"
-      />
-      <img
-        src="https://img.icons8.com/material/48/000000/pig.png"
-        alt="pig icon"
-      />
+      {% render 'header-icon-select' icon_position: section.settings.header_icon_right  %}
+      {% render 'header-icon-select' icon_position: section.settings.header_icon_middle  %}
+      {% render 'header-icon-select' icon_position: section.settings.header_icon_left  %}
     </div>
+    
     <div class="header-container">
-      <h1 class="heading__primary">H. BRISS & SON</h1>
-      <h2 class="heading__secondary">Family Butcher</h2>
+      <h1 class="heading__primary">{{ section.settings.header_primary }}</h1>
+      <h2 class="heading__secondary">{{ section.settings.header_secondary }}</h2>
     </div>
 
     <div class="icon__header">
-      <img
-        src="https://img.icons8.com/material/48/000000/cow.png"
-        alt="cow icon"
-      />
-      <img
-        src="https://img.icons8.com/material/48/000000/chicken.png"
-        alt="chicken icon"
-      />
-      <img
-        src="https://img.icons8.com/material/48/000000/pig.png"
-        alt="pig icon"
-      />
+      {% render 'header-icon-select' icon_position: section.settings.header_icon_right  %}
+      {% render 'header-icon-select' icon_position: section.settings.header_icon_middle  %}
+      {% render 'header-icon-select' icon_position: section.settings.header_icon_left  %}
     </div>
   </header>
+
+  {% schema %}
+    {
+      "name": "header",
+      "settings": [
+        {
+          "type": "text",
+          "id": "header_primary",
+          "label": "primary heading",
+          "default": "H. BRISS & SON"
+        },
+        {
+          "type": "text",
+          "id": "header_secondary",
+          "label": "secondary heading",
+          "default": "Family Butcher"
+        },        
+        {
+          "type": "select",
+          "id": "header_icon_right",
+          "options": [
+            {
+              "value": "header_chicken.png",
+              "label": "Chicken Icon"
+            },
+            {
+              "value": "header_cow.png",
+              "label": "Cow Icon"
+            },
+            {
+              "value": "header_pig.png",
+              "label": "Pig Icon"
+            }
+          ],
+          "default": "header_cow.png",
+          "label": "Header Icon Right",
+          "info": "Change header icon in right position"
+        },
+        {
+          "type": "select",
+          "id": "header_icon_middle",
+          "options": [
+            {
+              "value": "header_chicken.png",
+              "label": "Chicken Icon"
+            },
+            {
+              "value": "header_cow.png",
+              "label": "Cow Icon"
+            },
+            {
+              "value": "header_pig.png",
+              "label": "Pig Icon"
+            }
+          ],
+          "default": "header_chicken.png",
+          "label": "Header Icon Middle",
+          "info": "Change header icon in middle position"
+        },
+        {
+          "type": "select",
+          "id": "header_icon_left",
+          "options": [
+            {
+              "value": "header_chicken.png",
+              "label": "Chicken Icon"
+            },
+            {
+              "value": "header_cow.png",
+              "label": "Cow Icon"
+            },
+            {
+              "value": "header_pig.png",
+              "label": "Pig Icon"
+            }
+          ],
+          "default": "header_pig.png",
+          "label": "Header Icon Left",
+          "info": "Change header icon in left position"
+        }
+      ]
+    }
+  {% endschema %}

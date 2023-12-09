@@ -1,0 +1,7 @@
+{% if icon_position == "header_chicken.png" %}
+    {{ images['header-chicken.png'] | image_url: width: 48, height: 48 | image_tag }}
+{% elsif icon_position == "header_pig.png"  %}
+    {{ images['header-pig.png'] | image_url: width: 48, height: 48 | image_tag }}
+{% else %}
+    {{ images['header-cow.png'] | image_url: width: 48, height: 48 | image_tag }}
+{% endif %}
