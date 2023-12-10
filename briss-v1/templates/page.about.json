@@ -1,0 +1,19 @@
+{
+    "sections": {
+        "customer-sidebar":{
+            "type":"customer-sidebar"
+        },
+        "navigation":{
+            "type": "navigation"
+        },
+        "about-page": {
+            "type": "about-page"
+        }
+    },
+    "order": [
+        "customer-sidebar",
+        "navigation",
+        "about-page"
+    ]
+}
+  

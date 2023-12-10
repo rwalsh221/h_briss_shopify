@@ -1,0 +1,16 @@
+{{ 'briss-about-page.css' | asset_url | stylesheet_tag }}
+
+<div class="about__img--container tab-fade">
+    {{ images['briss_1.jpg'] | image_url: width: 615, height: 427 | image_tag: class: 'about__img img__top' }}
+    {{ images['shop.jpg'] | image_url: width: 420, height: 326 | image_tag: class: 'about__img img__bottom' }}
+</div>
+<div class="about__text tab-fade">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat atque esse tenetur, architecto nulla in magnam dignissimos optio hic eveniet nesciunt ipsum ullam inventore ab laboriosam aspernatur! Beatae deleniti vel adipisci aperiam ex at? Possimus mollitia recusandae sequi magni expedita quia nemo culpa cum placeat nobis sint, eveniet ullam optio cupiditate ut. Eligendi doloremque rerum facilis quisquam a dolor similique veniam atque quod officia consectetur dignissimos ipsum veritatis, libero et maxime molestiae numquam vitae nemo rem? Esse ab possimus inventore! Eius velit, soluta assumenda non dicta labore fugit laudantium tempora aspernatur, officia asperiores blanditiis explicabo suscipit maiores quas nesciunt praesentium.</p>
+</div>
+
+{% schema %}
+    {
+        "name": "about-page",
+        "class": "grid__about-page"
+    }
+{% endschema %}

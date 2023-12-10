@@ -38,7 +38,8 @@ a:visited {
 }
 
 .grid__home,
-.grid__contact-page {
+.grid__contact-page,
+.grid__about-page {
   grid-area: content;
 }
 
