@@ -1,20 +1,25 @@
 {{ 'briss-navigation.css' | asset_url | stylesheet_tag }}
 
 
-{%- style -%}
-  .nav_grid_area {
-    grid-area: nav;
-  }
-{%- endstyle -%}
+
 
 <nav class="nav-bar nav_grid_area">
-    <div class="dash-short"></div>
-    <div class="nav-bar__btn" id="btn__about">About</div>
-    <div class="dash"></div>
+  <div class="dash-short"></div>
+  <ul>
+    {% for link in linklists.main-menu.links %}
+      <li class="nav-bar__link-container">
+        <a class="nav-bar__btn" id="btn__about" href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <div class="dash-short"></div>
+   
+    
+    {% comment %} <div class="dash"></div>
     <div class="nav-bar__btn" id="btn__menu">Menu</div>
     <div class="dash"></div>
     <div class="nav-bar__btn" id="btn__contact">Contact</div>
-    <div class="dash-short"></div>
+    <div class="dash-short"></div> {% endcomment %}
 </nav>
 
 {% schema %}

@@ -1,0 +1,88 @@
+.grid__contact-page {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    'contact-address contact-image'
+    'contact-map contact-map';
+}
+
+.contact {
+  grid-area: contact-address;
+  justify-self: center;
+  align-self: center;
+  width: 90%;
+  height: 95%;
+  padding: 2rem;
+  border-radius: 25%;
+  background-color: var(--main-color-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 3rem;
+  box-shadow: 2px 2px 5px var(--shadow-color-black);
+
+  border: var(--border-red-5px);
+}
+
+.contact__heading {
+  margin: 2rem 0;
+  border-bottom: 2px solid var(--main-color-red);
+}
+
+.contact__address {
+  margin: 1rem;
+  list-style: none;
+  font-size: 2.5rem;
+  font-family: var(--font-dancing-script);
+  color: var(--main-color-red);
+  border: 2px solid var(--main-color-red);
+  padding: 2rem;
+}
+
+.contact__img--container {
+  grid-area: contact-image;
+  justify-self: center;
+  align-self: center;
+  background-color: var(--main-color-white);
+  width: 90%;
+  height: 95%;
+
+  border-radius: 25%;
+  box-shadow: 2px 2px 5px var(--shadow-color-black);
+  padding: 0.5rem;
+  border: var(--border-red-5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact__img {
+  border-radius: 25%;
+  height: 100%;
+  width: 100%;
+}
+
+.map-container {
+  grid-area: contact-map;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.map {
+  width: 98%;
+  height: 30rem;
+  border-radius: 10rem;
+  border: var(--border-red-5px);
+  margin-bottom: 2rem;
+}
+
+.map__popup {
+  font-family: var(--font-dancing-script);
+  color: var(--main-color-red);
+  font-size: 2rem;
+  cursor: pointer;
+}

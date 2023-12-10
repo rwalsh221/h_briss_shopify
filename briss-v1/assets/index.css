@@ -37,7 +37,8 @@ a:visited {
   grid-area: nav;
 }
 
-.grid__home {
+.grid__home,
+.grid__contact-page {
   grid-area: content;
 }
 
@@ -47,4 +48,18 @@ a:visited {
 
 .grid__footer {
   grid-area: footer;
+}
+
+.dash {
+  width: 8rem;
+}
+
+.dash-short {
+  width: 4rem;
+}
+
+.dash,
+.dash-short {
+  border-bottom: 3px solid var(--main-color-white);
+  margin: auto 0;
 }

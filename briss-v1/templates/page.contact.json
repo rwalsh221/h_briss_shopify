@@ -1,0 +1,19 @@
+{
+    "sections": {
+        "customer-sidebar":{
+            "type":"customer-sidebar"
+        },
+        "navigation":{
+            "type": "navigation"
+        },
+        "contact-page": {
+            "type": "contact-page"
+        }
+    },
+    "order": [
+        "customer-sidebar",
+        "navigation",
+        "contact-page"
+    ]
+}
+  
