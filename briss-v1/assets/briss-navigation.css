@@ -4,6 +4,7 @@
   background-color: var(--secondary-color-red-light);
   border-bottom: var(--border-red-5px);
   justify-content: space-evenly;
+  padding: 1rem;
 }
 
 .nav-bar ul {
@@ -20,27 +21,26 @@
 .nav-bar__link-container:not(:first-of-type)::before {
   position: absolute;
   content: '';
-  /* display: flex; */
-  width: 8rem;
+  width: 50%;
   border-bottom: 3px solid var(--main-color-white);
   top: 50%;
-  right: 140%;
+  right: 115%;
 }
 
 .nav-bar__btn {
   display: block;
   font-family: var(--font-dancing-script);
   font-size: 3rem;
-  padding: 1rem 3rem;
+  padding: 1rem;
   border: 3px solid var(--main-color-red);
   background-color: var(--main-color-white);
-  margin: 0.4rem 0;
   color: var(--main-color-red);
   border-radius: 5px;
   box-shadow: 2px 2px 5px var(--shadow-color-black);
   transition: all 0.2s;
   cursor: pointer;
-  height: max-content;
+  width: 15rem;
+  text-align: center;
 }
 
 .btn__active,

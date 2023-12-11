@@ -1,0 +1,23 @@
+{{ 'briss-collection.css' | asset_url | stylesheet_tag }}
+
+<nav class="collection-nav">
+    <ul>
+        {% for collection in collections %}
+            <li>{{- collection.title | link_to: collection.url }}</li>
+        {% endfor %}
+        {{ collections['cow'].title }}
+    </ul>
+    {{ collection['cow'].title }}
+</nav>
+
+<div class="collection-grid">
+    {% for product in collection.products %}
+        {{ product.title | link_to: product.url}}
+    {% endfor %}
+</div>
+
+{% comment %} {% for collection in collections %}
+  {{- collection.title | link_to: collection.url }}
+{% endfor %} {% endcomment %}
+
+{% comment %} {{ collection.title }} {% endcomment %}
