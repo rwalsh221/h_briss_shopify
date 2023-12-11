@@ -26,3 +26,108 @@
 .collection-nav ul li a:visited {
   color: var(--main-color-white);
 }
+
+.collection-grid {
+  --collection-grid-gap: 2rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: var(--collection-grid-gap);
+  padding: var(--collection-grid-gap);
+  align-items: center;
+  justify-items: center;
+}
+
+.product-card {
+  display: grid;
+  grid-template-rows: 1.5fr 1fr 0.25fr;
+  height: 100%;
+  width: 80%;
+  background-color: var(--secondary-color-red-light);
+  border: var(--border-red-5px);
+  /* padding: 1rem; */
+  border-radius: 10px;
+  color: var(--main-color-red);
+  color: var(--main-color-white);
+  /* background-color: var(--main-color-white); */
+  position: relative;
+}
+
+.product-card__header {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 1rem;
+}
+
+.product-card__header img {
+  width: 20rem;
+  height: 20rem;
+  border-radius: 50%;
+  margin: 5px;
+  padding: 5px;
+  border: 5px solid var(--main-color-white);
+  background-color: var(--main-color-red);
+}
+
+.product-card__header div {
+  font-size: 3rem;
+  text-align: center;
+  border-radius: 10px;
+  background-color: var(--main-color-red);
+  border: 5px solid var(--main-color-white);
+  padding: 5px;
+
+  /* text-align: center; */
+}
+
+.product-card__header div a {
+  font-weight: bold;
+  color: var(--main-color-white);
+}
+
+.product-card__description {
+  display: flex;
+  align-items: center;
+  background-color: var(--main-color-white);
+  font-size: 1.5rem;
+  background-color: var(--main-color-red);
+  border: 5px solid var(--main-color-white);
+  padding: 0.5rem;
+  border-radius: 10px;
+  margin: 0 1rem 0.5rem 1rem;
+}
+
+.product-card__additional {
+  border-top: 5px solid var(--main-color-red);
+  background-color: var(--main-color-white);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--main-color-red);
+}
+
+.product-card__additional a,
+.product-card__additional p {
+  font-size: 2rem;
+  text-decoration: underline;
+  font-weight: bolder;
+}
+
+.product-card__additional a:hover {
+  font-style: italic;
+  /* text-decoration-color: var(--secondary-color-red-light); */
+}
+
+.product-card__icon {
+  position: absolute;
+  right: 5%;
+  top: 2%;
+}
+
+.product-card__icon img {
+  height: 40px;
+  width: 40px;
+}

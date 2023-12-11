@@ -5,14 +5,32 @@
         {% for collection in collections %}
             <li>{{- collection.title | link_to: collection.url }}</li>
         {% endfor %}
-        {{ collections['cow'].title }}
     </ul>
-    {{ collection['cow'].title }}
+    
 </nav>
 
 <div class="collection-grid">
     {% for product in collection.products %}
-        {{ product.title | link_to: product.url}}
+        <div class="product-card">
+            <div class="product-card__icon">
+                {{ images['product-icon-special.svg'] | image_url: width: 800, height: 800 | image_tag }}
+            </div>
+            <div class="product-card__header">
+                <img src="{{ product.featured_image  | image_url: width:300, height: 300}}"/>
+                <div>
+                    <h4>{{ product.title | link_to: product.url}}</h4>
+                </div>
+               
+            </div>
+            <div class="product-card__description">
+                 <p>{{ product.description }}</p>
+            </div>
+            <div class="product-card__additional">
+                <a href="{{ product.url }}">More Information!!!</a>
+                <p>From&nbsp;{{ product.price | money }}</p>
+            </div>
+        </div>
+        
     {% endfor %}
 </div>
 

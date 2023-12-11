@@ -6,9 +6,9 @@
     "navigation": {
       "type": "navigation"
     },
-    "collection": {
-      "type": "collection"
+    "product": {
+      "type": "product"
     }
   },
-  "order": ["customer-sidebar", "navigation", "collection"]
+  "order": ["customer-sidebar", "navigation", "product"]
 }
