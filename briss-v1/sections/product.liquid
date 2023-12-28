@@ -1,3 +1,32 @@
 {{ 'briss-product.css' | asset_url | stylesheet_tag }}
 
-{{ product.title }}
+<div class="product">
+    <div class="product-card">
+        <h3 class="heading__tertiary">{{ product.title }}<h3>
+        <p>{{ product.description }}</p>
+        <p class="product-card__price">from {{ product.price | money }}</p>
+        {% form 'product', product %}
+            {% comment %} <input type="radio" value="{{ product.variants | last }}"> {% endcomment %}
+           <select name="id">
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}"
+                    {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                  >
+                    {{ variant.title }} - {{ variant.price | money }}
+                  </option>
+                {% endfor %}
+              </select>
+            <br>
+            <input type="text" name="quantity" min="1" value="1">
+
+            <input class="product-card__add-to-cart" type="submit" value="Add to cart">
+            {{ form | payment_button }}
+
+          {% endform %}
+    </div>
+   
+    <div class="product-img">
+        {{ product.featured_image | image_url: width: 800, height: 800 | image_tag }}
+    </div>
+</div>
+

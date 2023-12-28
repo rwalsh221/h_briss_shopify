@@ -16,9 +16,9 @@
                 {{ images['product-icon-special.svg'] | image_url: width: 800, height: 800 | image_tag }}
             </div>
             <div class="product-card__header">
-                <img src="{{ product.featured_image  | image_url: width:300, height: 300}}"/>
+                <img src="{{ product.featured_image | image_url: width: 300, height: 300 }}"/>
                 <div>
-                    <h4>{{ product.title | link_to: product.url}}</h4>
+                    <h4>{{ product.title | link_to: product.url }}</h4>
                 </div>
                
             </div>
