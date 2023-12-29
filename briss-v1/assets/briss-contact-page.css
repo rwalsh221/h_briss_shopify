@@ -13,31 +13,31 @@
   align-self: center;
   width: 90%;
   height: 95%;
-  padding: 2rem;
+  padding: var(--padding-200);
   border-radius: 25%;
   background-color: var(--primary-color-white-500);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 3rem;
+  margin-left: var(--margin-300);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
 
   border: var(--border-red-5px);
 }
 
 .contact__heading {
-  margin: 2rem 0;
+  margin: var(--margin-200) 0;
   border-bottom: 2px solid var(--primary-color-red-500);
 }
 
 .contact__address {
-  margin: 1rem;
+  margin: var(--margin-100);
   list-style: none;
-  font-size: 2.5rem;
+  font-size: 1.5rem;
   font-family: var(--font-dancing-script);
   color: var(--primary-color-red-500);
   border: 2px solid var(--primary-color-red-500);
-  padding: 2rem;
+  padding: var(--padding-200);
 }
 
 .contact__img--container {
@@ -50,7 +50,7 @@
 
   border-radius: 25%;
   box-shadow: 2px 2px 5px var(--secondary-color-black);
-  padding: 0.5rem;
+  padding: calc(var(--padding-100) / 2);
   border: var(--border-red-5px);
   display: flex;
   align-items: center;
@@ -74,15 +74,15 @@
 
 .map {
   width: 98%;
-  height: 30rem;
-  border-radius: 10rem;
+  height: 300px;
+  border-radius: 100px;
   border: var(--border-red-5px);
-  margin-bottom: 2rem;
+  margin-bottom: var(--margin-200);
 }
 
 .map__popup {
   font-family: var(--font-dancing-script);
   color: var(--primary-color-red-500);
-  font-size: 2rem;
+  font-size: var(--font-size-200);
   cursor: pointer;
 }
