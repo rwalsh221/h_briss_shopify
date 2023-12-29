@@ -14,20 +14,20 @@
 .review__container {
   display: flex;
   height: 90%;
-  margin: 1rem;
+  margin: var(--margin-100);
   flex-direction: column;
   justify-content: space-around;
 }
 
 .review {
   font-family: var(--font-dancing-script);
-  font-size: 2rem;
+  font-size: var(--font-size-200);
   color: var(--primary-color-red-500);
   border: 2px solid var(--primary-color-red-500);
-  border-radius: 2rem;
+  border-radius: 20px;
   width: 98%;
-  margin: 1rem auto;
-  padding: 0.5rem;
+  margin: var(--margin-100) auto;
+  padding: calc(var(--padding-100) / 2);
   background-color: var(--primary-color-red-400);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
 }
@@ -36,16 +36,16 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 1rem 0;
+  margin: var(--margin-100) 0;
 }
 
 .review__img {
-  height: 8rem;
-  width: 8rem;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   border: 3px solid var(--primary-color-red-500);
-  padding: 0.2rem;
-  margin: 0.5rem;
+  padding: 2px;
+  margin: calc(var(--margin-100) / 2);
   background-color: var(--primary-color-white-500);
 }
 
@@ -57,7 +57,7 @@
 .review__content {
   width: 95%;
   margin: 0 auto;
-  padding: 0.5rem;
+  padding: calc(var(--padding-100) / 2);
   border: 2px double var(--primary-color-red-500);
   border-radius: 5px;
   background-color: var(--primary-color-white-500);
