@@ -7,11 +7,11 @@
   align-self: center;
   background-color: var(--primary-color-white-500);
   border: var(--border-red-5px);
-  padding: 0.5rem 40rem;
-  border-radius: 1rem;
-  margin: 3rem;
+  padding: calc(var(--padding-100) / 2) calc(var(--padding-100) * 40);
+  border-radius: 10px;
+  margin: var(--margin-300);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
-  font-size: 6rem;
+  font-size: var(--font-size-600);
 }
 
 .home__img {
@@ -19,7 +19,7 @@
   /* width: 40%; */
   border-radius: 100%;
   border: var(--border-red-5px);
-  padding: 1rem;
+  padding: var(--padding-100);
   background-color: var(--primary-color-red-400);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
 }
@@ -27,13 +27,13 @@
 .home__text {
   align-self: center;
   justify-self: flex-end;
-  font-size: 3rem;
+  font-size: var(--font-size-300);
   font-family: var(--font-dancing-script);
   background-color: var(--primary-color-white-500);
   border: var(--border-red-5px);
-  padding: 0.5rem 6rem;
-  border-radius: 1rem;
-  margin: 4rem;
+  padding: calc(var(--padding-100) / 2) var(--padding-600);
+  border-radius: 10px;
+  margin: var(--margin-400);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
   color: var(--primary-color-red-500);
 }
