@@ -20,7 +20,7 @@
   border-radius: 100%;
   border: var(--border-red-5px);
   padding: 1rem;
-  background-color: var(--secondary-color-red-light);
+  background-color: var(--primary-color-red-400);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
 }
 

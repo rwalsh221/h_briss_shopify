@@ -28,7 +28,7 @@
   width: 98%;
   margin: 1rem auto;
   padding: 0.5rem;
-  background-color: var(--secondary-color-red-light);
+  background-color: var(--primary-color-red-400);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
 }
 

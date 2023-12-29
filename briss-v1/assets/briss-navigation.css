@@ -1,7 +1,7 @@
 .nav-bar {
   grid-area: nav;
   display: flex;
-  background-color: var(--secondary-color-red-light);
+  background-color: var(--primary-color-red-400);
   border-bottom: var(--border-red-5px);
   justify-content: space-evenly;
   padding: 1rem;

@@ -13,8 +13,20 @@
 
   /* BASE REM FOR MEDIA QUERIES AND CALC */
   --base-rem: 0.625rem;
+  --base-font-size: 0.625rem;
   --base-margin: 0.625rem;
   --base-padding: 0.625rem;
+
+  /* FONT SIZE */
+  --font-size-100: var(--base-font-size);
+  --font-size-200: calc(var(--base-font-size) * 2);
+  --font-size-300: calc(var(--base-font-size) * 3);
+  --font-size-400: calc(var(--base-font-size) * 4);
+  --font-size-500: calc(var(--base-font-size) * 5);
+  --font-size-600: calc(var(--base-font-size) * 6);
+  --font-size-700: calc(var(--base-font-size) * 7);
+  --font-size-800: calc(var(--base-font-size) * 8);
+  --font-size-900: calc(var(--base-font-size) * 9);
 
   /* MARGIN */
   --margin-100: var(--base-margin);

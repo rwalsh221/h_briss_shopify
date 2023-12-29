@@ -32,13 +32,13 @@
   height: max-content;
   margin: var(--margin-200) auto;
   border: var(--border-red-5px);
-  border-radius: 1rem;
+  border-radius: 10px;
   box-shadow: 2px 2px 5px var(--secondary-color-black);
   padding: var(--padding-300);
 }
 
 .about__text p {
-  font-size: calc(var(--base-rem) * 3);
+  font-size: var(--font-size-300);
   font-family: var(--font-dancing-script);
   color: var(--primary-color-red-500);
   padding: var(--padding-100);
