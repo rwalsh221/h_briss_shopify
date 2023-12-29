@@ -5,12 +5,12 @@
 
 .home__heading {
   align-self: center;
-  background-color: var(--main-color-white);
+  background-color: var(--primary-color-white-500);
   border: var(--border-red-5px);
   padding: 0.5rem 40rem;
   border-radius: 1rem;
   margin: 3rem;
-  box-shadow: 2px 2px 5px var(--shadow-color-black);
+  box-shadow: 2px 2px 5px var(--secondary-color-black);
   font-size: 6rem;
 }
 
@@ -21,7 +21,7 @@
   border: var(--border-red-5px);
   padding: 1rem;
   background-color: var(--secondary-color-red-light);
-  box-shadow: 2px 2px 5px var(--shadow-color-black);
+  box-shadow: 2px 2px 5px var(--secondary-color-black);
 }
 
 .home__text {
@@ -29,11 +29,11 @@
   justify-self: flex-end;
   font-size: 3rem;
   font-family: var(--font-dancing-script);
-  background-color: var(--main-color-white);
+  background-color: var(--primary-color-white-500);
   border: var(--border-red-5px);
   padding: 0.5rem 6rem;
   border-radius: 1rem;
   margin: 4rem;
-  box-shadow: 2px 2px 5px var(--shadow-color-black);
-  color: var(--main-color-red);
+  box-shadow: 2px 2px 5px var(--secondary-color-black);
+  color: var(--primary-color-red-500);
 }

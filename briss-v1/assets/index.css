@@ -1,6 +1,6 @@
 a:link,
 a:visited {
-  color: var(--main-color-red);
+  color: var(--primary-color-red-500);
   text-decoration: none;
 }
 
@@ -26,8 +26,8 @@ a:visited {
     'sidebar content';
   background: repeating-linear-gradient(
     to right,
-    var(--main-color-white),
-    var(--main-color-white) 10px,
+    var(--primary-color-white-500),
+    var(--primary-color-white-500) 10px,
     #ff3e3e 10px,
     #ff3e3e 20px
   );
@@ -61,6 +61,6 @@ a:visited {
 
 .dash,
 .dash-short {
-  border-bottom: 3px solid var(--main-color-white);
+  border-bottom: 3px solid var(--primary-color-white-500);
   margin: auto 0;
 }

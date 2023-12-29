@@ -24,7 +24,7 @@
 
 .product-img img,
 .product-card {
-  background-color: var(--main-color-white);
+  background-color: var(--primary-color-white-500);
   border: var(--border-red-5px);
 }
 
@@ -46,16 +46,16 @@
 
 .product-card__price {
   font-size: 2rem;
-  color: var(--main-color-red);
+  color: var(--primary-color-red-500);
   font-weight: bold;
 }
 
 .product-card__add-to-cart {
   display: block;
-  color: var(--main-color-red);
+  color: var(--primary-color-red-500);
   margin: 1rem auto;
-  background-color: var(--main-color-white);
-  border: 5px solid var(--main-color-red);
+  background-color: var(--primary-color-white-500);
+  border: 5px solid var(--primary-color-red-500);
   font-size: 2.5rem;
   padding: 2rem;
   border-radius: 10rem;

@@ -15,19 +15,19 @@
   height: 95%;
   padding: 2rem;
   border-radius: 25%;
-  background-color: var(--main-color-white);
+  background-color: var(--primary-color-white-500);
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 3rem;
-  box-shadow: 2px 2px 5px var(--shadow-color-black);
+  box-shadow: 2px 2px 5px var(--secondary-color-black);
 
   border: var(--border-red-5px);
 }
 
 .contact__heading {
   margin: 2rem 0;
-  border-bottom: 2px solid var(--main-color-red);
+  border-bottom: 2px solid var(--primary-color-red-500);
 }
 
 .contact__address {
@@ -35,8 +35,8 @@
   list-style: none;
   font-size: 2.5rem;
   font-family: var(--font-dancing-script);
-  color: var(--main-color-red);
-  border: 2px solid var(--main-color-red);
+  color: var(--primary-color-red-500);
+  border: 2px solid var(--primary-color-red-500);
   padding: 2rem;
 }
 
@@ -44,12 +44,12 @@
   grid-area: contact-image;
   justify-self: center;
   align-self: center;
-  background-color: var(--main-color-white);
+  background-color: var(--primary-color-white-500);
   width: 90%;
   height: 95%;
 
   border-radius: 25%;
-  box-shadow: 2px 2px 5px var(--shadow-color-black);
+  box-shadow: 2px 2px 5px var(--secondary-color-black);
   padding: 0.5rem;
   border: var(--border-red-5px);
   display: flex;
@@ -82,7 +82,7 @@
 
 .map__popup {
   font-family: var(--font-dancing-script);
-  color: var(--main-color-red);
+  color: var(--primary-color-red-500);
   font-size: 2rem;
   cursor: pointer;
 }

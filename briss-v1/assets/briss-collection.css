@@ -1,5 +1,5 @@
 .collection-nav {
-  background-color: var(--main-color-white);
+  background-color: var(--primary-color-white-500);
   border-bottom: var(--border-red-5px);
   padding: 1rem;
 }
@@ -14,17 +14,17 @@
   display: block;
   width: 9rem;
   font-size: 2rem;
-  color: var(--main-color-white);
-  background-color: var(--main-color-red);
+  color: var(--primary-color-white-500);
+  background-color: var(--primary-color-red-500);
   text-align: center;
-  border: 3px solid var(--main-color-red);
+  border: 3px solid var(--primary-color-red-500);
   padding: 1rem;
   border-radius: 5px;
 }
 
 .collection-nav ul li a:link,
 .collection-nav ul li a:visited {
-  color: var(--main-color-white);
+  color: var(--primary-color-white-500);
 }
 
 .collection-grid {
@@ -48,9 +48,9 @@
   border: var(--border-red-5px);
   /* padding: 1rem; */
   border-radius: 10px;
-  color: var(--main-color-red);
-  color: var(--main-color-white);
-  /* background-color: var(--main-color-white); */
+  color: var(--primary-color-red-500);
+  color: var(--primary-color-white-500);
+  /* background-color: var(--primary-color-white-500); */
   position: relative;
 }
 
@@ -66,16 +66,16 @@
   border-radius: 50%;
   margin: 5px;
   padding: 5px;
-  border: 5px solid var(--main-color-white);
-  background-color: var(--main-color-red);
+  border: 5px solid var(--primary-color-white-500);
+  background-color: var(--primary-color-red-500);
 }
 
 .product-card__header div {
   font-size: 3rem;
   text-align: center;
   border-radius: 10px;
-  background-color: var(--main-color-red);
-  border: 5px solid var(--main-color-white);
+  background-color: var(--primary-color-red-500);
+  border: 5px solid var(--primary-color-white-500);
   padding: 5px;
 
   /* text-align: center; */
@@ -83,30 +83,30 @@
 
 .product-card__header div a {
   font-weight: bold;
-  color: var(--main-color-white);
+  color: var(--primary-color-white-500);
 }
 
 .product-card__description {
   display: flex;
   align-items: center;
-  background-color: var(--main-color-white);
+  background-color: var(--primary-color-white-500);
   font-size: 1.5rem;
-  background-color: var(--main-color-red);
-  border: 5px solid var(--main-color-white);
+  background-color: var(--primary-color-red-500);
+  border: 5px solid var(--primary-color-white-500);
   padding: 0.5rem;
   border-radius: 10px;
   margin: 0 1rem 0.5rem 1rem;
 }
 
 .product-card__additional {
-  border-top: 5px solid var(--main-color-red);
-  background-color: var(--main-color-white);
+  border-top: 5px solid var(--primary-color-red-500);
+  background-color: var(--primary-color-white-500);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
-  color: var(--main-color-red);
+  color: var(--primary-color-red-500);
 }
 
 .product-card__additional a,
