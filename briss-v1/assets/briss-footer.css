@@ -1,12 +1,12 @@
 footer {
-  padding: 1rem;
+  padding: var(--padding-100);
   background-color: var(--primary-color-white-500);
   border-top: var(--border-red-5px);
 }
 
 .footer__header {
   text-align: center;
-  margin: 0.5rem;
+  margin: calc(var(--margin-100) / 2);
 }
 
 .icon__info {
@@ -14,5 +14,5 @@ footer {
   width: max-content;
   color: var(--primary-color-red-500);
   font-family: var(--font-dancing-script);
-  font-size: 2rem;
+  font-size: var(--font-size-200);
 }
