@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "customer-sidebar": {
+      "type": "customer-sidebar"
+    },
+    "navigation": {
+      "type": "navigation"
+    },
+    "cart": {
+      "type": "cart"
+    }
+  },
+  "order": ["customer-sidebar", "navigation", "cart"]
+}

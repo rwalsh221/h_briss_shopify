@@ -1,4 +1,5 @@
 {{ 'briss-product.css' | asset_url | stylesheet_tag }}
+{% comment %} 
 
 <div class="product">
     <div class="product-card">
@@ -7,17 +8,38 @@
         <p class="product-card__price">from {{ product.price | money }}</p>
         {% form 'product', product %}
             {% comment %} <input type="radio" value="{{ product.variants | last }}"> {% endcomment %}
-           <select name="id">
-                {% for variant in product.variants %}
-                  <option value="{{ variant.id }}"
-                    {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
-                  >
-                    {{ variant.title }} - {{ variant.price | money }}
-                  </option>
+            <select name="id" id="select">
+              {% for variant in product.variants %}
+                <option valuesssss="{{ variant.id }}" data-price="{{ variant.price }}"
+                  {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
+                >
+                  {{ variant.title }} - {{ variant.price | money }} - {{ variant.id }}  {{ variant.options }}
+                </option>
+              {% endfor %}
+            </select>
+            <br>
+           
+
+            <label>
+              Strength
+              <select>
+                {%- for value in product.options_by_name['size'].values %}
+                <option>{{ value }}</option>
+                {%- endfor %}
+              </select>
+            </label>
+
+            {% for option in product.options %}
+              <label>{{ option }}</label>
+              <select>
+                {% for value in product.options_by_name[option].values %}
+                  <option>{{ value }}</option>
                 {% endfor %}
               </select>
-            <br>
-            <input type="text" name="quantity" min="1" value="1">
+            {% endfor %}
+
+            <input type="text" name="quantity" min="1" value="1" id="quantity">
+            <p>Total Price: <span id="total_price">{{ product.selected_or_first_available_variant.price | money }}</span></p>
 
             <input class="product-card__add-to-cart" type="submit" value="Add to cart">
             {{ form | payment_button }}
@@ -30,3 +52,68 @@
     </div>
 </div>
 
+
+{% javascript %}
+  // ELEMENTS
+  const select = document.getElementById('select');
+  const totalPriceEl = document.getElementById('total_price');
+  const quantity = document.getElementById('quantity');
+
+  const updateTotalPrice=()=>{
+    const totalPrice = select.options[select.selectedIndex].dataset.price * quantity.value
+
+    totalPriceEl.textContent = totalPrice
+  }
+  
+  select.addEventListener('change', updateTotalPrice)
+
+{% endjavascript %}
+ {% endcomment %}
+
+ {% comment %}
+  Renders product variant-picker
+
+  Accepts:
+  - product: {Object} product object.
+  - block: {Object} passing the block information.
+  - product_form_id: {String} Id of the product form to which the variant picker is associated.
+  - update_url: {Boolean} whether or not to update url when changing variants. If false, the url isn't updated. Default: true (optional).
+  Usage:
+  {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
+{% endcomment %}
+
+<div class="product">
+  <div class="product-img">
+    {{ product.featured_image | image_url: width: 800, height: 800 | image_tag }}
+  </div>
+  <div class="product-card">
+    <h2>H Briss & Son</h2>
+    <h1>{{ product.title }}</h1>
+    <p>{{ product.price | money_with_currency }}</p>
+    <variant-radios
+      id="variant-radios-{{ section.id }}"
+      class="no-js-hidden"
+      data-section="{{ section.id }}"
+      data-url="{{ product.url }}"
+    >
+      {%- for option in product.options_with_values -%}
+        <fieldset class="js product-form__input">
+          <legend class="form__label">{{ option.name }}</legend>
+          {% render 'product-variant-options', product: product, option: option, block: block %}
+        </fieldset>
+      {%- endfor -%}
+      <script type="application/json">
+        {{ product.variants | json }}
+      </script>
+    </variant-radios>
+    <input type="text" name="quantity" min="1" value="1" id="quantity">
+    <p>{{ product.description }}</p>
+  </div>
+</div>
+
+{% schema %}
+    {
+        "name": "product",
+        "class": "product__grid"
+    }
+{% endschema %}
