@@ -45,6 +45,7 @@
         optionTWoArray="{{ variants_option2_arr }}"
         optionThreeArray="{{ variants_option3_arr }}"
         variantsAvabArray="{{  variants_available_arr}}"
+        class="product_select_input"
 
         {% if option.selected_value == value %}
           checked
@@ -53,9 +54,14 @@
           class="disabled"
         {% endif %}
       >
-      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-        {{ value -}}
-        
+      <label 
+        for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" 
+        data-option-disabled={{ option_disabled }}
+        class="product_select_label" 
+        {% if option_disabled %}
+          data-unavaliable="true"
+        {% endif %}>
+          {{ value -}}
       </label>
     
   {%- endfor -%}
