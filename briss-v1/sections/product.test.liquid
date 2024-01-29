@@ -1,0 +1,52 @@
+<p>hello</p>
+{% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'slide' %}
+      <p>hello</p>
+  {% endcase %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Slideshow",
+  "tag": "section",
+  "class": "slideshow",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Slideshow"
+    }
+  ],
+  "blocks": [
+     {
+       "name": "Slide",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         }
+       ]
+     }
+   ],
+  "presets": [
+    {
+      "name": "Slideshow",
+      "settings": {
+        "title": "Slideshow"
+      },
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

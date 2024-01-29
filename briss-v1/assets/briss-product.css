@@ -101,7 +101,7 @@
   color: var(--primary-color-white-500);
 }
 
-[data-unavaliable='true']::after {
+.disabled + label::after {
   position: absolute;
   content: 'unavaliable';
   border: var(--border-red-2px);
@@ -115,6 +115,27 @@
   opacity: 0;
   animation: fadeIn 0.5s ease-in forwards;
 }
+
+/* [data-unavaliable='true']::after,
+.disabled::after {
+  position: absolute;
+  content: 'unavaliable';
+  border: var(--border-red-2px);
+  background-color: black;
+  color: var(--primary-color-white-500);
+  font-size: 12px;
+  top: 90%;
+  left: 14%;
+  padding: 2px;
+  border-radius: 10px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in forwards;
+}
+
+.disabled {
+  visibility: visible;
+  display: block;
+} */
 
 @keyframes fadeIn {
   0% {

@@ -1,0 +1,116 @@
+<p>{{ 'text' | t }}</p>
+
+{% for block in section.blocks %}
+    {% if block.type == 'paragraph' %}
+        <p>{{ block.settings.text }}</p>
+    {% elsif block.type == '@app' %}
+         {%  render block %}
+    {% endif %}    
+{% endfor %}
+
+<h1 style="color: {{ section.settings.color }}">{{ section.settings.text }}</h1>
+
+{% for block in section.blocks %}
+    {% if block.type == 'social' %}
+        <a href="{{ block.settings.url }}">{{ block.settings.text }}</a>
+    {% endif %}    
+{% endfor %}
+
+{% stylesheet %}
+    .custom-section {
+        background-color:purple
+    }
+{% endstylesheet %}
+
+{% schema %}
+{
+    "name": "Custom section",
+    "tag": "header",
+    "class": "custom-section",
+    "limit": 1,
+    "settings": [
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+        },
+        {
+            "type": "color",
+            "id": "color",
+            "label": "Text color",
+            "default": "#333"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Default custom section",
+            "settings": {
+                "text": "Default text"
+            },
+            "blocks": [
+                {
+                    "type": "paragraph"
+                },
+                {
+                    "type": "social",
+                    "settings": {
+                        "url":"https://www.twitter.com",
+                        "text": "twitter"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Red custom section",
+            "settings": {
+                "text": "Red text"
+            }
+        }
+    ],
+    "blocks":[
+        {
+            "type": "@app"
+        },
+        {
+            "name": "Social link",
+            "type": "social",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "text",
+                    "label": "Text"
+                },
+                {
+                    "type": "url",
+                    "id": "url",
+                    "label": "URL"
+                }
+            ]
+        },
+        {
+            "name": "Paragraph",
+            "type": "paragraph",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "text",
+                    "label": "Text"
+                }
+            ]
+        }
+    ],
+    "max_blocks": 3,
+    "locales": {
+        "en": {
+            "text": "hello"
+        },
+        "es": {
+            "text": "ola"
+        }
+    },
+    "disabled_on": {
+        "templates": ["page"]
+    }
+}
+
+{% endschema %}

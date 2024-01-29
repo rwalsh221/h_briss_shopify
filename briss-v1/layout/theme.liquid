@@ -9,7 +9,13 @@
       href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
       rel="stylesheet"
     />
+    
+    <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
+    
+
 
 
     {{ content_for_header }}
@@ -80,4 +86,13 @@
     </main>
     {% sections 'footer-group' %}
 </body>
+
+<script>
+    window.variantStrings = {
+        addToCart: `{{ 'products.product.add_to_cart' | t }}`,
+        soldOut: `{{ 'products.product.sold_out' | t }}`,
+        unavailable: `{{ 'products.product.unavailable' | t }}`,
+        unavailable_with_option: `{{ 'products.product.value_unavailable' | t: option_value: '[value]' }}`,
+      };
+</script>
 </html>
