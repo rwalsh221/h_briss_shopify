@@ -82,9 +82,14 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 
+<h3 class="heading__tertiary">{{ product.title }}<h3>
+
+  {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}
+<p class="product-car__price--compare">{{ product.selected_or_first_available_variant.price | money }}</p>
+<p class="product-card__price">from {{ product.selected_or_first_available_variant.price | money }}</p>
 
 {% form 'product', product %}
-  <input type="hidden" name="id" value {{ product.selected_or_first_available_variant.id }}>
+  <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
   {% if product.variants.size > 1 %}
     <div class="product-option">
@@ -106,9 +111,12 @@
             </div>
           {% endfor %}
         </fieldset> 
+        
       {% endfor %}
     </div>
   {% endif %}
+
+  <input type="submit" value="Add to cart">
 {% endform %}
 
 <script>
@@ -117,13 +125,42 @@
 
   document.querySelectorAll('.product-option input[type="radio"]')
   .forEach(radio => radio.addEventListener('change', ()=>{
-      const selectedOptions = []
+    // find selected options  
+    const selectedOptions = []
   
       document.querySelectorAll('.product-option input[type="radio"]:checked')
       .forEach(radio => selectedOptions.push(radio.value))
   
-      console.log(selectedOptions)
-    }))
+      // find matched variant
+      const matchedVariant = product.variants.find(variant => {
+          let pass = true
+  
+          for (let i = 0; i < selectedOptions.length; i++) {
+              if(selectedOptions.indexOf(variant.options[i]) === -1) {
+                  pass = false
+                  break
+              }
+          }
+          return pass
+      })
+
+      // Change product form variant id
+      document.querySelector('#product-id').value = matchedVariant.id
+      console.log(matchedVariant)
+
+      // change url
+      const url = new URLParse(window.location.href, true)
+      console.log(url)
+      url.query.variant = matchedVariant.id
+      const newUrl = url.toString()
+      console.log(newUrl)
+      window.history.replaceState(null,null,newUrl)
+
+      // change prices
+      document.querySelector(".product-card__price").textContent = matchedVariant.price
+      document.querySelector(".product-card__price--compare").textContent = matchedVariant.compare_at_price
+      
+  }))
 
   console.log(product)
 </script>
