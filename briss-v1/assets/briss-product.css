@@ -101,7 +101,7 @@
   color: var(--primary-color-white-500);
 }
 
-.disabled + label::after {
+.disabled > label::after {
   position: absolute;
   content: 'unavaliable';
   border: var(--border-red-2px);
@@ -113,7 +113,8 @@
   padding: 2px;
   border-radius: 10px;
   opacity: 0;
-  animation: fadeIn 0.5s ease-in forwards;
+  animation: fadeIn 0.2s ease-in forwards;
+  z-index: 10;
 }
 
 /* [data-unavaliable='true']::after,

@@ -1,22 +1,51 @@
-const product = {{ product | json }}
+// const product = {{ product | json }}
 
-document.querySelectorAll('.product-option input[type="radio"]')
-.forEach(radio => radio.addEventListener('change', ()=>{
-    const selectedOptions = []
+document
+  .querySelectorAll('.product-option input[type="radio"]')
+  .forEach((radio) =>
+    radio.addEventListener('change', () => {
+      const selectedOptions = [];
 
-    document.querySelectorAll('.product-option input[type="radio"]:checked')
-    .forEach(radio => selectedOptions.push(radio.value))
+      document
+        .querySelectorAll('.product-option input[type="radio"]:checked')
+        .forEach((radio) => selectedOptions.push(radio.value));
 
-    const matchedVariant = product.variants.find(variant => {
-        let pass = true
+      const matchedVariant = product.variants.find((variant) => {
+        let pass = true;
 
         for (let i = 0; i < selectedOptions.length; i++) {
-            if(selectedOptions.indexOf(variant.options[i]) === -1) {
-                pass = false
-                break
-            }
+          if (selectedOptions.indexOf(variant.options[i]) === -1) {
+            pass = false;
+            break;
+          }
         }
-    })
+      });
 
-    return pass
-}))
+      return pass;
+    })
+  );
+
+const product = [];
+
+const setVariantUnavaliable = () => {
+  const selectedRadio = document.querySelectorAll(
+    '.product-option input[type="radio"]:checked'
+  );
+
+  console.log(selectedRadio);
+
+  const unavailableVariants = [];
+
+  product.variants.forEach((el) => {
+    if (el.option1 === selectedRadio[0].value && el.avaliable === false) {
+      unavailableVariants.push(el);
+    }
+  });
+
+  un.forEach((el) => {
+    document.querySelector(`radio-container-${el.option2}`).classList.add =
+      'disabled';
+  });
+
+  console.log(unavailableVariants);
+};
