@@ -92,7 +92,7 @@
     <h3 class="heading__tertiary">{{ product.title }}</h3>
 
       {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}
-    <p class="product-car__price--compare ">{{ product.selected_or_first_available_variant.price | money }}</p>
+    <p class="product-card__price--compare ">{{ product.selected_or_first_available_variant.price | money }}</p>
     <p class="product-card__price">from {{ product.selected_or_first_available_variant.price | money }}</p>
 
     {% form 'product', product %}
@@ -102,30 +102,39 @@
         <div class="product-option">
           {% for option in product.options_with_values %}
             <fieldset id="{{ product.options_with_values }}">
-              <legend>{{ option.values }}</legend>
-              {% for value in option.values %}
-                <div id="radio-container-{{ value }}" class="radio-container">
-                  <input
-                    {% if option.selected_value == value %}checked{% endif %}
-                    class="product_select_input"
-                    type="radio"
-                    name="{{ option.name }}"
-                    value="{{ value }}"
-                    id="{{ option.name | handleize }}-{{ value | handleize }}"
-                  >
-                  <label class="product_select_label" for="{{ option.name | handleize }}-{{ value | handleize }}">
-                    {{ value }}
-                  </label>
-                </div>
+              <legend>{{ option.name }}</legend>
+              <ul class="option-container">
+                {% for value in option.values %}
+                
+                  <li id="radio-container-{{ value }}" class="radio-container">
+                    <input
+                      {% if option.selected_value == value %}checked{% endif %}
+                      class="product_select_input"
+                      type="radio"
+                      name="{{ option.name }}"
+                      value="{{ value }}"
+                      id="{{ option.name | handleize }}-{{ value | handleize }}"
+                    >
+                    <label class="product_select_label" for="{{ option.name | handleize }}-{{ value | handleize }}">
+                      {{ value }}
+                    </label>
+                  </li>
+               
               {% endfor %}
+            </ul>
             </fieldset> 
             
           {% endfor %}
         </div>
       {% endif %}
-      <input type="text" name="quantity" min="1" value="1" id="quantity">
+      <div class="quantity-container">
+        <button>+</button>
+        <input type="text" name="quantity" min="1" value="1" id="quantity" class="quantity-input">
+        <button>-</button>
+      </div>
+      
 
-      <input type="submit" value="Add to cart">
+      <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart">
     {% endform %}
   </div>
 </div>
@@ -178,6 +187,9 @@ setVariantUnavailable()
   
       // find matched variant
       const matchedVariant = product.variants.find(variant => {
+        console.log('hehe')
+        console.log(variant)
+        console.log('hehe')
           let pass = true
   
           for (let i = 0; i < selectedOptions.length; i++) {
@@ -206,6 +218,17 @@ setVariantUnavailable()
       {% comment %} document.querySelector(".product-card__price--compare").textContent = matchedVariant.compare_at_price {% endcomment %}
 
       setVariantUnavailable()
+
+      const disableAddToCart = () => {
+        console.log(matchedVariant)
+        if (matchedVariant.available === false) {
+          document.querySelector('#add-to-cart').disabled = true;
+        } else {
+          document.querySelector('#add-to-cart').disabled = false;
+        }
+      };
+
+      disableAddToCart()
 
       
   }))

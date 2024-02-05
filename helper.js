@@ -49,3 +49,13 @@ const setVariantUnavaliable = () => {
 
   console.log(unavailableVariants);
 };
+
+const selectedOptions = [];
+
+const disableAddToCart = () => {
+  if (selectedOptions[1].classList.contains('disabled')) {
+    document.querySelector('#add-to-cart').disabled = true;
+  } else {
+    document.querySelector('#add-to-cart').disabled = false;
+  }
+};
