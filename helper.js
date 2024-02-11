@@ -59,3 +59,16 @@ const disableAddToCart = () => {
     document.querySelector('#add-to-cart').disabled = false;
   }
 };
+
+const increaseQuantity = () => {
+  const quantityInput = document.getElementById('quantity');
+
+  quantityInput.value = 'hello';
+};
+
+// if (quantityInput.value === '0') {
+//   return;
+// }
+
+const variantQuantity =
+  variantQuantityArray[variantQuantityArray.indexOf(matchedVariant.id) + 1];

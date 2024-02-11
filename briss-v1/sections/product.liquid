@@ -82,6 +82,15 @@
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
 
+{% assign variantQuantityArray = null | sort %}
+{% for variant in product.variants %}
+  {% assign variantQuantity = variant.inventory_quantity | sort %}
+  {%  assign variantId = variant.id | sort %}
+   
+  {% assign variantQuantityArray = variantQuantityArray | concat: variantId %}
+  {% assign variantQuantityArray = variantQuantityArray | concat: variantQuantity %}
+{% endfor %}
+
 <div class="product">
   
   <div class="product-img">
@@ -89,12 +98,16 @@
   </div>
   
   <div class="product-card">
-    <h3 class="heading__tertiary">{{ product.title }}</h3>
-
+    <h3 class="heading__tertiary product-card__title">{{ product.title }}</h3>
+    <div class="product-card__description">
+      {{ product.description }}
+    </div>
+    <div class="product-card__price-container">
       {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}
-    <p class="product-card__price--compare ">{{ product.selected_or_first_available_variant.price | money }}</p>
-    <p class="product-card__price">from {{ product.selected_or_first_available_variant.price | money }}</p>
-
+      <p class="product-card__price--compare ">{{ product.selected_or_first_available_variant.price | money }}</p>
+      <p class="product-card__price">from {{ product.selected_or_first_available_variant.price | money }}</p>
+    </div>
+    <div class="product-card__form"> 
     {% form 'product', product %}
       <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
@@ -128,21 +141,58 @@
         </div>
       {% endif %}
       <div class="quantity-container">
-        <button>+</button>
+        <p><span id="quantity-avaliable">10+</span>&nbsp;available</p>
+        <button id="quantity-decrease">-</button>
         <input type="text" name="quantity" min="1" value="1" id="quantity" class="quantity-input">
-        <button>-</button>
+        <button id="quantity-increase">+</button>
       </div>
       
 
       <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart">
     {% endform %}
+    </div>
+
+    
+
+   
   </div>
 </div>
 
 <script>
+  const variantQuantitys = {{ variantQuantityArray | json }}
+  console.log(variantQuantitys)
   const product = {{ product | json }}
 
 console.log(product)
+
+
+
+const increaseQuantity = (event) => {
+  event.preventDefault()
+  
+  const quantityInput = document.getElementById('quantity');
+
+  if(quantityInput.value === quantityInput.max) {
+  return }
+  
+  quantityInput.value = +quantityInput.value + 1;
+};
+
+const decreaseQuantity = (event) => {
+  event.preventDefault()
+  
+  const quantityInput = document.getElementById('quantity');
+  
+  if(quantityInput.value === quantityInput.min) {
+    return
+  }
+
+  quantityInput.value = +quantityInput.value - 1;
+};
+
+
+document.getElementById('quantity-increase').addEventListener('click', increaseQuantity)
+document.getElementById('quantity-decrease').addEventListener('click', decreaseQuantity)
 
 const setVariantUnavailable = () => {
   document.querySelectorAll('.radio-container').forEach(el=>{
@@ -227,6 +277,13 @@ setVariantUnavailable()
           document.querySelector('#add-to-cart').disabled = false;
         }
       };
+
+      console.log('elelelelee')
+      const variantQuantity =
+  variantQuantitys[variantQuantitys.indexOf(matchedVariant.id) + 1];
+document.getElementById('quantity').max = variantQuantity
+document.getElementById('quantity-avaliable').textContent = variantQuantity
+  console.log(variantQuantity)
 
       disableAddToCart()
 
