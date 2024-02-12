@@ -141,7 +141,13 @@
         </div>
       {% endif %}
       <div class="quantity-container">
-        <p><span id="quantity-avaliable">10+</span>&nbsp;available</p>
+        <p>
+          {% if product.selected_or_first_available_variant.inventory_quantity > 9 %}
+            <span id="quantity-avaliable">10+</span>&nbsp;available 
+          {% else %}  
+            <span id="quantity-avaliable">{{ product.selected_or_first_available_variant.inventory_quantity}}</span>&nbsp;available  
+          {% endif %}
+      </p>
         <button id="quantity-decrease">-</button>
         <input type="text" name="quantity" min="1" value="1" id="quantity" class="quantity-input">
         <button id="quantity-increase">+</button>
@@ -282,7 +288,8 @@ setVariantUnavailable()
       const variantQuantity =
   variantQuantitys[variantQuantitys.indexOf(matchedVariant.id) + 1];
 document.getElementById('quantity').max = variantQuantity
-document.getElementById('quantity-avaliable').textContent = variantQuantity
+variantQuantity > 9 ? document.getElementById('quantity-avaliable').textContent = '10+' 
+                    : document.getElementById('quantity-avaliable').textContent = variantQuantity  
   console.log(variantQuantity)
 
       disableAddToCart()
