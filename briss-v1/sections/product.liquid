@@ -98,9 +98,9 @@
   </div>
   
   <div class="product-card">
-    <h3 class="heading__tertiary product-card__title">{{ product.title }}</h3>
     <div class="product-card__description">
-      {{ product.description }}
+      <h3 class="heading__tertiary product-card__title">{{ product.title }}</h3>
+      <div>{{ product.description }}</div>
     </div>
     <div class="product-card__price-container">
       {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}

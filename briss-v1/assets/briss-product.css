@@ -54,20 +54,30 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-areas:
-    'ptitle ptitle'
-    'pprice pdesc'
+    'pdesc pdesc'
+    'pprice .'
     'pform pform';
   gap: 5px;
 }
 .product-card__title {
-  text-decoration: underline;
-  grid-area: ptitle;
+  position: absolute;
+  /* text-decoration: underline; */
+  grid-area: pdesc;
+  top: -38px;
+  left: 17px;
+  background-color: var(--primary-color-white-500);
+  background-color: var(--primary-color-red-500);
+  color: var(--primary-color-white-500);
+  padding: 5px 10px;
+  border: 3px solid var(--primary-color-red-500);
+  /* border-radius: 20px; */
 }
 
 .product-card__description {
+  position: relative;
   grid-area: pdesc;
   border: 2px solid var(--primary-color-red-500);
-  padding: var(--padding-100);
+  padding: var(--padding-300) var(--padding-100);
 }
 
 .product-card__price-container {
