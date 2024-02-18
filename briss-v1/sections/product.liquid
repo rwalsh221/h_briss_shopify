@@ -103,9 +103,15 @@
       <div>{{ product.description }}</div>
     </div>
     <div class="product-card__price-container">
+      {% if product.selected_or_first_available_variant.compare_at_price %}
+        <p class="product-card__price--compare">{{ product.selected_or_first_available_variant.compare_at_price | money }}</p>
+        <p class="product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+        <p class="product-card__price--special">special</p>
+      {% else %}
+        <p class="product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+      {% endif %}
       {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}
-      <p class="product-card__price--compare ">{{ product.selected_or_first_available_variant.price | money }}</p>
-      <p class="product-card__price">from {{ product.selected_or_first_available_variant.price | money }}</p>
+      
     </div>
     <div class="product-card__form"> 
     {% form 'product', product %}
