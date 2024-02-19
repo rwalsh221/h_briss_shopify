@@ -103,14 +103,14 @@
       <div>{{ product.description }}</div>
     </div>
     <div id="price-container" class="product-card__price-container">
-      <h4>Price</h4>
+      <h4 id="price-container-heading">Price</h4>
       {% comment %} {% render 'product-price' %} {% endcomment %}
        {% if product.selected_or_first_available_variant.compare_at_price %}
-        <p class="product-card__price--old">{{ product.selected_or_first_available_variant.compare_at_price | money }}</p>
-        <p class="product-card__price--new">{{ product.selected_or_first_available_variant.price | money }}</p>
-        <p class="product-card__price--special">special</p>
+        <p class="price product-card__price--old">{{- product.selected_or_first_available_variant.compare_at_price | money -}}</p>
+        <p class="price product-card__price--new">{{- product.selected_or_first_available_variant.price | money -}}</p>
+        <p class="price product-card__price--special">special</p>
       {% else %}
-        <p class="product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+        <p class="price product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
       {% endif %} 
       {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}
       
@@ -160,7 +160,9 @@
         <input type="text" name="quantity" min="1" value="1" id="quantity" class="quantity-input">
         <button id="quantity-increase">+</button>
       </div>
-      
+{% for cur in shop.enabled_currencies %}
+  <p>{{ cur.iso_code }}</p>
+{% endfor %}
 
       <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart">
     {% endform %}
@@ -277,20 +279,31 @@ setVariantUnavailable()
       console.log(newUrl)
       window.history.replaceState(null,null,newUrl)
 
+      {% comment %} UPDATE VARIANT PRICE {% endcomment %}
 try {
    const test = await fetch(newUrl)
       const testres = await test.text()
-      {% comment %} console.log(testres)  {% endcomment %}
       const parser = new DOMParser
       const html = parser.parseFromString(testres,'text/html')
-      console.log(html.getElementById('price-container'))
+      const priceContainer = document.getElementById('price-container')
+      while(priceContainer.lastChild && priceContainer.lastChild.id !== 'price-container-heading'){
+        priceContainer.removeChild(priceContainer.lastChild)
+      }
+
+      const newPriceContent = html.querySelectorAll('.price')
+      console.log(newPriceContent)
+      newPriceContent.forEach(el=>{
+        console.log('el')
+        priceContainer.insertAdjacentElement('beforeend',el)
+      })
+
 } catch(error){
   console.log(error)
 }
       
 
       // change prices
-      document.querySelector(".product-card__price").textContent = matchedVariant.price
+      {% comment %} document.querySelector(".product-card__price").textContent = matchedVariant.price {% endcomment %}
       {% comment %} document.querySelector(".product-card__price--compare").textContent = matchedVariant.compare_at_price {% endcomment %}
 
       setVariantUnavailable()
