@@ -102,14 +102,16 @@
       <h3 class="heading__tertiary product-card__title">{{ product.title }}</h3>
       <div>{{ product.description }}</div>
     </div>
-    <div class="product-card__price-container">
-      {% if product.selected_or_first_available_variant.compare_at_price %}
-        <p class="product-card__price--compare">{{ product.selected_or_first_available_variant.compare_at_price | money }}</p>
-        <p class="product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+    <div id="price-container" class="product-card__price-container">
+      <h4>Price</h4>
+      {% comment %} {% render 'product-price' %} {% endcomment %}
+       {% if product.selected_or_first_available_variant.compare_at_price %}
+        <p class="product-card__price--old">{{ product.selected_or_first_available_variant.compare_at_price | money }}</p>
+        <p class="product-card__price--new">{{ product.selected_or_first_available_variant.price | money }}</p>
         <p class="product-card__price--special">special</p>
       {% else %}
         <p class="product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
-      {% endif %}
+      {% endif %} 
       {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}
       
     </div>
@@ -178,7 +180,7 @@
 console.log(product)
 
 
-
+{% comment %} set max on quantitiy input {% endcomment %}
 const increaseQuantity = (event) => {
   event.preventDefault()
   
@@ -240,7 +242,7 @@ const setVariantUnavailable = () => {
 setVariantUnavailable()
 
   document.querySelectorAll('.product-option input[type="radio"]')
-  .forEach(radio => radio.addEventListener('change', ()=>{
+  .forEach(radio => radio.addEventListener('change', async ()=>{
     // find selected options  
     const selectedOptions = []
   
@@ -274,6 +276,18 @@ setVariantUnavailable()
       const newUrl = url.toString()
       console.log(newUrl)
       window.history.replaceState(null,null,newUrl)
+
+try {
+   const test = await fetch(newUrl)
+      const testres = await test.text()
+      {% comment %} console.log(testres)  {% endcomment %}
+      const parser = new DOMParser
+      const html = parser.parseFromString(testres,'text/html')
+      console.log(html.getElementById('price-container'))
+} catch(error){
+  console.log(error)
+}
+      
 
       // change prices
       document.querySelector(".product-card__price").textContent = matchedVariant.price

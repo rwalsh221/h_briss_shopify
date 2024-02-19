@@ -1,0 +1,7 @@
+{% if product.selected_or_first_available_variant.compare_at_price %}
+    <p class="product-card__price--old">{{ product.selected_or_first_available_variant.compare_at_price | money }}</p>
+    <p class="product-card__price--new">{{ product.selected_or_first_available_variant.price | money }}</p>
+    <p class="product-card__price--special">special</p>
+{% else %}
+    <p class="product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+{% endif %}
