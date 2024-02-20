@@ -179,6 +179,8 @@
 </div>
 
 <script>
+{% comment %} ADD EVENT LISTNER WRITING QUANTITY IN INPUT {% endcomment %}
+
   const variantQuantitys = {{ variantQuantityArray | json }}
   console.log(variantQuantitys)
   const product = {{ product | json }}
@@ -228,6 +230,8 @@ const decreaseQuantity = (event) => {
   }
 
   quantityInput.value = +quantityInput.value - 1;
+
+  updateSubtotal(quantityInput.value)
 };
 
 
