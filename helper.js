@@ -3,7 +3,7 @@
 document
   .querySelectorAll('.product-option input[type="radio"]')
   .forEach((radio) =>
-    radio.addEventListener('change', () => {
+    radio.addEventListener("change", () => {
       const selectedOptions = [];
 
       document
@@ -44,7 +44,7 @@ const setVariantUnavaliable = () => {
 
   un.forEach((el) => {
     document.querySelector(`radio-container-${el.option2}`).classList.add =
-      'disabled';
+      "disabled";
   });
 
   console.log(unavailableVariants);
@@ -53,17 +53,17 @@ const setVariantUnavaliable = () => {
 const selectedOptions = [];
 
 const disableAddToCart = () => {
-  if (selectedOptions[1].classList.contains('disabled')) {
-    document.querySelector('#add-to-cart').disabled = true;
+  if (selectedOptions[1].classList.contains("disabled")) {
+    document.querySelector("#add-to-cart").disabled = true;
   } else {
-    document.querySelector('#add-to-cart').disabled = false;
+    document.querySelector("#add-to-cart").disabled = false;
   }
 };
 
 const increaseQuantity = () => {
-  const quantityInput = document.getElementById('quantity');
+  const quantityInput = document.getElementById("quantity");
 
-  quantityInput.value = 'hello';
+  quantityInput.value = "hello";
 };
 
 // if (quantityInput.value === '0') {
@@ -72,3 +72,22 @@ const increaseQuantity = () => {
 
 const variantQuantity =
   variantQuantityArray[variantQuantityArray.indexOf(matchedVariant.id) + 1];
+
+const updateSubtotal = (quantity) => {
+  const variantPrice = document.getElementById("add-to-cart").dataset.price;
+
+  const subtotal = variantPrice * quantity;
+
+  // convert to pounds pence
+  let penceToPounds = subtotal / 100;
+  penceToPounds = penceToPounds.toString();
+
+  if (penceToPounds.indexOf(".") === penceToPounds.length - 2) {
+    penceToPounds = `${penceToPounds}0`;
+  }
+  if (!penceToPounds.includes(".")) {
+    penceToPounds = `${penceToPounds}.00`;
+  }
+
+  document.getElementById("subtotal").textContent = `£${penceToPounds}`;
+};

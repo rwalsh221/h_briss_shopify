@@ -160,11 +160,15 @@
         <input type="text" name="quantity" min="1" value="1" id="quantity" class="quantity-input">
         <button id="quantity-increase">+</button>
       </div>
-{% for cur in shop.enabled_currencies %}
-  <p>{{ cur.iso_code }}</p>
-{% endfor %}
 
-      <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart">
+      <div class="product-card__add-to-cart">
+        <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ product.selected_or_first_available_variant.price | money }}</span></p>
+        <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
+      </div>
+
+
+
+      
     {% endform %}
     </div>
 
@@ -181,6 +185,24 @@
 
 console.log(product)
 
+const updateSubtotal = (quantity) => {
+  const variantPrice = document.getElementById("add-to-cart").dataset.price;
+
+  const subtotal = variantPrice * quantity;
+
+  // convert to pounds pence
+  let penceToPounds = subtotal / 100;
+  penceToPounds = penceToPounds.toString();
+
+  if (penceToPounds.indexOf(".") === penceToPounds.length - 2) {
+    penceToPounds = `${penceToPounds}0`;
+  }
+  if (!penceToPounds.includes(".")) {
+    penceToPounds = `${penceToPounds}.00`;
+  }
+
+  document.getElementById("subtotal").textContent = `£${penceToPounds}`;
+};
 
 {% comment %} set max on quantitiy input {% endcomment %}
 const increaseQuantity = (event) => {
@@ -192,6 +214,8 @@ const increaseQuantity = (event) => {
   return }
   
   quantityInput.value = +quantityInput.value + 1;
+
+  updateSubtotal(quantityInput.value)
 };
 
 const decreaseQuantity = (event) => {
@@ -331,6 +355,8 @@ variantQuantity > 9 ? document.getElementById('quantity-avaliable').textContent 
   }))
 
   console.log(product)
+
+  {% comment %} update subtotal {% endcomment %}
 </script>
 
 {% schema %}
