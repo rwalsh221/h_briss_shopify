@@ -155,14 +155,22 @@
           {% else %}  
             <span id="quantity-avaliable">{{ product.selected_or_first_available_variant.inventory_quantity}}</span>&nbsp;available  
           {% endif %}
-      </p>
+        </p>
         <button id="quantity-decrease">-</button>
-        <input type="text" name="quantity" min="1" value="1" id="quantity" class="quantity-input">
+        {% if product.selected_or_first_available_variant.available %}
+          <input type="text" name="quantity" min="1" max="{{ product.selected_or_first_available_variant.inventory_quantity }}" value="1" id="quantity" class="quantity-input">
+        {% else %}
+          <input type="text" name="quantity" min="0" max="0" value="0" id="quantity" class="quantity-input">
+        {% endif %}
         <button id="quantity-increase">+</button>
       </div>
 
       <div class="product-card__add-to-cart">
-        <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ product.selected_or_first_available_variant.price | money }}</span></p>
+        {% if product.selected_or_first_available_variant.available %}
+          <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ product.selected_or_first_available_variant.price | money }}</span></p>
+        {% else %}
+          <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ 0.00 | money }}</span></p>
+        {% endif %}
         <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
       </div>
 
@@ -212,7 +220,7 @@ const increaseQuantity = (event) => {
   
   const quantityInput = document.getElementById('quantity');
 
-  if(quantityInput.value === quantityInput.max) {
+  if(quantityInput.value >= quantityInput.max) {
   return }
   
   quantityInput.value = +quantityInput.value + 1;
@@ -351,11 +359,13 @@ try {
 document.getElementById('quantity').max = variantQuantity
 variantQuantity > 9 ? document.getElementById('quantity-avaliable').textContent = '10+' 
                     : document.getElementById('quantity-avaliable').textContent = variantQuantity  
-  console.log(variantQuantity)
-
+  console.log('HELLOWOWOWW',variantQuantity)
+variantQuantity > 0 ? document.getElementById('quantity').value = 1 : document.getElementById('quantity').value = 0
       disableAddToCart()
-
-      
+if(variantQuantity > 0) {
+  updateSubtotal(1)
+}
+variantQuantity > 0 ? updateSubtotal(1) : document.getElementById('subtotal').textContent = '£0.00'
   }))
 
   console.log(product)
