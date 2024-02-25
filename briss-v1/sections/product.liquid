@@ -168,10 +168,12 @@
       <div class="product-card__add-to-cart">
         {% if product.selected_or_first_available_variant.available %}
           <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ product.selected_or_first_available_variant.price | money }}</span></p>
-        {% else %}
+          <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
+          {% else %}
           <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ 0.00 | money }}</span></p>
+          <input type="submit" disabled value="unavaliable" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
         {% endif %}
-        <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
+        
       </div>
 
 
@@ -348,8 +350,13 @@ try {
         console.log(matchedVariant)
         if (matchedVariant.available === false) {
           document.querySelector('#add-to-cart').disabled = true;
+          document.querySelector('#add-to-cart').value = 'unavaliable';
+
         } else {
           document.querySelector('#add-to-cart').disabled = false;
+          document.querySelector('#add-to-cart').value = 'add to cart';
+
+
         }
       };
 
@@ -362,11 +369,15 @@ variantQuantity > 9 ? document.getElementById('quantity-avaliable').textContent 
   console.log('HELLOWOWOWW',variantQuantity)
 variantQuantity > 0 ? document.getElementById('quantity').value = 1 : document.getElementById('quantity').value = 0
       disableAddToCart()
-if(variantQuantity > 0) {
-  updateSubtotal(1)
-}
-variantQuantity > 0 ? updateSubtotal(1) : document.getElementById('subtotal').textContent = '£0.00'
-  }))
+variantQuantity > 0 ? updateSubtotal(1) : document.getElementById('subtotal').textContent = '£0.00';
+
+
+  
+
+
+}))
+
+
 
   console.log(product)
 
