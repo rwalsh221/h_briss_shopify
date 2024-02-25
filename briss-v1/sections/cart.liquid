@@ -1,18 +1,24 @@
+{{ 'briss-cart.css' | asset_url | stylesheet_tag }}
+
+<section class="cart">
+    <div class="cart-container">
 {% form 'cart', cart %}
 
-    <h1>cart</h1>
+    <h3 class="heading__tertiary cart-title">Shopping Cart</h3>
     {% if cart.empty? %}
         <p>Hey your cart is empty</p>
     {% else %}
-        {% for item in cart.items %}
-            <div>
-                <img src="{{ item.image | image_url: width: 200}}"/>
-                <h2>{{ item.title }}</h2>
-                <p>{{ item.final_line_price | money }}</p> 
-                <input name="updates[]" value="{{ item.quantity }}"/>
-                <a href="{{ item.url_to_remove }}">Remove</a>
-            </div>
-        {% endfor %}
+        <div class="product-container">
+            {% for item in cart.items %}
+                <div class="product-container--row">
+                    {{ item.image | image_url: width: 80, height: 80 | image_tag  }}
+                    <h2>{{ item.title }}</h2>
+                    <p>{{ item.final_line_price | money }}</p> 
+                    <input name="updates[]" value="{{ item.quantity }}"/>
+                    <a href="{{ item.url_to_remove }}">Remove</a>
+                </div>
+            {% endfor %}
+        </div>
 
         <hr/>
 
@@ -24,3 +30,5 @@
     {% endif %}
 
 {% endform %}
+</div>
+</section>
