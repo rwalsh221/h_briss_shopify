@@ -11,22 +11,34 @@
         <div class="product-container">
             {% for item in cart.items %}
                 <div class="product-container--row">
-                    {{ item.image | image_url: width: 80, height: 80 | image_tag  }}
-                    <h2>{{ item.title }}</h2>
-                    <p>{{ item.final_line_price | money }}</p> 
-                    <input name="updates[]" value="{{ item.quantity }}"/>
-                    <a href="{{ item.url_to_remove }}">Remove</a>
+                    <div>
+                        {{ item.image | image_url: width: 80, height: 80 | image_tag  }}
+                    </div>
+                    <div>
+                        <h2>{{ item.title }}</h2>
+                    </div>
+                    <div> 
+                        <p>{{ item.final_line_price | money }}</p> 
+                    </div>
+                    <div>
+                        <input name="updates[]" value="{{ item.quantity }}"/>
+                    </div>
+                    <div>
+                        <a class="remove-cart-btn" type="button" href="{{ item.url_to_remove }}">Remove</a>
+                    </div>
                 </div>
             {% endfor %}
         </div>
+        <div class="cart-total-container">
+            <p class="cart-total">Total: {{ cart.total_price | money }}</p>
+        </div>
+        
+        <div class="cart-btn-container">
+            <button class="cart-btn" type="submit" name="update">Update</button>
+            <button class="cart-btn" type="submit" name="checkout">Checkout</button>
+        </div>
 
-        <hr/>
-
-        <p>Total: {{ cart.total_price | money }}</p>
-
-        <button type="submit" name="update">Update</button>
-
-        <button type="submit" name="checkout">Checkout</button>
+        
     {% endif %}
 
 {% endform %}

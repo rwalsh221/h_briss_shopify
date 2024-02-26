@@ -163,6 +163,7 @@
   /* border-radius: 100px; */
   box-shadow: 2px 2px 2px black;
   text-transform: capitalize;
+  cursor: pointer;
 }
 
 .product-card__add-to-cart--btn:hover {
