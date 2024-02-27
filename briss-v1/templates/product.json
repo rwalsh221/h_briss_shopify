@@ -1,7 +1,7 @@
 {
   "sections": {
-    "customer-sidebar": {
-      "type": "customer-sidebar"
+    "customer-section": {
+      "type": "customer-section"
     },
     "navigation": {
       "type": "navigation"
@@ -10,5 +10,5 @@
       "type": "product"
     }
   },
-  "order": ["customer-sidebar", "navigation", "product"]
+  "order": ["customer-section", "navigation", "product"]
 }

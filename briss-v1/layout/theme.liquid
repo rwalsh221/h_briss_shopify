@@ -72,12 +72,14 @@
     {{ 'variables.css' | asset_url | stylesheet_tag }}
 
 </head>
-<body class="body__grid">
-    {% sections 'header-group' %}
-    <main class="grid__main">
-        {{ content_for_layout }}
-    </main>
-    {% sections 'footer-group' %}
+<body>
+    <div class="body__grid">
+        {% sections 'header-group' %}
+        <main class="grid__main">
+            {{ content_for_layout }}
+        </main>
+        {% sections 'footer-group' %}
+    </div>
 </body>
 
 <script>

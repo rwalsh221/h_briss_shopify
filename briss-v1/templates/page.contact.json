@@ -1,19 +1,14 @@
 {
-    "sections": {
-        "customer-sidebar":{
-            "type":"customer-sidebar"
-        },
-        "navigation":{
-            "type": "navigation"
-        },
-        "contact-page": {
-            "type": "contact-page"
-        }
+  "sections": {
+    "customer-section": {
+      "type": "customer-section"
     },
-    "order": [
-        "customer-sidebar",
-        "navigation",
-        "contact-page"
-    ]
+    "navigation": {
+      "type": "navigation"
+    },
+    "contact-page": {
+      "type": "contact-page"
+    }
+  },
+  "order": ["customer-section", "navigation", "contact-page"]
 }
-  

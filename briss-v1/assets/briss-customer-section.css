@@ -1,6 +1,6 @@
-.sidebar {
+.section {
   background-color: var(--primary-color-white-500);
-  border-right: var(--border-red-5px);
+  border-top: var(--border-red-5px);
   grid-area: sidebar;
   height: 100%;
 }

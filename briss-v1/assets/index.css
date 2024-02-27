@@ -4,12 +4,20 @@ a:visited {
   text-decoration: none;
 }
 
+body {
+  background-color: var(--primary-color-white-500);
+}
+
 .body__grid {
   min-height: 100dvh;
   display: grid;
   grid-template-columns: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-left: var(--border-red-5px);
+  border-right: var(--border-red-5px);
 
-  grid-template-rows: minmax(15dvh, max-content) minmax(75dvh, max-content) 0 minmax(10dvh, max-content);
+  grid-template-rows: minmax(15dvh, max-content) minmax(75dvh, max-content) minmax(10dvh, max-content);
 }
 
 /* .content__grid {
@@ -19,11 +27,12 @@ a:visited {
 .grid__main {
   display: grid;
 
-  grid-template-columns: 15% 85%;
+  /* grid-template-columns: 15% 85%; */
   grid-template-rows: max-content;
   grid-template-areas:
-    'sidebar nav'
-    'sidebar content';
+    'nav'
+    'content'
+    'sidebar';
   background: repeating-linear-gradient(
     to right,
     var(--primary-color-white-500),

@@ -1,19 +1,14 @@
 {
-    "sections": {
-        "customer-sidebar":{
-            "type":"customer-sidebar"
-        },
-        "navigation":{
-            "type": "navigation"
-        },
-        "home": {
-            "type": "home"
-        }
+  "sections": {
+    "customer-section": {
+      "type": "customer-section"
     },
-    "order": [
-        "customer-sidebar",
-        "navigation",
-        "home"
-    ]
+    "navigation": {
+      "type": "navigation"
+    },
+    "home": {
+      "type": "home"
+    }
+  },
+  "order": ["customer-section", "navigation", "home"]
 }
-  
