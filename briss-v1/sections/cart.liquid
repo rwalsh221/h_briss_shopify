@@ -10,11 +10,11 @@
     {% else %}
         <div class="product-container">
             {% for item in cart.items %}
-                <div class="product-container--row">
+                <div class="product-container__row">
                     <div>
                         {{ item.image | image_url: width: 80, height: 80 | image_tag  }}
                     </div>
-                    <div>
+                    <div class="product-container__row--title">
                         <h2>{{ item.title }}</h2>
                     </div>
                     <div> 
@@ -23,7 +23,7 @@
                     <div>
                         <input name="updates[]" value="{{ item.quantity }}"/>
                     </div>
-                    <div>
+                    <div class="product-container__row--remove">
                         <a class="remove-cart-btn" type="button" href="{{ item.url_to_remove }}">Remove</a>
                     </div>
                 </div>
