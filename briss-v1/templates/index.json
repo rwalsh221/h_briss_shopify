@@ -9,9 +9,12 @@
     "home": {
       "type": "home"
     },
+    "browse-all": {
+      "type": "browse-all"
+    },
     "product-featured": {
       "type": "product-featured"
     }
   },
-  "order": ["customer-section", "navigation", "home", "product-featured"]
+  "order": ["customer-section", "navigation", "home", "browse-all", "product-featured"]
 }

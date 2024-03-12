@@ -1,0 +1,15 @@
+{{ 'briss-browse-all.css' | asset_url | stylesheet_tag }}
+
+<div class="section">
+    <div class="browse-all">
+        <p>come and have a butchers</p>
+        <a href="collections/all">shop all products</a>
+    </div>
+</div>
+
+{% schema %}
+    {
+        "name": "product-featured",
+        "class": "grid__browse-all"
+    }
+{% endschema %}

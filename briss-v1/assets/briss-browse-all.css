@@ -1,0 +1,36 @@
+.browse-all {
+  border-top: 10px solid var(--primary-color-white-500);
+  border-bottom: 10px solid var(--primary-color-white-500);
+  background-color: var(--primary-color-red-500);
+  color: var(--primary-color-white-500);
+  text-align: center;
+  padding: var(--padding-100) 0;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color-red-500) 15%,
+    var(--primary-color-red-400) 15%,
+    var(--primary-color-red-400) 30%,
+    var(--primary-color-red-500) 30%,
+    var(--primary-color-red-500) 70%,
+    var(--primary-color-red-400) 70%,
+    var(--primary-color-red-400) 85%,
+    var(--primary-color-red-500) 85%
+  );
+}
+
+.browse-all p {
+  font-size: var(--font-size-300);
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.browse-all a {
+  display: block;
+  color: var(--primary-color-white-500) !important;
+  font-weight: bold;
+  text-transform: capitalize;
+  border: 2px solid var(--primary-color-white-500);
+  width: max-content;
+  padding: var(--padding-100);
+  margin: var(--margin-100) auto;
+}
