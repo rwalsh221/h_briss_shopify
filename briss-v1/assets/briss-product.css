@@ -255,6 +255,7 @@
   color: var(--primary-color-white-500);
   border: 2px solid var(--primary-color-white-500);
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 .quantity-container button:hover {

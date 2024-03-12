@@ -1,0 +1,26 @@
+{{ 'briss-product-featured.css' | asset_url | stylesheet_tag }}
+
+
+<div class="section">
+    <h3 class="heading__tertiary review__heading">Our Favorites</h3>
+    <div class="featured__container">
+        {% for collection in collections %}
+            {% if collection.title == 'featured' %}
+                {% for product in collection.products %}
+                    <div class="featured__Card">
+                        <h4>{{ product.title }}</h4>
+                        {{ product.featured_image | image_url: width: 200, height: 200 | image_tag | link_to: product.url  }}
+                    </div>
+                {% endfor %} 
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+</div>
+
+{% schema %}
+    {
+        "name": "product-featured",
+        "class": "grid__product-featured"
+    }
+{% endschema %}

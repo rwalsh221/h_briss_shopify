@@ -8,7 +8,10 @@
     },
     "cart": {
       "type": "cart"
+    },
+    "product-featured": {
+      "type": "product-featured"
     }
   },
-  "order": ["customer-section", "navigation", "cart"]
+  "order": ["navigation", "cart", "customer-section", "product-featured"]
 }

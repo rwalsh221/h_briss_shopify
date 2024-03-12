@@ -1,0 +1,10 @@
+.featured__container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: var(--padding-200);
+}
+
+.featured__card {
+  border: var(--border-2px-red);
+}

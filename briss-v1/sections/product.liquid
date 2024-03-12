@@ -222,8 +222,10 @@ const increaseQuantity = (event) => {
   event.preventDefault()
   
   const quantityInput = document.getElementById('quantity');
-
-  if(quantityInput.value >= quantityInput.max) {
+  console.log(typeof quantityInput.max)
+  console.log(typeof quantityInput.value)
+  if(parseInt(quantityInput.value) >= parseInt(quantityInput.max)) {
+    console.log('return increase')
   return }
   
   quantityInput.value = +quantityInput.value + 1;
