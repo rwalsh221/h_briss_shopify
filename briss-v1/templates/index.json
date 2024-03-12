@@ -8,7 +8,10 @@
     },
     "home": {
       "type": "home"
+    },
+    "product-featured": {
+      "type": "product-featured"
     }
   },
-  "order": ["customer-section", "navigation", "home"]
+  "order": ["customer-section", "navigation", "home", "product-featured"]
 }

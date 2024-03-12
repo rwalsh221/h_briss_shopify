@@ -7,9 +7,16 @@
         {% for collection in collections %}
             {% if collection.title == 'featured' %}
                 {% for product in collection.products %}
-                    <div class="featured__Card">
-                        <h4>{{ product.title }}</h4>
-                        {{ product.featured_image | image_url: width: 200, height: 200 | image_tag | link_to: product.url  }}
+                    <div class="featured__card">
+                        <div class="featured__card--title">
+                            <h4>{{ product.title }}</h4>
+                        </div>
+                        <div class="featured__card--img">
+                            {{ product.featured_image | image_url: width: 200, height: 200 | image_tag }}
+                        </div>
+                        <div class="featured__card--more"> 
+                            <a href="{{ product.url }}">More Information</a>
+                        </div>
                     </div>
                 {% endfor %} 
             {% endif %}
