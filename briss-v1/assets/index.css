@@ -30,6 +30,7 @@ body {
   /* grid-template-columns: 15% 85%; */
   grid-template-rows: max-content;
   grid-template-areas:
+    'customer-nav'
     'nav'
     'content'
     'sidebar';
@@ -40,6 +41,10 @@ body {
     #ff3e3e 10px,
     #ff3e3e 20px
   );
+}
+
+.grid__customer {
+  grid-area: customer-nav;
 }
 
 .grid__nav {

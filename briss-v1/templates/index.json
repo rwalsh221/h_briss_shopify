@@ -3,6 +3,9 @@
     "customer-section": {
       "type": "customer-section"
     },
+    "customer-navigation": {
+      "type": "customer-navigation"
+    },
     "navigation": {
       "type": "navigation"
     },
@@ -16,5 +19,5 @@
       "type": "product-featured"
     }
   },
-  "order": ["customer-section", "navigation", "home", "browse-all", "product-featured"]
+  "order": ["customer-section", "customer-navigation", "navigation", "home", "browse-all", "product-featured"]
 }

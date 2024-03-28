@@ -1,0 +1,29 @@
+.customer-navigation {
+  background-color: var(--primary-color-white-500);
+  border-bottom: var(--border-red-5px);
+}
+
+.customer-navigation ul {
+  list-style: none;
+  display: flex;
+}
+
+.customer-navigation li:first-of-type {
+  margin-left: auto;
+}
+
+.customer-navigation li {
+  cursor: pointer;
+  margin: 0 5px;
+  /* icon is png so cant be color normal way. filter changes color used https://codepen.io/sosuke/pen/Pjoqqp to generate filter */
+  filter: invert(12%) sepia(81%) saturate(3552%) hue-rotate(350deg) brightness(92%) contrast(103%);
+}
+
+.customer-navigation li:hover {
+  filter: invert(37%) sepia(33%) saturate(4315%) hue-rotate(336deg) brightness(104%) contrast(110%);
+}
+
+.customer-navigation li img {
+  height: 32px;
+  width: 32px;
+}

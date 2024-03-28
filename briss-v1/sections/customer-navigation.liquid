@@ -1,0 +1,16 @@
+{{ 'briss-customer-navigation.css' | asset_url | stylesheet_tag }}
+
+<nav aria-label="customer navigation" class="customer-navigation">
+    <ul role="list">
+        <li>{{ images['icons_search.png'] | image_url: width:48, height: 48 | image_tag }}</li>
+        <li>{{ images['icons_user.png'] | image_url: width:48, height: 48 | image_tag }}</li>
+        <li>{{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}</li>
+    </ul>
+</nav>
+
+{% schema %}
+    {
+        "name": "customer-navigation",
+        "class": "grid__customer"
+    }
+{% endschema %}
