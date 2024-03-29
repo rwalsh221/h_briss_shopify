@@ -15,7 +15,7 @@
 }
 
 .nav-bar__link-container {
-  position: relative;
+  /* position: relative; */
 }
 
 .nav-bar__link-container:not(:first-of-type)::before {
@@ -28,6 +28,7 @@
 }
 
 .nav-bar__btn {
+  /* position: relative; */
   display: block;
   font-family: var(--font-dancing-script);
   font-size: var(--font-size-300);
@@ -41,6 +42,7 @@
   cursor: pointer;
   width: 150px;
   text-align: center;
+  z-index: 1;
 }
 
 .btn__active,

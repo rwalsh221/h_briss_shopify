@@ -13,6 +13,10 @@
 }
 
 .customer-navigation li {
+  display: flex;
+  /* overflow: hidden; */
+  height: max-content;
+  position: relative;
   cursor: pointer;
   margin: 0 5px;
   /* icon is png so cant be color normal way. filter changes color used https://codepen.io/sosuke/pen/Pjoqqp to generate filter */
@@ -26,4 +30,18 @@
 .customer-navigation li img {
   height: 32px;
   width: 32px;
+}
+
+.customer-navigation__content {
+  width: max-content;
+  padding: var(--padding-200);
+  position: absolute;
+  background-color: var(--primary-color-white-500);
+  border: var(--border-red-2px);
+  top: 100%;
+  right: 0%;
+  z-index: 10000;
+}
+.customer-navigation__content div {
+  display: flex;
 }

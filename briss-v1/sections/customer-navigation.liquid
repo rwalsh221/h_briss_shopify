@@ -2,7 +2,24 @@
 
 <nav aria-label="customer navigation" class="customer-navigation">
     <ul role="list">
-        <li>{{ images['icons_search.png'] | image_url: width:48, height: 48 | image_tag }}</li>
+        <li>
+            {{ images['icons_search.png'] | image_url: width:48, height: 48 | image_tag }}
+            <div class="customer-navigation__content">
+                <div>
+                    <form action="{{ routes.search_url }}">
+                        <input type="text"
+                            placeholder="Search"
+                            name="q"
+                            value="{{ search.terms | escape }}"
+                        />
+                        <input type="hidden" name="type" value="product,page" />
+                        <input type="hidden" name="options[unavailable_products]" value="hide" />
+                        <input type="hidden" name="options[prefix]" value="last" />
+                        <input type="submit" value="Search" />
+                    </form>
+                </div>
+            </div>
+        </li>
         <li>{{ images['icons_user.png'] | image_url: width:48, height: 48 | image_tag }}</li>
         <li>{{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}</li>
     </ul>
