@@ -2,7 +2,7 @@
 
 <nav aria-label="customer navigation" class="customer-navigation">
     <ul role="list">
-        <li>
+        <li id="customer-navigation__search">
             {{ images['icons_search.png'] | image_url: width:48, height: 48 | image_tag }}
             <div class="customer-navigation__content">
                 <div>
@@ -20,10 +20,64 @@
                 </div>
             </div>
         </li>
-        <li>{{ images['icons_user.png'] | image_url: width:48, height: 48 | image_tag }}</li>
-        <li>{{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}</li>
+        <li id="customer-navigation__account">    
+            {{ images['icons_user.png'] | image_url: width:48, height: 48 | image_tag }}
+            <div class="customer-navigation__content">
+                <div>
+                    <a href="/account">Sign up</a>
+                    <a href="/account">Sign in</a>
+                </div>
+            </div>
+        </li>
+        <li><a href="/cart">{{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}</a></li>
     </ul>
 </nav>
+
+{% javascript %}
+
+const removePopUp = () => {
+  document.addEventListener("click", () => {
+    document.querySelector(".customer-navigation__content").style.display =
+      "none";
+
+    document.removeEventListener("click", () => {
+      document.querySelector(".customer-navigation__content").style.display =
+        "none";
+    });
+  });
+};
+
+    document.getElementById('customer-navigation__search').addEventListener('click', (event)=>{
+        console.log(event.target)
+        event.target.querySelector('.customer-navigation__content').style.display = 'block'
+        // removePopUp()
+
+    //     document.addEventListener("click", () => {
+    //         console.log('click')
+    // document.querySelector(".customer-navigation__content").style.display =
+    //   "none";})
+    })
+
+    document.getElementById('customer-navigation__account').addEventListener('click', (event)=>{
+        console.log(event.target)
+        event.target.querySelector('.customer-navigation__content').style.display = 'block'
+        // removePopUp()
+
+    //     document.addEventListener("click", () => {
+    //         console.log('click')
+    // document.querySelector(".customer-navigation__content").style.display =
+    //   "none";})
+    })
+
+    const setCustomerNavigationContent = (element) => {
+  element.style.display = 'block'
+};
+
+
+
+
+
+{% endjavascript %}
 
 {% schema %}
     {

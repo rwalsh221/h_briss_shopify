@@ -91,3 +91,19 @@ const updateSubtotal = (quantity) => {
 
   document.getElementById("subtotal").textContent = `£${penceToPounds}`;
 };
+
+const setCustomerNavigationContent = (element) => {
+  element.style.display = "block";
+};
+
+const removePopUp = () => {
+  document.addEventListener("click", () => {
+    document.querySelector(".customer-navigation__content").style.display =
+      "none";
+
+    document.removeEventListener("click", () => {
+      document.querySelector(".customer-navigation__content").style.display =
+        "none";
+    });
+  });
+};

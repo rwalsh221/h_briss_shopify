@@ -28,11 +28,13 @@
 }
 
 .customer-navigation li img {
+  pointer-events: none;
   height: 32px;
   width: 32px;
 }
 
 .customer-navigation__content {
+  display: none;
   width: max-content;
   padding: var(--padding-200);
   position: absolute;
