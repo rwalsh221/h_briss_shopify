@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "customer-navigation": {
+      "type": "customer-navigation"
+    },
+    "customer-section": {
+      "type": "customer-section"
+    },
+    "navigation": {
+      "type": "navigation"
+    },
+    "search": {
+      "type": "search"
+    }
+  },
+  "order": ["customer-navigation", "customer-section", "navigation", "search"]
+}

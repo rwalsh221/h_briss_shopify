@@ -1,4 +1,5 @@
 .nav-bar {
+  overflow: hidden;
   grid-area: nav;
   display: flex;
   background-color: var(--primary-color-red-400);

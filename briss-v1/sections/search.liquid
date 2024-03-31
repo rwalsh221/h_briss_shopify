@@ -1,0 +1,36 @@
+{{ 'briss-search.css' | asset_url | stylesheet_tag }}
+
+<div class="search">
+    <form action="{{ routes.search_url }}">
+    <input type="text"
+    placeholder="Search"
+    name="q"
+    types="products"
+    value="{{ search.terms | escape }}">
+    <input type="hidden" name="type" value="product" />
+    <input type="submit" value="Search">
+</form>
+
+{% if search.results_count > 0 %}
+    {% for item in search.results %}
+        {{ item.type }}
+        <div class="search_results__card">
+           {{ item.featured_image | image_url: width: 80, height: 80 | image_tag  }}
+            <div class="search_results__card--title"><p>{{ item.title }}</p></div>
+            
+            <div><p>{{ item.price }}</p></div>
+            <div class="search_results__card--more"><a href="{{ item.url }}">More Information</a></div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>no results</p>
+{% endif %}
+
+</div>
+
+{% schema %}
+    {
+        "name": "search",
+        "class": "grid__search"
+    }
+{% endschema %}
