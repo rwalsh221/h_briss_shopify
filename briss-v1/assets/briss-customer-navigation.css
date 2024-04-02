@@ -23,6 +23,10 @@
   filter: invert(12%) sepia(81%) saturate(3552%) hue-rotate(350deg) brightness(92%) contrast(103%);
 }
 
+.customer-navigation li * {
+  /* pointer-events: none; */
+}
+
 .customer-navigation li:hover {
   filter: invert(37%) sepia(33%) saturate(4315%) hue-rotate(336deg) brightness(104%) contrast(110%);
 }

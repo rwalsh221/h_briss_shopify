@@ -92,8 +92,15 @@ const updateSubtotal = (quantity) => {
   document.getElementById("subtotal").textContent = `£${penceToPounds}`;
 };
 
-const setCustomerNavigationContent = (element) => {
-  element.style.display = "block";
+const showCustomerNavigationModal = (event, elementId) => {
+  event.target.style.display = "block";
+};
+
+const closeCustomerNavigationModal = (event, elementId) => {
+  if (event.target.id !== element.id) {
+    element.querySelector(".customer-navigation__content").style.display =
+      "none";
+  }
 };
 
 const removePopUp = () => {
