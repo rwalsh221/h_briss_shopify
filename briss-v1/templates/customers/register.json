@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "customer-account-login": {
+      "type": "customer-account-register"
+    }
+  },
+  "order": ["customer-account-register"]
+}
