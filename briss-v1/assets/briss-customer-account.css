@@ -119,3 +119,42 @@
 input::placeholder {
   color: transparent;
 }
+
+/* CUSTOMER DASHBOARD STYLES */
+.customer-dashboard {
+  width: 80%;
+  margin: var(--margin-100) 0;
+  padding: var(--padding-200);
+  background-color: var(--primary-color-white-500);
+  border: var(--border-red-5px);
+}
+
+.customer-container__link {
+  color: var(--primary-color-red-500);
+  text-decoration: underline !important;
+  text-transform: uppercase;
+  display: block;
+  font-size: 1rem;
+  /* text-align: center; */
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.customer-dashboard__container {
+  margin: var(--margin-100) 0;
+  padding: var(--padding-100);
+  border: var(--border-red-2px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.customer-dashboard__orders,
+.customer-dashboard__account {
+  margin: var(--margin-100) 0;
+  padding: var(--padding-100);
+  /* border: var(--border-red-2px); */
+}
+
+.customer-dashboard__orders {
+  flex-basis: 60%;
+}
