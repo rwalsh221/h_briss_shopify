@@ -88,3 +88,27 @@ body {
 .visually-hidden {
   pointer-events: none;
 }
+
+.heading__primary {
+  font-size: var(--font-size-800);
+  color: var(--primary-color-red-500);
+  border-bottom: var(--border-red-5px);
+  font-weight: bolder;
+  -webkit-text-stroke: 1.5px var(--secondary-color-gray);
+  text-shadow: 2px 2px 3px var(--secondary-color-black);
+  padding: 0 var(--padding-200);
+}
+
+.heading__secondary {
+  font-size: var(--font-size-400);
+  margin: var(--margin-100) 0;
+  font-weight: lighter;
+  color: var(--primary-color-red-500);
+  font-family: var(--font-dancing-script);
+}
+
+.heading__tertiary {
+  font-family: var(--font-dancing-script);
+  font-size: var(--font-size-300);
+  color: var(--primary-color-red-500);
+}

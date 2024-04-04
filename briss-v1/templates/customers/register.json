@@ -1,6 +1,6 @@
 {
   "sections": {
-    "customer-account-login": {
+    "customer-account-register": {
       "type": "customer-account-register"
     }
   },

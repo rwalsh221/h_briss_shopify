@@ -1,1 +1,26 @@
-<h1>TESTSTSTS</h1>
+{{ 'briss-customer-account.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-container">
+    <div class="customer-form-container">
+        <h2 class="heading__secondary">Login</h2>
+        {% form 'customer_login' %}
+            {{ form.errors | default_errors }}
+
+            <div class="email customer-form-input-container">
+                <input type="email" name="customer[email]" placeholder="Email">
+                <label class="customer-form-label" for="email">Email</label>
+            </div>
+
+            <div class="password customer-form-input-container">
+                <input type="password" name="customer[password]" placeholder="Password">
+                <label class="customer-form-label" for="password">Password</label>
+            </div>
+
+            <div class="submit">
+                <input class="customer-btn" type="submit" value="Sign in">
+            </div>
+        {% endform %}
+        <a href="{{ routes.account_register_url }}" class="customer-form-container__create">Create an account</a>
+    </div>
+   
+</div>
