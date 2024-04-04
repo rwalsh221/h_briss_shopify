@@ -46,7 +46,8 @@
   transition: all 0.1s;
 }
 
-.customer-container input:focus + .customer-form-label {
+.customer-container input:focus + .customer-form-label,
+.customer-container input:not(:placeholder-shown) + .customer-form-label {
   font-size: 14px;
   top: 5px;
 }
@@ -80,6 +81,23 @@
   text-align: center;
   font-weight: bold;
   margin-top: 5px;
+}
+
+.errors {
+  background-color: var(--primary-color-red-500);
+  color: var(--primary-color-white-500);
+  padding: var(--padding-100);
+  width: 60%;
+  margin: var(--margin-100) auto;
+}
+
+.errors ul {
+  list-style: none;
+  font-weight: bold;
+}
+
+.error-heading {
+  text-align: center;
 }
 
 ::-webkit-input-placeholder {

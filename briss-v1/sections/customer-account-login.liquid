@@ -4,7 +4,11 @@
     <div class="customer-form-container">
         <h2 class="heading__secondary">Login</h2>
         {% form 'customer_login' %}
-            {{ form.errors | default_errors }}
+            
+            {% if form.errors %}
+                <h3 class="heading__tertiary error-heading">Attention</h3>
+                {{ form.errors | default_errors }}
+            {% endif %}
 
             <div class="email customer-form-input-container">
                 <input type="email" name="customer[email]" placeholder="Email">
