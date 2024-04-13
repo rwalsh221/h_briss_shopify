@@ -158,3 +158,10 @@ input::placeholder {
 .customer-dashboard__orders {
   flex-basis: 60%;
 }
+
+.customer-addresses-container {
+  margin: 5px auto;
+  border: var(--border-red-2px);
+  width: 60%;
+  text-align: center;
+}
