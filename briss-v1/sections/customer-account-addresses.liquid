@@ -6,7 +6,8 @@
     <div class="customer-form-container"> 
     <h2 class="heading__secondary">Your Saved Addresses</h2>
     <a class="customer-container__link customer-container__link--address" href="{{ routes.account_url }}">return to your account</a>
-    <button>Add new address</button>
+    <button class="show-form-btn" data-formbtn="address-add-new">Add new address</button>
+    <div id="address-add-new">
     {% comment %} button will show form {% endcomment %}
     {% form 'customer_address', customer.new_address %}
             {% comment %} CUSTOMER NAME {% endcomment %}
@@ -68,7 +69,7 @@
             </div>
             
 {% endform %} 
-
+</div>
 {% comment %} list out addresses {% endcomment %}
 {% if customer.addresses_count > 0 %}
     {% for address in customer.addresses %}
@@ -80,6 +81,8 @@
             <p>{{ address.postal }}</p>
             <p>{{ address.country }}</p>
         </div>
+        <button class="show-form-btn" data-formbtn="address-update-{{ forloop.index0 }}">update address</button>
+        <div id="address-update-{{ forloop.index0 }}">
         {% form 'customer_address', address %}
             {% comment %} CUSTOMER NAME {% endcomment %}
             <div class="customer-form-input-container">
@@ -140,12 +143,14 @@
             </div>
             
 {% endform %} 
+</div>
     {% endfor %}
 {% else %}
     <p>no addresss saved</p>
 {% endif %}
 </div>
 </div>
+
 
    {% comment %} <div class="customer-form-input-container">
                 <input type="text" name="address[password]" placeholder="">
@@ -154,7 +159,22 @@
  {% endcomment %}
 
  {% javascript %}
+    document.querySelectorAll('.show-form-btn').forEach((el)=>{
+        el.addEventListener('click',(event)=>{
+            console.log('clicicicicici')
+            const formElement = document.getElementById(event.target.dataset.formbtn)
+            console.log(event.target.dataset.formbtn)
+            console.log(formElement.style.display)
+            if(formElement.style.display === 'none'){
+                formElement.style.display === 'block'
+            } else {
+                formElement.style.display === 'none'
+            }
+            // formElement.style.display='none'
+        })
+    })
 
+// set default value for country select
  const countrySelectElement = document.querySelectorAll('.customer-address-select')
  countrySelectElement.forEach((el)=>{
     const elChildren = Object.keys(el)

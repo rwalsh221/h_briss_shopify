@@ -30,6 +30,16 @@
   font-size: 16px;
 }
 
+.customer-form-input-container select {
+  /* margin: 0 auto; */
+  /* width: 60%; */
+  /* height: 4rem; */
+  color: var(--primary-color-red-500);
+  /* margin-bottom: var(--margin-100); */
+  /* padding: var(--padding-100); */
+  font-size: 16px;
+}
+
 .customer-form-input-container {
   position: relative;
 }
@@ -164,4 +174,8 @@ input::placeholder {
   border: var(--border-red-2px);
   width: 60%;
   text-align: center;
+}
+
+.form-hide {
+  display: none;
 }
