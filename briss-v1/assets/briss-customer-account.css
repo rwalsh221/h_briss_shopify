@@ -8,6 +8,7 @@
 }
 
 .customer-form-container {
+  text-align: center;
   width: 60%;
   background-color: var(--primary-color-white-500);
   border: var(--border-red-5px);
@@ -19,7 +20,8 @@
   text-align: center;
 }
 
-.customer-form-input-container input {
+.customer-form-input-container input,
+.customer-address-form-input-container input {
   display: block;
   margin: 0 auto;
   width: 60%;
@@ -28,6 +30,10 @@
   margin-bottom: var(--margin-100);
   padding: var(--padding-100);
   font-size: 16px;
+}
+
+.customer-address-form-input-container input {
+  width: 100%;
 }
 
 .customer-form-input-container select {
@@ -169,13 +175,42 @@ input::placeholder {
   flex-basis: 60%;
 }
 
+.customer-address {
+  border: var(--border-red-2px);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 18px;
+  color: var(--primary-color-red-500);
+  padding: var(--padding-100);
+  margin-bottom: var(--margin-100);
+}
+
 .customer-addresses-container {
+  padding: var(--padding-100);
   margin: 5px auto;
   border: var(--border-red-2px);
   width: 60%;
   text-align: center;
 }
 
+.update-address-btn {
+  width: 100%;
+}
+
 .form-hide {
   display: none;
+}
+
+.customer-address-form {
+  display: none;
+}
+
+.customer-default-address {
+  background-color: var(--primary-color-red-400);
+  color: var(--primary-color-white-500);
+}
+
+.customer-default-address h3 {
+  margin: var(--margin-100) 0;
+  text-decoration: underline;
 }
