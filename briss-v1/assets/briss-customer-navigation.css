@@ -3,16 +3,16 @@
   border-bottom: var(--border-red-5px);
 }
 
-.customer-navigation ul {
+.customer-navigation > ul {
   list-style: none;
   display: flex;
 }
 
-.customer-navigation li:first-of-type {
+.customer-navigation > ul > li:first-of-type {
   margin-left: auto;
 }
 
-.customer-navigation li {
+.customer-navigation > ul > li {
   display: flex;
   /* overflow: hidden; */
   height: max-content;
@@ -20,6 +20,10 @@
   cursor: pointer;
   margin: 0 5px;
   /* icon is png so cant be color normal way. filter changes color used https://codepen.io/sosuke/pen/Pjoqqp to generate filter */
+}
+
+.customer-navigation__icon {
+  pointer-events: none;
   filter: invert(12%) sepia(81%) saturate(3552%) hue-rotate(350deg) brightness(92%) contrast(103%);
 }
 
@@ -27,7 +31,7 @@
   /* pointer-events: none; */
 }
 
-.customer-navigation li:hover {
+.customer-navigation > ul > li:hover .customer-navigation__icon {
   filter: invert(37%) sepia(33%) saturate(4315%) hue-rotate(336deg) brightness(104%) contrast(110%);
 }
 
@@ -43,11 +47,49 @@
   padding: var(--padding-200);
   position: absolute;
   background-color: var(--primary-color-white-500);
-  border: var(--border-red-2px);
+  border: var(--border-red-5px);
   top: 100%;
   right: 0%;
   z-index: 10000;
 }
 .customer-navigation__content div {
   display: flex;
+}
+
+.customer-navigation__account--links {
+  list-style: none;
+}
+
+.customer-navigation__content--search form {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-navigation__content input {
+  padding: var(--padding-100);
+  font-size: 16px;
+}
+
+.customer-navigation__form--search {
+  color: var(--primary-color-red-500);
+  background-color: var(--primary-color-white-500);
+  /* border: var(--border-red-2px);
+  outline: var(--border-red-2px); */
+}
+
+.customer-navigation__form--submit {
+  color: var(--primary-color-white-500);
+  background-color: var(--primary-color-red-500);
+  border: var(--border-red-2px);
+  border-color: transparent;
+  /* border: 5px solid var(--primary-color-red-500); */
+  padding: var(--padding-200);
+  /* box-shadow: 2px 2px 2px black; */
+  text-transform: capitalize;
+  background-clip: padding-box;
+  cursor: pointer;
+}
+
+.customer-navigation__form--submit:hover {
+  border-color: var(--primary-color-red-500);
 }

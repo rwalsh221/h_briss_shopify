@@ -3,33 +3,49 @@
 <nav aria-label="customer navigation" class="customer-navigation">
     <ul role="list">
         <li id="customer-navigation__search">
-            {{ images['icons_search.png'] | image_url: width:48, height: 48 | image_tag }}
+            <div class="customer-navigation__icon">
+                {{ images['icons_search.png'] | image_url: width:48, height: 48 | image_tag }}
+            </div>
             <div class="customer-navigation__content">
-                <div>
+                <div class="customer-navigation__content--search">
                     <form action="{{ routes.search_url }}">
-                        <input type="text"
+                        <input 
+                            class="customer-navigation__form--search"
+                            type="text"
                             placeholder="Search"
                             name="q"
                             value="{{ search.terms | escape }}"
+                            autocomplete="new-password"
                         />
                         <input type="hidden" name="type" value="product,page" />
                         <input type="hidden" name="options[unavailable_products]" value="hide" />
                         <input type="hidden" name="options[prefix]" value="last" />
-                        <input type="submit" value="Search" />
+                        <input 
+                            class="customer-navigation__form--submit"
+                            type="submit" 
+                            value="Search" />
                     </form>
                 </div>
             </div>
         </li>
-        <li id="customer-navigation__account">    
+        <li id="customer-navigation__account">
+            <div class="customer-navigation__icon">    
             {{ images['icons_user.png'] | image_url: width:48, height: 48 | image_tag }}
+            </div>
             <div class="customer-navigation__content">
-                <div>
-                    <a href="/account">Sign up</a>
-                    <a href="/account">Sign in</a>
-                </div>
+                <ul class="customer-navigation__account--links">
+                    <li><a href="/account">Sign up</a></li>
+                    <li><a href="/account">Sign in</a></li>
+                </ul>
             </div>
         </li>
-        <li><a href="/cart">{{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}</a></li>
+        <li>
+            <a href="/cart">
+                <div class="customer-navigation__icon">
+                    {{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}
+                </div>
+            </a>
+        </li>
     </ul>
 </nav>
 
@@ -70,6 +86,8 @@ const showCustomerNavigationModal = (event, elementId) => {
 
 
 document.getElementById('customer-navigation__search').addEventListener('click', (e)=>{showCustomerNavigationModal(e,'customer-navigation__search')})
+document.getElementById('customer-navigation__account').addEventListener('click', (e)=>{showCustomerNavigationModal(e,'customer-navigation__account')})
+
 
 
 
