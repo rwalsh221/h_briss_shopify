@@ -58,6 +58,29 @@
 
 .customer-navigation__account--links {
   list-style: none;
+  font-size: 18px;
+  padding: var(--padding-100);
+}
+
+.customer-navigation__account--links li {
+  color: var(--primary-color-red-500);
+  text-decoration: underline;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 2px;
+  width: max-content;
+}
+
+.customer-navigation__account--links li:hover {
+  background-color: var(--primary-color-red-500);
+}
+
+.customer-navigation__account--links li:hover a {
+  color: var(--primary-color-white-500) !important;
+}
+
+.customer-navigation__account--links li:first-of-type {
+  margin-bottom: 5px;
 }
 
 .customer-navigation__content--search form {

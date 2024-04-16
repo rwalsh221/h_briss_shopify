@@ -6,38 +6,13 @@
             <div class="customer-navigation__icon">
                 {{ images['icons_search.png'] | image_url: width:48, height: 48 | image_tag }}
             </div>
-            <div class="customer-navigation__content">
-                <div class="customer-navigation__content--search">
-                    <form action="{{ routes.search_url }}">
-                        <input 
-                            class="customer-navigation__form--search"
-                            type="text"
-                            placeholder="Search"
-                            name="q"
-                            value="{{ search.terms | escape }}"
-                            autocomplete="new-password"
-                        />
-                        <input type="hidden" name="type" value="product,page" />
-                        <input type="hidden" name="options[unavailable_products]" value="hide" />
-                        <input type="hidden" name="options[prefix]" value="last" />
-                        <input 
-                            class="customer-navigation__form--submit"
-                            type="submit" 
-                            value="Search" />
-                    </form>
-                </div>
-            </div>
+            {% render 'customer-navigation-search' %}
         </li>
         <li id="customer-navigation__account">
             <div class="customer-navigation__icon">    
             {{ images['icons_user.png'] | image_url: width:48, height: 48 | image_tag }}
             </div>
-            <div class="customer-navigation__content">
-                <ul class="customer-navigation__account--links">
-                    <li><a href="/account">Sign up</a></li>
-                    <li><a href="/account">Sign in</a></li>
-                </ul>
-            </div>
+            {% render 'customer-navigation-customer' %}
         </li>
         <li>
             <a href="/cart">
