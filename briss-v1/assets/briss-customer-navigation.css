@@ -73,8 +73,17 @@
 .customer-navigation__form--search {
   color: var(--primary-color-red-500);
   background-color: var(--primary-color-white-500);
-  /* border: var(--border-red-2px);
-  outline: var(--border-red-2px); */
+  border: var(--border-red-2px);
+  border-color: var(--primary-color-red-400);
+}
+
+.customer-navigation__form--search:focus {
+  border-color: var(--primary-color-red-500);
+  outline: none;
+}
+
+.customer-navigation__form--search::placeholder {
+  color: var(--primary-color-red-400);
 }
 
 .customer-navigation__form--submit {
