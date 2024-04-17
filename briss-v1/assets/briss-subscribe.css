@@ -1,0 +1,102 @@
+.subscribe {
+  padding: var(--padding-200);
+  background-color: var(--primary-color-red-400);
+  border-top: var(--border-red-5px);
+}
+
+.subscribe-form-container {
+  margin: 0 auto;
+  width: max-content;
+}
+
+.subscribe-form {
+  color: var(--primary-color-white-500);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.subscribe-form__success {
+  flex-basis: 100%;
+  text-align: center;
+}
+
+.subscribe-form__success p {
+  margin-top: var(--margin-100);
+  display: inline-block;
+  padding: var(--padding-100);
+  background-color: var(--primary-color-red-500);
+  border-radius: 10px;
+}
+
+.customer-form-input-container {
+  position: relative;
+}
+
+.customer-form-input-container input {
+  display: block;
+  /* margin: 0 auto; */
+  width: 90%;
+  height: 100%;
+  color: var(--primary-color-red-500);
+  padding: var(--padding-100);
+  font-size: 16px;
+  padding: 15px 10px;
+}
+
+.customer-form-label {
+  display: block;
+  color: var(--primary-color-red-500);
+  font-size: 18px;
+  /* font-weight: bold; */
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  pointer-events: none;
+  transition: all 0.1s;
+}
+
+.customer-container input:focus + .customer-form-label,
+.customer-container input:not(:placeholder-shown) + .customer-form-label {
+  font-size: 12px;
+  top: 5px;
+}
+
+.customer-btn {
+  display: block;
+  margin: 0 auto;
+  /* width: 60%; */
+  color: var(--primary-color-white-500);
+  background-color: var(--primary-color-red-500);
+  border: var(--border-red-2px);
+  border-color: transparent;
+  /* border: 5px solid var(--primary-color-red-500); */
+  font-size: var(--font-size-200);
+  padding: 10px;
+  /* box-shadow: 2px 2px 2px black; */
+  text-transform: capitalize;
+  cursor: pointer;
+  background-clip: padding-box;
+  border-radius: 10px;
+}
+
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: transparent;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: transparent;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: transparent;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: transparent;
+}
+input::placeholder {
+  color: transparent;
+}

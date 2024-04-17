@@ -17,7 +17,18 @@
     },
     "product-featured": {
       "type": "product-featured"
+    },
+    "subscribe": {
+      "type": "subscribe"
     }
   },
-  "order": ["customer-section", "customer-navigation", "navigation", "home", "browse-all", "product-featured"]
+  "order": [
+    "customer-section",
+    "customer-navigation",
+    "navigation",
+    "home",
+    "browse-all",
+    "product-featured",
+    "subscribe"
+  ]
 }

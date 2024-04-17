@@ -1,0 +1,22 @@
+{{ 'briss-subscribe.css' | asset_url | stylesheet_tag }}
+<div class="subscribe customer-container"> 
+<div class="subscribe-form-container customer-form-container ">
+    {% form 'customer', class:'subscribe-form' %}
+    <div class="email customer-form-input-container">
+        
+        <input type="email" name="contact[email]" placeholder="email" />
+        <label for="email" class="customer-form-label">Email</label>
+    </div>
+
+    <div class="submit">
+        <input type="submit" value="Sign up"  class="customer-btn"/>
+    </div>
+    {% if form.posted_successfully? %}
+        <div class="subscribe-form__success">
+            <p>Thank you for subscribing!</p>
+        </div>
+    {% endif %}
+    {% endform %}
+</div>
+
+</div>
