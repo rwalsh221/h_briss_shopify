@@ -242,3 +242,7 @@ input::placeholder {
   margin: var(--margin-100) 0;
   text-decoration: underline;
 }
+
+.customer-form-recover {
+  display: none;
+}

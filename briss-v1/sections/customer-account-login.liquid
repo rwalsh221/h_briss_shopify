@@ -2,6 +2,27 @@
 
 <div class="customer-container">
     <div class="customer-form-container">
+<div id="recover" class="customer-form-recover">
+    <h2 class="heading__secondary">Reset your password</h2>
+        {% form 'recover_customer_password' %}
+  {% if form.errors %}
+                <h3 class="heading__tertiary error-heading">Attention</h3>
+                {{ form.errors | default_errors }}
+            {% endif %}
+
+  <div class="email customer-form-input-container">
+    <input type="email" name="email" placeholder="Email">
+    <label class="customer-form-label" for="email">Email</label>
+  </div>
+
+  <div class="submit">
+    <input  class="customer-btn" type="submit" value="Submit">
+  </div>
+{% endform %}
+<a href="#login" class="customer-form-container__create">Cancel</a>
+        <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
+</div>
+    <div id="login" class="customer-form-login">
         <h2 class="heading__secondary">Login</h2>
         {% form 'customer_login' %}
             
@@ -24,7 +45,47 @@
                 <input class="customer-btn" type="submit" value="Sign in">
             </div>
         {% endform %}
-        <a href="{{ routes.account_register_url }}" class="customer-form-container__create">Create an account</a>
+        <a href="#recover" class="customer-form-container__create">Forgot your password?</a>
+        <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
+    </div>
     </div>
    
 </div>
+
+{% javascript %}
+console.log(window.location)
+const displayForm = (currentUrl) => {
+// const currentUrl= window.location.href
+const formId = currentUrl.split('#')[1]
+loginForm = document.getElementById('login')
+recoverForm =  document.getElementById('recover')
+console.log(currentUrl)
+switch (formId) {
+    case 'login':
+        loginForm.style.display = 'block'
+        recoverForm.style.display ='none'
+        break;
+    case 'recover':
+        recoverForm.style.display = 'block'
+        loginForm.style.display='none'
+        break
+    default:
+        loginForm.style.display = 'block'
+        recoverForm.style.display = 'none'
+        break;
+}
+}
+
+window.addEventListener('hashchange', ()=>{
+    console.log(window.location.href)
+    displayForm(window.location.href)
+    console.log('??????')
+    console.log(window.location.href)
+})
+
+displayForm(window.location.href)
+
+
+
+
+{% endjavascript %}

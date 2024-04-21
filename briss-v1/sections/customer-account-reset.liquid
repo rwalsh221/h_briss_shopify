@@ -1,0 +1,21 @@
+{{ 'briss-customer-account.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-container">
+    <div class="customer-form-container">
+        <h2 class="heading__secondary">Create Account</h2>
+        {% form 'recover_customer_password' %}
+  {{ form.errors | default_errors }}
+
+  <div class="email">
+    <label for="email">Email</label>
+    <input type="email" name="email">
+  </div>
+
+  <div class="submit">
+    <input type="submit" value="Submit">
+  </div>
+{% endform %}
+        <a href="{{ routes.account_login_url }}" class="customer-form-container__create">sign in here</a>
+    </div>
+   
+</div>
