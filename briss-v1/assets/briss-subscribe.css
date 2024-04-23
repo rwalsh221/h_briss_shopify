@@ -4,6 +4,12 @@
   border-top: var(--border-red-5px);
 }
 
+.subscribe__heading {
+  text-align: center;
+  color: var(--primary-color-white-500);
+  text-transform: uppercase;
+}
+
 .subscribe-form-container {
   margin: 0 auto;
   width: max-content;
