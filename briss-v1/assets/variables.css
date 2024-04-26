@@ -55,5 +55,5 @@
   --border-red-2px: 2px solid var(--primary-color-red-500);
 
   /* MEDIA QUERIES */
-  --ipad-landscape-1180: 1180px;
+  --mq-1080: 1080px;
 }
