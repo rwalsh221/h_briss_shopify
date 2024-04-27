@@ -18,13 +18,19 @@
   );
 }
 
+.browse-all h2 {
+  font-size: var(--font-size-500);
+  color: var(--primary-color-white-500);
+  font-weight: bold;
+}
+
 .browse-all p {
-  font-size: var(--font-size-300);
   text-transform: capitalize;
   font-weight: bold;
 }
 
 .browse-all a {
+  font-size: var(--font-size-300);
   display: block;
   color: var(--primary-color-white-500) !important;
   font-weight: bold;
@@ -33,4 +39,16 @@
   width: max-content;
   padding: var(--padding-100);
   margin: var(--margin-100) auto;
+}
+
+@media only screen and (max-width: 480px) {
+  .browse-all h2 {
+    font-size: var(--font-size-400);
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .browse-all h2 {
+    font-size: var(--font-size-300);
+  }
 }
