@@ -15,7 +15,6 @@
 
 .customer-navigation > ul > li {
   display: flex;
-  /* overflow: hidden; */
   height: max-content;
   position: relative;
   cursor: pointer;
@@ -26,10 +25,6 @@
 .customer-navigation__icon {
   pointer-events: none;
   filter: invert(12%) sepia(81%) saturate(3552%) hue-rotate(350deg) brightness(92%) contrast(103%);
-}
-
-.customer-navigation li * {
-  /* pointer-events: none; */
 }
 
 .customer-navigation > ul > li:hover .customer-navigation__icon {
@@ -116,9 +111,7 @@
   background-color: var(--primary-color-red-500);
   border: var(--border-red-2px);
   border-color: transparent;
-  /* border: 5px solid var(--primary-color-red-500); */
   padding: var(--padding-200);
-  /* box-shadow: 2px 2px 2px black; */
   text-transform: capitalize;
   background-clip: padding-box;
   cursor: pointer;
