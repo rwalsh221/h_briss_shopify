@@ -6,6 +6,7 @@ a:visited {
 
 body {
   background-color: var(--primary-color-white-500);
+  font-family: var(--font-dancing-script);
 }
 
 .body__grid {
