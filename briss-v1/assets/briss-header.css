@@ -34,7 +34,6 @@
 @media only screen and (max-width: 970px) {
   .header-container {
     flex-shrink: 0;
-    /* flex-grow: 1; */
     flex-basis: 60%;
   }
 
@@ -84,7 +83,6 @@
   }
 
   .header-container h1 {
-    /* font-size: var(--font-size-400); */
     border-bottom: var(--border-red-2px);
     padding: var(--padding-100) 0;
   }

@@ -1,13 +1,14 @@
 .home {
   display: flex;
   flex-direction: column;
+  /* overflow: hidden; */
 }
 
 .home__heading {
   align-self: center;
   background-color: var(--primary-color-white-500);
   border: var(--border-red-5px);
-  padding: calc(var(--padding-100) / 2) calc(var(--padding-100) * 40);
+  /* padding: calc(var(--padding-100) / 2) calc(var(--padding-100) * 40); */
   border-radius: 10px;
   margin: var(--margin-300);
   box-shadow: 2px 2px 5px var(--secondary-color-black);

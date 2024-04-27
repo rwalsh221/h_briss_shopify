@@ -1,8 +1,5 @@
 {
   "sections": {
-    "customer-section": {
-      "type": "customer-section"
-    },
     "customer-navigation": {
       "type": "customer-navigation"
     },
@@ -22,13 +19,5 @@
       "type": "subscribe"
     }
   },
-  "order": [
-    "customer-section",
-    "customer-navigation",
-    "navigation",
-    "home",
-    "browse-all",
-    "product-featured",
-    "subscribe"
-  ]
+  "order": ["customer-navigation", "navigation", "home", "browse-all", "product-featured", "subscribe"]
 }
