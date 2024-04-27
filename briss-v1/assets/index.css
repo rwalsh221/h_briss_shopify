@@ -113,3 +113,9 @@ body {
   font-size: var(--font-size-300);
   color: var(--primary-color-red-500);
 }
+
+@media only screen and (max-width: 450px) {
+  .heading__primary {
+    -webkit-text-stroke: 1px var(--secondary-color-gray);
+  }
+}

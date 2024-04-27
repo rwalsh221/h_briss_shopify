@@ -12,6 +12,11 @@
   flex-basis: 45%;
 }
 
+.header-container h1 {
+  display: flex;
+  flex-direction: column;
+}
+
 .icon__header {
   margin: 0 var(--margin-100);
   display: flex;
@@ -75,17 +80,22 @@
 
 @media only screen and (max-width: 450px) {
   .header-container {
+    flex-basis: 60%;
   }
 
   .header-container h1 {
-    font-size: var(--font-size-400);
+    /* font-size: var(--font-size-400); */
     border-bottom: var(--border-red-2px);
     padding: var(--padding-100) 0;
+  }
+
+  .icon__header img {
+    margin: 0 calc(var(--margin-100) / 2);
   }
 }
 
 @media only screen and (max-width: 360px) {
   .header-container h1 {
-    font-size: calc(var(--font-size-300) + calc(var(--font-size-100) / 2));
+    font-size: var(--font-size-400);
   }
 }
