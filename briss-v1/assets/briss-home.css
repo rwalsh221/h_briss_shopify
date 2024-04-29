@@ -18,7 +18,6 @@
 
 .home__img {
   align-self: center;
-  /* width: 40%; */
   border-radius: 100%;
   border: var(--border-red-5px);
   padding: var(--padding-100);
