@@ -99,14 +99,14 @@
     flex-wrap: wrap;
   }
 
-  .featured__card:not(:last-of-type) {
-    margin: 0;
+  .featured__card:not(:last-of-type),
+  .featured__card {
+    margin: var(--margin-100) var(--margin-300);
   }
 
   .featured__card {
     flex-grow: 0;
     flex-basis: 40%;
-    margin: var(--margin-100) var(--margin-300);
   }
 }
 
