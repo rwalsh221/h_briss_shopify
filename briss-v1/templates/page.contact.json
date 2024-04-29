@@ -1,14 +1,23 @@
 {
   "sections": {
-    "customer-section": {
-      "type": "customer-section"
+    "customer-navigation": {
+      "type": "customer-navigation"
     },
     "navigation": {
       "type": "navigation"
     },
     "contact-page": {
       "type": "contact-page"
+    },
+    "browse-all": {
+      "type": "browse-all"
+    },
+    "product-featured": {
+      "type": "product-featured"
+    },
+    "subscribe": {
+      "type": "subscribe"
     }
   },
-  "order": ["customer-section", "navigation", "contact-page"]
+  "order": ["customer-navigation", "navigation", "contact-page", "browse-all", "product-featured", "subscribe"]
 }

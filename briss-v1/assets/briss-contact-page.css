@@ -1,10 +1,13 @@
 .grid__contact-page {
+  height: max-content;
   display: grid;
   grid-template-columns: 50% 50%;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: max-content 50%;
   grid-template-areas:
     'contact-address contact-image'
     'contact-map contact-map';
+
+  margin: var(--margin-200) 0;
 }
 
 .contact {
@@ -12,14 +15,13 @@
   justify-self: center;
   align-self: center;
   width: 90%;
-  height: 95%;
+  height: 100%;
   padding: var(--padding-200);
   border-radius: 25%;
   background-color: var(--primary-color-white-500);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: var(--margin-300);
   box-shadow: 2px 2px 5px var(--secondary-color-black);
 
   border: var(--border-red-5px);
@@ -28,6 +30,7 @@
 .contact__heading {
   margin: var(--margin-200) 0;
   border-bottom: 2px solid var(--primary-color-red-500);
+  text-align: center;
 }
 
 .contact__address {
@@ -40,13 +43,19 @@
   padding: var(--padding-200);
 }
 
+.contact__img--container,
+.contact {
+  margin-top: var(--margin-100);
+  margin-bottom: var(--margin-100);
+}
+
 .contact__img--container {
   grid-area: contact-image;
   justify-self: center;
   align-self: center;
   background-color: var(--primary-color-white-500);
   width: 90%;
-  height: 95%;
+  height: 100%;
 
   border-radius: 25%;
   box-shadow: 2px 2px 5px var(--secondary-color-black);
@@ -85,4 +94,45 @@
   color: var(--primary-color-red-500);
   font-size: var(--font-size-200);
   cursor: pointer;
+}
+
+@media only screen and (max-width: 670px) {
+  .contact__heading {
+    font-size: 25px;
+  }
+
+  .contact__address {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .contact,
+  .contact__img--container {
+    width: 95%;
+  }
+
+  .contact__address {
+    padding: var(--padding-100);
+  }
+}
+
+@media only screen and (max-width: 505px) {
+  .grid__contact-page {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(3, max-content);
+    grid-template-areas:
+      'contact-address'
+      'contact-image'
+      'contact-map';
+    padding: var(--padding-100);
+    margin: var(--margin-200) auto;
+  }
+
+  .contact,
+  .contact__img--container {
+    height: max-content;
+    margin-bottom: var(--margin-200);
+  }
 }
