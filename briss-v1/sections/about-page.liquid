@@ -1,5 +1,6 @@
 {{ 'briss-about-page.css' | asset_url | stylesheet_tag }}
 
+<h2 class="about__heading heading__secondary" id="hover">Our Story</h2>
 <div class="about__img--container tab-fade">
     {{ images['briss_1.jpg'] | image_url: width: 615, height: 427 | image_tag: class: 'about__img img__top' }}
     {{ images['shop.jpg'] | image_url: width: 420, height: 326 | image_tag: class: 'about__img img__bottom' }}
