@@ -16,3 +16,9 @@ footer {
   font-family: var(--font-dancing-script);
   font-size: var(--font-size-200);
 }
+
+@media only screen and (max-width: 400px) {
+  .footer__header {
+    font-size: var(--font-size-200);
+  }
+}
