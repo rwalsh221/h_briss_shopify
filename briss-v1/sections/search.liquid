@@ -22,11 +22,19 @@
     {% for item in search.results %}
         {{ item.type }}
         <div class="search_results__card">
-           {{ item.featured_image | image_url: width: 200, height: 200 | image_tag  }}
-            <div class="search_results__card--title"><p>{{ item.title }}</p></div>
+            <div class="search_results__card--img">
+                {{ item.featured_image | image_url: width: 200, height: 200 | image_tag  }}
+            </div>
+                <div class="search_results__card--content">
+                <div class="search_results__card--title"><p>&nbsp;{{ item.title }}</p></div>
+                <div>
+                    <p>&nbsp;{{ item.price | money}}</p>
+                </div>
+                <div class="search_results__card--more">
+                    <a href="{{ item.url }}">More Information</a>
+                </div>
+            </div>
             
-            <div><p>{{ item.price | money}}</p></div>
-            <div class="search_results__card--more"><a href="{{ item.url }}">More Information</a></div>
         </div>
     {% endfor %}
     </div>
