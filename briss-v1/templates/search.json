@@ -3,15 +3,21 @@
     "customer-navigation": {
       "type": "customer-navigation"
     },
-    "customer-section": {
-      "type": "customer-section"
-    },
     "navigation": {
       "type": "navigation"
     },
     "search": {
       "type": "search"
+    },
+    "browse-all": {
+      "type": "browse-all"
+    },
+    "product-featured": {
+      "type": "product-featured"
+    },
+    "subscribe": {
+      "type": "subscribe"
     }
   },
-  "order": ["customer-navigation", "customer-section", "navigation", "search"]
+  "order": ["customer-navigation", "navigation", "search", "browse-all", "product-featured", "subscribe"]
 }
