@@ -9,7 +9,7 @@
     types="products"
     value="{{ search.terms | escape }}">
     <input type="hidden" name="type" value="product" />
-    <input class="search_btn" type="submit" value="Search Again">
+    <input class="search_btn" type="submit" value="Search">
 </form>
 
 <p class="search_results__num">{{ search.results_count }} results found for "{{ search.terms }}"</p>
@@ -18,6 +18,7 @@
 
 
 {% if search.results_count > 0 %}
+    <div class="search_results__container">
     {% for item in search.results %}
         {{ item.type }}
         <div class="search_results__card">
@@ -28,8 +29,9 @@
             <div class="search_results__card--more"><a href="{{ item.url }}">More Information</a></div>
         </div>
     {% endfor %}
+    </div>
 {% else %}
-    <p class="search_results__num">no results found for "{{ search.terms }}" check the spelling or saerch again</p>
+    <p class="search_results__false">no results found for "{{ search.terms }}" check the spelling or saerch again</p>
 {% endif %}
 </div>
 </div>
