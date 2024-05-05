@@ -6,11 +6,14 @@
                 type="text"
                 placeholder="Search"
                 name="q"
+                types="products"
                 value="{{ search.terms | escape }}"
                 autocomplete="new-password"
             />
-            <input type="hidden" name="type" value="product,page" />
-            <input type="hidden" name="options[unavailable_products]" value="hide" />
+
+            {% comment %} <input type="hidden" name="type" value="product" /> {% endcomment %}
+            <input type="hidden" name="type" value="product" />
+            {% comment %} <input type="hidden" name="options[unavailable_products]" value="hide" /> {% endcomment %}
             <input type="hidden" name="options[prefix]" value="last" />
             <input 
                 class="customer-navigation__form--submit"

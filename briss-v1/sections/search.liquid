@@ -8,6 +8,7 @@
     name="q"
     types="products"
     value="{{ search.terms | escape }}">
+    
     <input type="hidden" name="type" value="product" />
     <input class="search_btn" type="submit" value="Search">
 </form>
@@ -20,7 +21,7 @@
 {% if search.results_count > 0 %}
     <div class="search_results__container">
     {% for item in search.results %}
-        {{ item.type }}
+        {% comment %} {{ item.type }} {% endcomment %}
         <div class="search_results__card">
             <div class="search_results__card--img">
                 {{ item.featured_image | image_url: width: 200, height: 200 | image_tag  }}
