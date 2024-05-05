@@ -1,8 +1,17 @@
 {
   "sections": {
+    "navigation": {
+      "type": "navigation"
+    },
     "customer-account-login": {
       "type": "customer-account-login"
+    },
+    "browse-all": {
+      "type": "browse-all"
+    },
+    "subscribe": {
+      "type": "subscribe"
     }
   },
-  "order": ["customer-account-login"]
+  "order": ["navigation", "customer-account-login", "browse-all", "subscribe"]
 }
