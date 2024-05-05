@@ -59,7 +59,7 @@
   /* font-weight: bold; */
   position: absolute;
   top: 21px;
-  left: 143px;
+  left: 22%;
   pointer-events: none;
   transition: all 0.1s;
 }
@@ -245,4 +245,41 @@ input::placeholder {
 
 .customer-form-recover {
   display: none;
+}
+
+@media only screen and (max-width: 970px) {
+  .customer-form-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 630px) {
+  .customer-form-container {
+    width: 90%;
+  }
+
+  .customer-form-input-container input,
+  .customer-address-form-input-container input {
+    width: 80%;
+  }
+
+  .customer-form-label {
+    left: 13%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .customer-form-container {
+    padding: var(--padding-100);
+    margin: var(--margin-200);
+  }
+
+  .customer-form-input-container input,
+  .customer-address-form-input-container input {
+    width: 90%;
+  }
+
+  .customer-form-label {
+    left: 9%;
+  }
 }

@@ -42,50 +42,43 @@
             </div>
 
             <div class="submit">
-                <input class="customer-btn" type="submit" value="Sign in">
+                <input class="customer-btn" type="submit" value="login">
             </div>
         {% endform %}
         <a href="#recover" class="customer-form-container__create">Forgot your password?</a>
         <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
     </div>
     </div>
-   
 </div>
 
 {% javascript %}
-console.log(window.location)
+
 const displayForm = (currentUrl) => {
-// const currentUrl= window.location.href
-const formId = currentUrl.split('#')[1]
-loginForm = document.getElementById('login')
-recoverForm =  document.getElementById('recover')
-console.log(currentUrl)
-switch (formId) {
-    case 'login':
-        loginForm.style.display = 'block'
-        recoverForm.style.display ='none'
-        break;
-    case 'recover':
-        recoverForm.style.display = 'block'
-        loginForm.style.display='none'
-        break
-    default:
-        loginForm.style.display = 'block'
-        recoverForm.style.display = 'none'
-        break;
-}
+
+    const formId = currentUrl.split('#')[1]
+    loginForm = document.getElementById('login')
+    recoverForm =  document.getElementById('recover')
+
+    switch (formId) {
+        case 'login':
+            loginForm.style.display = 'block'
+            recoverForm.style.display ='none'
+            break;
+        case 'recover':
+            recoverForm.style.display = 'block'
+            loginForm.style.display='none'
+            break
+        default:
+            loginForm.style.display = 'block'
+            recoverForm.style.display = 'none'
+            break;
+    }
 }
 
-window.addEventListener('hashchange', ()=>{
-    console.log(window.location.href)
+window.addEventListener('hashchange', () => {
     displayForm(window.location.href)
-    console.log('??????')
-    console.log(window.location.href)
 })
 
 displayForm(window.location.href)
-
-
-
 
 {% endjavascript %}
