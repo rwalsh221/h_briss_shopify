@@ -1,8 +1,17 @@
 {
   "sections": {
+    "navigation": {
+      "type": "navigation"
+    },
     "customer-account-register": {
       "type": "customer-account-register"
+    },
+    "browse-all": {
+      "type": "browse-all"
+    },
+    "subscribe": {
+      "type": "subscribe"
     }
   },
-  "order": ["customer-account-register"]
+  "order": ["navigation", "customer-account-register", "browse-all", "subscribe"]
 }
