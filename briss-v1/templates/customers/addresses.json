@@ -1,8 +1,30 @@
 {
   "sections": {
+    "customer-navigation": {
+      "type": "customer-navigation"
+    },
+    "navigation": {
+      "type": "navigation"
+    },
     "customer-account-addresses": {
       "type": "customer-account-addresses"
+    },
+    "browse-all": {
+      "type": "browse-all"
+    },
+    "product-featured": {
+      "type": "product-featured"
+    },
+    "subscribe": {
+      "type": "subscribe"
     }
   },
-  "order": ["customer-account-addresses"]
+  "order": [
+    "customer-navigation",
+    "navigation",
+    "customer-account-addresses",
+    "browse-all",
+    "product-featured",
+    "subscribe"
+  ]
 }
