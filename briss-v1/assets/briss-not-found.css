@@ -1,5 +1,5 @@
 .not-found-container {
-  width: 50%;
+  width: 70%;
   border-radius: 15%;
   margin: var(--margin-200) auto;
   padding: var(--padding-100);
@@ -26,4 +26,10 @@
 
 .not-found__link:hover {
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 680px) {
+  .not-found-container {
+    width: 90%;
+  }
 }
