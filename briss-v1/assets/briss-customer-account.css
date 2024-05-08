@@ -263,13 +263,18 @@ input::placeholder {
     width: 90%;
   }
 
-  .customer-form-input-container input,
-  .customer-address-form-input-container input {
+  .customer-form-input-container input {
     width: 80%;
   }
 
   .customer-form-label {
     left: 13%;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .customer-addresses-container {
+    width: 80%;
   }
 }
 
@@ -279,13 +284,22 @@ input::placeholder {
     margin: var(--margin-200);
   }
 
-  .customer-form-input-container input,
-  .customer-address-form-input-container input {
+  .customer-form-input-container input {
     width: 90%;
   }
 
   .customer-form-label {
     left: 9%;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  .customer-heading__primary {
+    font-size: 35px;
+  }
+
+  .customer-addresses-container {
+    width: 100%;
   }
 }
 
