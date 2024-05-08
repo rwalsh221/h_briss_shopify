@@ -1,7 +1,7 @@
 {
   "sections": {
-    "customer-section": {
-      "type": "customer-section"
+    "customer-navigation": {
+      "type": "customer-navigation"
     },
     "navigation": {
       "type": "navigation"
@@ -10,5 +10,5 @@
       "type": "404-not-found"
     }
   },
-  "order": ["customer-section", "navigation", "404"]
+  "order": ["customer-navigation", "navigation", "404"]
 }
