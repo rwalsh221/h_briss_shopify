@@ -190,6 +190,7 @@ input::placeholder {
   border: var(--border-red-2px);
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .customer-dashboard__orders,
@@ -197,6 +198,10 @@ input::placeholder {
   margin: var(--margin-100) 0;
   padding: var(--padding-100);
   /* border: var(--border-red-2px); */
+}
+
+.customer-dashboard__account {
+  margin-right: auto;
 }
 
 .customer-dashboard__orders {
@@ -281,5 +286,23 @@ input::placeholder {
 
   .customer-form-label {
     left: 9%;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .customer-dashboard {
+    width: 95%;
+  }
+
+  .customer-heading__primary {
+    font-size: var(--font-size-300);
+  }
+
+  .customer-heading__secondary {
+    font-size: 25px;
+  }
+
+  .customer-container__link {
+    font-size: 14px;
   }
 }

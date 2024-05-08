@@ -2,19 +2,19 @@
 
 <div class="customer-container">
     <div class="customer-dashboard">
-        <h2 class="heading__secondary">{{ customer.name }}'s Account</h2>
+        <h2 class="heading__secondary customer-heading__primary">{{ customer.name }}'s Account</h2>
         <a class="customer-container__link" href="{{ routes.account_logout_url }}">Log out</a>
         <div class="customer-dashboard__container">
             <div class="customer-dashboard__orders">
-                <h3 class="heading__tertiary">Orders</h3>
+                <h3 class="heading__tertiary customer-heading__secondary">Orders</h3>
                 {% if customer.orders_count > 0 %}
                     <p>do something</p>
                 {% else %}
                     <p>you dont have any orders</p>
                 {% endif %}
             </div>
-            <div class="customer-dashboard__account">
-                <h3 class="heading__tertiary">Account Details</h3>
+            <div class="customer-dashboard__account ">
+                <h3 class="heading__tertiary customer-heading__secondary">Account Details</h3>
                 <p>{{ customer.name }}</p>
                 <p>{{ customer.default_address.country }}</p>
                 <a class="customer-container__link" href="{{ routes.account_addresses_url }}">view Your Addresses</a>
