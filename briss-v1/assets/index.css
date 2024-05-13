@@ -115,6 +115,18 @@ body {
   color: var(--primary-color-red-500);
 }
 
+@media only screen and (max-width: 800px) {
+  .dash-short {
+    width: 3rem;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .dash-short {
+    width: 2rem;
+  }
+}
+
 @media only screen and (max-width: 450px) {
   .heading__primary {
     -webkit-text-stroke: 1px var(--secondary-color-gray);
