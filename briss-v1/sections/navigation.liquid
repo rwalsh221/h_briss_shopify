@@ -2,7 +2,7 @@
 
 
 
-
+<div>
 <nav aria-label="primary navigation" class="nav-bar nav_grid_area">
   <div class="dash-short"></div>
   <ul>
@@ -21,6 +21,23 @@
     <div class="nav-bar__btn" id="btn__contact">Contact</div>
     <div class="dash-short"></div> {% endcomment %}
 </nav>
+
+<nav aria-label="primary navigation drawer" class="nav-drawer">
+
+
+  <ul>
+    {% for link in linklists.main-menu.links %}
+      <div class="dash-short"></div>
+      <li class="nav-bar__link-container">
+        <a class="nav-bar__btn" id="btn__about" href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {% endfor %}
+    <div class="dash-short"></div>
+  </ul>
+  
+   
+</nav>
+</div>
 
 {% schema %}
     {
