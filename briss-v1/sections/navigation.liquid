@@ -1,42 +1,49 @@
 {{ 'briss-navigation.css' | asset_url | stylesheet_tag }}
 
-
-
 <div>
-<nav aria-label="primary navigation" class="nav-bar nav_grid_area">
-  <div class="dash-short"></div>
-  <ul>
-    {% for link in linklists.main-menu.links %}
-      <li class="nav-bar__link-container">
-        <a class="nav-bar__btn" id="btn__about" href="{{ link.url }}">{{ link.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-  <div class="dash-short"></div>
-   
-    
-    {% comment %} <div class="dash"></div>
-    <div class="nav-bar__btn" id="btn__menu">Menu</div>
-    <div class="dash"></div>
-    <div class="nav-bar__btn" id="btn__contact">Contact</div>
-    <div class="dash-short"></div> {% endcomment %}
-</nav>
-
-<nav aria-label="primary navigation drawer" class="nav-drawer">
-
-
-  <ul>
-    {% for link in linklists.main-menu.links %}
-      <div class="dash-short"></div>
-      <li class="nav-bar__link-container">
-        <a class="nav-bar__btn" id="btn__about" href="{{ link.url }}">{{ link.title }}</a>
-      </li>
-    {% endfor %}
+  {% comment %} NAV BAR {% endcomment %}
+  <nav aria-label="primary navigation" class="nav-bar nav_grid_area">
     <div class="dash-short"></div>
-  </ul>
+    <ul>
+      {% for link in linklists.main-menu.links %}
+        <li class="nav-bar__link-container">
+          <a class="nav-bar__btn" id="btn__about" href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="dash-short"></div>
+  </nav>
+  {% comment %} NAV DRAWER {% endcomment %}
+  <div class="nav-drawer-container">
+    <div class="nav-drawer-container__show">
+      {% comment %} <button class="nav-bar__btn--show ">
+        <span id="nav-drawer__open" class="nav-bar__btn--open">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button> {% endcomment %}
+
+      <button class="nav-bar__btn--show ">
+        <span id="nav-drawer__close" class="nav-bar__btn--close">
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+    <nav aria-label="primary navigation drawer" class="nav-drawer">
+      <ul>
+        {% for link in linklists.main-menu.links %}
+          <div class="dash-short"></div>
+          <li class="nav-bar__link-container">
+            <a class="nav-bar__btn" id="btn__about" href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+        <div class="dash-short"></div>
+      </ul>
+    </nav>
+  </div>
   
-   
-</nav>
 </div>
 
 {% schema %}
