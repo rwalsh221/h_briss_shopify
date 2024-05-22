@@ -15,7 +15,7 @@
   </nav>
   {% comment %} NAV DRAWER {% endcomment %}
   <div class="nav-drawer-container">
-    <div class="nav-drawer-container__show">
+    <div id="nav-drawer-container__show" class="nav-drawer-container__show">
       {% comment %} <button class="nav-bar__btn--show ">
         <span id="nav-drawer__open" class="nav-bar__btn--open">
           <span></span>
@@ -24,14 +24,14 @@
         </span>
       </button> {% endcomment %}
 
-      <button class="nav-bar__btn--show ">
+      <button id="nav-bar-btn-show" class="nav-bar__btn--show ">
         <span id="nav-drawer__close" class="nav-bar__btn--close">
           <span></span>
           <span></span>
         </span>
       </button>
     </div>
-    <nav aria-label="primary navigation drawer" class="nav-drawer">
+    <nav id="nav-drawer" aria-label="primary navigation drawer" class="nav-drawer">
       <ul>
         {% for link in linklists.main-menu.links %}
           <div class="dash-short"></div>
@@ -45,6 +45,38 @@
   </div>
   
 </div>
+
+{% javascript %}
+
+const showNavDrawer = () => {
+  console.log('clcllclclclclclclkkkkkkkkkdddrrrrrrrrr')
+  console.log(document.body)
+  const root = document.documentElement;
+  const navDrawerShowBottom = document.getElementById('nav-drawer-container__show').getBoundingClientRect().bottom
+  root.style.setProperty('--nav-drawer-offset', `${navDrawerShowBottom}px`);
+
+  // document.getElementById('nav-drawer').classList.toggle('nav-drawer-show')
+  const navDrawer = document.getElementById('nav-drawer')
+
+if(navDrawer.classList.length === 1) {
+  navDrawer.classList.add('nav-drawer-show')
+  document.body.style.overflow = 'hidden'
+  return
+}
+
+  if(navDrawer.classList.contains('nav-drawer-hide')){
+    navDrawer.classList.remove('nav-drawer-hide')
+    navDrawer.classList.add('nav-drawer-show')
+  }else {
+    navDrawer.classList.add('nav-drawer-hide')
+    navDrawer.classList.remove('nav-drawer-show')
+  }
+
+}
+
+document.getElementById('nav-bar-btn-show').addEventListener('click', showNavDrawer)
+
+{% endjavascript %}
 
 {% schema %}
     {

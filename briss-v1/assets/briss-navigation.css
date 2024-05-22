@@ -20,10 +20,42 @@
 
 .nav-drawer {
   /* display: none; */
-  height: 100dvh;
+  position: absolute;
+  height: calc(100dvh - var(--nav-drawer-offset));
   padding: var(--padding-100) 0;
-  width: 70vw;
+  width: 100vw;
   border-right: var(--border-red-5px);
+  left: -100%;
+}
+
+.nav-drawer-hide {
+  animation: slideOut 2s forwards;
+  /* left: -100%; */
+}
+
+.nav-drawer-show {
+  animation: slideIn 2s forwards;
+  /* left: 100%; */
+}
+
+@keyframes slideIn {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    left: 0%;
+  }
+
+  to {
+    left: -100%;
+  }
 }
 
 .nav-drawer-container__show {
@@ -70,7 +102,7 @@
 
 .nav-bar__btn--show {
   height: 4rem;
-  width: 15%;
+  width: 4rem;
 }
 
 .nav-drawer .nav-bar__btn {
@@ -81,7 +113,7 @@
 .nav-bar__btn--open span,
 .nav-bar__btn--close span {
   display: block;
-  width: 40px;
+  width: 90%;
   height: 5px;
   background-color: var(--primary-color-red-400);
 }
@@ -91,7 +123,9 @@
 }
 
 .nav-bar__btn--close {
+  display: block;
   position: relative;
+  width: 100%;
 }
 
 .nav-bar__btn--close span {
