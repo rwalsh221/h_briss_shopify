@@ -16,20 +16,20 @@
   {% comment %} NAV DRAWER {% endcomment %}
   <div class="nav-drawer-container">
     <div id="nav-drawer-container__show" class="nav-drawer-container__show">
-      {% comment %} <button class="nav-bar__btn--show ">
+      <button id="nav-bar-btn-show" class="nav-bar__btn--show ">
         <span id="nav-drawer__open" class="nav-bar__btn--open">
           <span></span>
           <span></span>
           <span></span>
         </span>
-      </button> {% endcomment %}
+      </button>
 
-      <button id="nav-bar-btn-show" class="nav-bar__btn--show ">
+      {% comment %} <button id="nav-bar-btn-show" class="nav-bar__btn--show ">
         <span id="nav-drawer__close" class="nav-bar__btn--close">
           <span></span>
           <span></span>
         </span>
-      </button>
+      </button> {% endcomment %}
     </div>
     <nav id="nav-drawer" aria-label="primary navigation drawer" class="nav-drawer">
       <ul>
@@ -48,9 +48,35 @@
 
 {% javascript %}
 
+const changeNavDrawerBtnShowContent = (element, html) => {
+while (element.firstChild) {
+      element.removeChild(element.lastChild)
+      }
+    element.insertAdjacentHTML('beforeend', html)
+}
+
+
 const showNavDrawer = () => {
-  console.log('clcllclclclclclclkkkkkkkkkdddrrrrrrrrr')
-  console.log(document.body)
+  console.log('clcllclclclclclclclc')
+  const elements = {
+    root: document.documentElement,
+    navDrawerBtnShow: document.getElementById('nav-bar-btn-show')
+  }
+
+
+  const navDrawerBtnShowHtml = 
+        `<span id="nav-drawer__open" class="nav-bar__btn--open">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>`;
+
+  const navDrawerBtnHideHtml = 
+        `<span id="nav-drawer__close" class="nav-bar__btn--close">
+          <span></span>
+          <span></span>
+        </span>`;
+
   const root = document.documentElement;
   const navDrawerShowBottom = document.getElementById('nav-drawer-container__show').getBoundingClientRect().bottom
   root.style.setProperty('--nav-drawer-offset', `${navDrawerShowBottom}px`);
@@ -58,18 +84,27 @@ const showNavDrawer = () => {
   // document.getElementById('nav-drawer').classList.toggle('nav-drawer-show')
   const navDrawer = document.getElementById('nav-drawer')
 
-if(navDrawer.classList.length === 1) {
-  navDrawer.classList.add('nav-drawer-show')
-  document.body.style.overflow = 'hidden'
-  return
-}
+  if(navDrawer.classList.length === 1) {
+    navDrawer.classList.add('nav-drawer-show')
+    document.body.style.overflow = 'hidden'
+    changeNavDrawerBtnShowContent(elements.navDrawerBtnShow, navDrawerBtnHideHtml)
+    // while (elements.navDrawerBtnShow.firstChild) {
+    //   elements.navDrawerBtnShow.removeChild(elements.navDrawerBtnShow.lastChild)
+    //   }
+    // elements.navDrawerBtnShow.insertAdjacentHTML('beforeend', navDrawerHideHtml)
+    return
+  }
 
   if(navDrawer.classList.contains('nav-drawer-hide')){
     navDrawer.classList.remove('nav-drawer-hide')
     navDrawer.classList.add('nav-drawer-show')
+    changeNavDrawerBtnShowContent(elements.navDrawerBtnShow, navDrawerBtnHideHtml)
+    document.body.style.overflow = 'hidden'
   }else {
     navDrawer.classList.add('nav-drawer-hide')
     navDrawer.classList.remove('nav-drawer-show')
+    changeNavDrawerBtnShowContent(elements.navDrawerBtnShow, navDrawerBtnShowHtml)
+    document.body.style.overflow = 'scroll'
   }
 
 }
