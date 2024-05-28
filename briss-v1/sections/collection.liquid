@@ -12,15 +12,16 @@
 <div class="collection-grid">
     {% for product in collection.products %}
         <div class="product-card">
-            <div class="product-card__icon">
-                {{ images['product-icon-special.svg'] | image_url: width: 800, height: 800 | image_tag }}
-            </div>
-            <div class="product-card__header">
-                <img src="{{ product.featured_image | image_url: width: 300, height: 300 }}"/>
+           <div class="product-card__header">
                 <div>
                     <h4>{{ product.title | link_to: product.url }}</h4>
+                </div> 
+                <div class="product-card__icon">
+                    {{ images['product-icon-special.svg'] | image_url: width: 800, height: 800 | image_tag }}
                 </div>
-               
+            </div>
+            <div class="product-card__img">
+                {{ product.featured_image | image_url: width: 200, height: 200 | image_tag }}
             </div>
             <div class="product-card__description">
                  <p>{{ product.description }}</p>

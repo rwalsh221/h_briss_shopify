@@ -41,67 +41,72 @@
 
 .product-card {
   display: grid;
-  grid-template-rows: 1.5fr 1fr 0.25fr;
-  height: 100%;
-  width: 80%;
+  grid-template-rows: 0.5fr 2fr 2fr 0.5fr;
+  width: 100%;
   background-color: var(--primary-color-red-400);
   border: var(--border-red-5px);
-  border-radius: 10px;
-  color: var(--primary-color-red-500);
-  color: var(--primary-color-white-500);
-  position: relative;
 }
 
 .product-card__header {
+  background-color: var(--primary-color-white-500);
   display: flex;
   align-items: center;
-  margin: calc(var(--margin-100) / 2) var(--margin-100);
+  padding: var(--padding-100);
+  border-bottom: var(--border-red-5px);
 }
 
-.product-card__header img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  margin: 5px;
-  padding: 5px;
-  border: 5px solid var(--primary-color-white-500);
-  background-color: var(--primary-color-red-500);
-}
-
-.product-card__header div {
+.product-card__header h4 {
   font-size: var(--font-size-300);
   text-align: center;
-  border-radius: 10px;
-  background-color: var(--primary-color-red-500);
-  border: 5px solid var(--primary-color-white-500);
-  padding: 5px;
+  color: var(--primary-color-red-500);
+  margin: 0 auto;
 }
 
-.product-card__header div a {
-  font-weight: bold;
-  color: var(--primary-color-white-500);
+.product-card__icon {
+  margin-left: auto;
+  /* icon is png so cant be color normal way. filter changes color used https://codepen.io/sosuke/pen/Pjoqqp to generate filter */
+  filter: invert(8%) sepia(68%) saturate(5842%) hue-rotate(356deg) brightness(103%) contrast(93%);
+}
+
+.product-card__icon img {
+  height: 40px;
+  width: 40px;
+}
+
+.product-card__img,
+.product-card__img img {
+  border-radius: 50%;
+  background-color: var(--primary-color-white-500);
+}
+
+.product-card__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin: 5px auto;
+  padding: var(--padding-100);
+  border: var(--border-red-5px);
 }
 
 .product-card__description {
   display: flex;
   align-items: center;
-  background-color: var(--primary-color-white-500);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   background-color: var(--primary-color-red-500);
   border: 5px solid var(--primary-color-white-500);
+  color: var(--primary-color-white-500);
   padding: 0.5rem;
-  border-radius: 10px;
-  margin: 0 1rem 0.5rem 1rem;
+  margin: var(--margin-100);
 }
 
 .product-card__additional {
-  border-top: 5px solid var(--primary-color-red-500);
+  border-top: var(--border-red-5px);
   background-color: var(--primary-color-white-500);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   padding: var(--padding-100);
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: var(--primary-color-red-500);
 }
 
@@ -114,16 +119,4 @@
 
 .product-card__additional a:hover {
   font-style: italic;
-  /* text-decoration-color: var(--primary-color-red-400); */
-}
-
-.product-card__icon {
-  position: absolute;
-  right: 5%;
-  top: 2%;
-}
-
-.product-card__icon img {
-  height: 40px;
-  width: 40px;
 }
