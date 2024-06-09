@@ -15,6 +15,7 @@
            <div class="product-card__header">
                 <div>
                     <h4>{{ product.title | link_to: product.url }}</h4>
+                    <p>From&nbsp;{{ product.price | money }}</p>
                 </div> 
                 <div class="product-card__icon">
                     {{ images['product-icon-special.svg'] | image_url: width: 800, height: 800 | image_tag }}
@@ -24,11 +25,11 @@
                 {{ product.featured_image | image_url: width: 200, height: 200 | image_tag }}
             </div>
             <div class="product-card__description">
-                 <p>{{ product.description }}</p>
+                 {{ product.description }}
             </div>
             <div class="product-card__additional">
                 <a href="{{ product.url }}">More Information!!!</a>
-                <p>From&nbsp;{{ product.price | money }}</p>
+                
             </div>
         </div>
         
