@@ -1,24 +1,75 @@
 .collection-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--primary-color-white-500);
   border-bottom: var(--border-red-5px);
   padding: var(--padding-100);
 }
 
-.collection-nav ul {
+.collection-nav__btn-container {
+  align-self: stretch;
+  position: relative;
+  flex-basis: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* z-index: 2; */
+}
+
+.collection-nav__btn-container--back {
+  box-shadow: 20px 0px 5px 0px var(--primary-color-white-500);
+}
+
+.collection-nav__btn-container--fwd {
+  box-shadow: -20px 0px 5px 0px var(--primary-color-white-500);
+}
+
+.collection-nav__btn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
+  font-size: 15px;
+  border-radius: 50%;
+  box-shadow: none;
+  border: var(--border-red-2px);
+  background-color: var(--primary-color-red-400);
+  transition: all 0.3s;
+}
+
+.collection-nav__btn:hover {
+  background-color: var(--primary-color-red-500);
+}
+
+.collection-nav__link-container {
+  /* height: 200px; */
+  padding: 0 var(--padding-300);
+  flex-basis: 60%;
   display: flex;
   list-style: none;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.collection-nav ul li {
+  padding: 10px 0;
 }
 
 .collection-nav ul li a {
   display: block;
-  width: calc(var(--base-rem) * 9);
+  width: max-content;
   font-size: var(--font-size-200);
   color: var(--primary-color-white-500);
   background-color: var(--primary-color-red-500);
   text-align: center;
   border: 3px solid var(--primary-color-red-500);
   padding: var(--padding-100);
+  margin: 0 5px;
   border-radius: 5px;
 }
 
