@@ -17,11 +17,11 @@
   /* z-index: 2; */
 }
 
-.collection-nav__btn-container--back {
+.collection-nav__btn-shadow--r {
   box-shadow: 20px 0px 5px 0px var(--primary-color-white-500);
 }
 
-.collection-nav__btn-container--fwd {
+.collection-nav__btn-shadow--l {
   box-shadow: -20px 0px 5px 0px var(--primary-color-white-500);
 }
 
@@ -45,7 +45,7 @@
 
 .collection-nav__link-container {
   /* height: 200px; */
-  padding: 0 var(--padding-300);
+  /* padding: 0 var(--padding-300); */
   flex-basis: 60%;
   display: flex;
   list-style: none;

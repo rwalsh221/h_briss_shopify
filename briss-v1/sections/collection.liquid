@@ -9,7 +9,7 @@
             <li>{{- collection.title | link_to: collection.url }}</li>
         {% endfor %}
     </ul>
-    <div class="collection-nav__btn-container collection-nav__btn-container--fwd">
+    <div id="collection-nav__btn-container__fwd" class="collection-nav__btn-container collection-nav__btn-container--fwd">
         <button id="cn-btn__fwd" class="collection-nav__btn">FWD</button>
     </div>
 </nav>
@@ -46,30 +46,56 @@
     const domStrings = {
         cnLinkContainer: document.getElementById('cn__link-container'),
         cnBtnContainerBack: document.getElementById('collection-nav__btn-container__back'),
+        cnBtnContainerFwd: document.getElementById('collection-nav__btn-container__fwd'),
         cnBtnBack: document.getElementById('cn-btn__back'),
-        cnBtnFwd: document.getElementById('cn-btn__fwd')
+        cnBtnFwd: document.getElementById('cn-btn__fwd'),
+        cssShadowLeft:'collection-nav__btn-shadow--l',
+        cssShadowRight:'collection-nav__btn-shadow--r',
     }
 
-console.log(domStrings.cnLinkContainer.scrollWidth)
-console.log(domStrings.cnLinkContainer.offsetWidth)
-
-    if(domStrings.cnLinkContainer.offsetWidth <= domStrings.cnLinkContainer.scrollWidth) {
+    if(domStrings.cnLinkContainer.offsetWidth < domStrings.cnLinkContainer.scrollWidth) {
+        console.log(domStrings)
+        domStrings.cnBtnContainerFwd.classList.add(domStrings.cssShadowLeft)
         domStrings.cnBtnBack.style.display = 'flex'
         domStrings.cnBtnFwd.style.display = 'flex'
 
     }
 
-    const scrollCollectionNav = (direction) => {
-        if(direction === 'forwards'){
-            domStrings.cnLinkContainer.scrollLeft += 20;
-        } else {
-            domStrings.cnLinkContainer.scrollLeft -= 20;
-        }
+    const scrollCollectionNavBack = () => {
+        // GET MAX SCROLL
+        const collectionNavMaxScroll = domStrings.cnLinkContainer.scrollWidth - domStrings.cnLinkContainer.offsetWidth
         
+        domStrings.cnLinkContainer.scrollLeft -= 20;
+        const currScrollPos = domStrings.cnLinkContainer.scrollLeft
+
+        if(currScrollPos === 0) {
+            domStrings.cnBtnContainerBack.classList.remove(domStrings.cssShadowRight)
+            return
+        }
+       
+        if(currScrollPos === collectionNavMaxScroll - 20){
+            domStrings.cnBtnContainerFwd.classList.add(domStrings.cssShadowLeft)
+        }
     }
 
-    domStrings.cnBtnFwd.addEventListener('click', ()=>{scrollCollectionNav('forwards')})
-    domStrings.cnBtnBack.addEventListener('click', ()=>{scrollCollectionNav('back')})
+    const scrollCollectionNavFwd = () => {
+        // GET MAX SCROLL
+        const collectionNavMaxScroll = domStrings.cnLinkContainer.scrollWidth - domStrings.cnLinkContainer.offsetWidth
+        domStrings.cnLinkContainer.scrollLeft += 20;
+        const currScrollPos = domStrings.cnLinkContainer.scrollLeft
+
+        if(currScrollPos === 20){
+            domStrings.cnBtnContainerBack.classList.add(domStrings.cssShadowRight)
+            return
+        }
+        
+        if(currScrollPos === collectionNavMaxScroll) {
+            domStrings.cnBtnContainerFwd.classList.remove(domStrings.cssShadowLeft)
+        }
+    }
+
+    domStrings.cnBtnFwd.addEventListener('click', scrollCollectionNavFwd)
+    domStrings.cnBtnBack.addEventListener('click', scrollCollectionNavBack)
 
 {% endjavascript %}
 
