@@ -43,6 +43,14 @@ body {
     #ff3e3e 10px,
     #ff3e3e 20px
   );
+
+  background: repeating-linear-gradient(
+    to right,
+    var(--primary-color-red-400),
+    var(--primary-color-red-400) 10px,
+    var(--primary-color-white-500) 10px,
+    var(--primary-color-white-500) 20px
+  );
 }
 
 .grid__customer {
