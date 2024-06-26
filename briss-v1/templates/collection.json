@@ -1,7 +1,7 @@
 {
   "sections": {
-    "customer-section": {
-      "type": "customer-section"
+    "customer-navigation": {
+      "type": "customer-navigation"
     },
     "navigation": {
       "type": "navigation"
@@ -9,9 +9,15 @@
     "collection": {
       "type": "collection"
     },
+    "browse-all": {
+      "type": "browse-all"
+    },
     "product-featured": {
       "type": "product-featured"
+    },
+    "subscribe": {
+      "type": "subscribe"
     }
   },
-  "order": ["customer-section", "navigation", "collection", "product-featured"]
+  "order": ["customer-navigation", "navigation", "collection", "browse-all", "product-featured", "subscribe"]
 }
