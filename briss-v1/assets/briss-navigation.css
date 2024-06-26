@@ -26,6 +26,7 @@
   width: 100vw;
   border-right: var(--border-red-5px);
   left: -100%;
+  z-index: 1000;
 }
 
 .nav-drawer-hide {
