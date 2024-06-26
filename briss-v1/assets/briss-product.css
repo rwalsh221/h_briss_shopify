@@ -281,8 +281,14 @@
       'img'
       'card';
     grid-template-columns: 100%;
-    justify-items: center;
-    align-items: center;
+  }
+
+  .product-img {
+    justify-self: center;
+  }
+
+  .product-card {
+    margin: var(--margin-200) var(--margin-100);
   }
 
   .product-card__price-container {
