@@ -14,12 +14,11 @@
             </div>
             {% render 'customer-navigation-customer' %}
         </li>
-        <li>
-            <a href="/cart">
-                <div class="customer-navigation__icon">
-                    {{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}
-                </div>
-            </a>
+        <li id="customer-navigation__cart">
+            <div class="customer-navigation__icon">
+                {{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}
+            </div>
+            {% render 'customer-navigation-cart' %}
         </li>
     </ul>
 </nav>
@@ -62,6 +61,7 @@ const showCustomerNavigationModal = (event, elementId) => {
 
 document.getElementById('customer-navigation__search').addEventListener('click', (e)=>{showCustomerNavigationModal(e,'customer-navigation__search')})
 document.getElementById('customer-navigation__account').addEventListener('click', (e)=>{showCustomerNavigationModal(e,'customer-navigation__account')})
+document.getElementById('customer-navigation__cart').addEventListener('click', (e)=>{showCustomerNavigationModal(e,'customer-navigation__cart')})
 
 
 
