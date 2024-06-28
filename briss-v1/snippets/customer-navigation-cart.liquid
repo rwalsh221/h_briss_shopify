@@ -1,7 +1,16 @@
 <div class="customer-navigation__content">
-    <a href="/cart">
-                <div class="customer-navigation__icon">
-                    {{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}
-                </div>
-            </a>
+    <h3 class="heading__tertiary">Your Cart</h3>
+    <div class="cart-product-card">
+        <div class="cart-product-card__title">title</div>
+        <div class="cart-product-card__quantity">
+            <button>+</button>
+            <input type="text" value="Hello"/>
+            <button>-</button>
+        </div>
+        <div class="cart-product-card__price">price</div>
+        <div class="cart-product-card__remove">remove</div>
+    </div>
+    {% comment %} add subtotal {% endcomment %}
+    {% comment %} add update cart {% endcomment %}
+    <a href="/cart">Checkout your Cart</a>
 </div>
