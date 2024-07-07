@@ -4,7 +4,8 @@
     {% for item in cart.items %}
         {% render 'c-n-cart-prod-card' 
             product_title: item.title 
-            product_price: item.final_line_price 
+            product_price: item.variant.price
+            product_tprice: item.final_line_price 
             product_id: item.id
             product_cart_quantity: item.quantity
         %}

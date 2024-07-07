@@ -3,6 +3,8 @@
         <div class="cart-product-card__quantity">
             <input data-pid="{{ product_id }}" id="cart-product__quantity222" type="text" value="{{ product_cart_quantity }}"/>
         </div>
-        <div id="cpc-total-price-#{{ product_id }}" class="cart-product-card__price">{{ product_price | money}}</div>
+        <div id="cpc-total-price-#{{ product_id }}" >{{ product_tprice | money}}</div>
+        <div class="cart-product-card__refresh">R</div>
+        <div class="cart-product-card__price"class>{{ product_price | money }}</div>
         <div class="cart-product-card__remove">X</div>
 </div>
