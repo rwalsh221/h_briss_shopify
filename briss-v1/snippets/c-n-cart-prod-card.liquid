@@ -1,8 +1,8 @@
-<div class="cart-product-card">
+<div id="cart-product__quantity" class="cart-product-card">
         <div class="cart-product-card__title">{{ product_title }}</div>
         <div class="cart-product-card__quantity">
-            <input type="text" value="1"/>
+            <input data-pid="{{ product_id }}" id="cart-product__quantity222" type="text" value="{{ product_cart_quantity }}"/>
         </div>
-        <div class="cart-product-card__price">{{ product_price | money}}</div>
+        <div id="cpc-total-price-#{{ product_id }}" class="cart-product-card__price">{{ product_price | money}}</div>
         <div class="cart-product-card__remove">X</div>
 </div>

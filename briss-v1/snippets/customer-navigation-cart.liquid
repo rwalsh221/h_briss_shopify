@@ -1,27 +1,15 @@
-<div class="customer-navigation__content">
+<div id="customer-navigation-cart" class="customer-navigation__content">
     <h3 class="heading__tertiary cart-heading">Your Cart</h3>
-    <div class="cart-product-card">
-        <div class="cart-product-card__title">title</div>
-        <div class="cart-product-card__quantity">
-            <input type="text" value="1"/>
-        </div>
-        <div class="cart-product-card__price">price</div>
-        <div class="cart-product-card__remove">remove</div>
-    </div>
-    <div class="cart-product-card">
-        <div class="cart-product-card__title">title</div>
-        <div class="cart-product-card__quantity">
-            <input type="text" value="1"/>
-        </div>
-        <div class="cart-product-card__price">price</div>
-        <div class="cart-product-card__remove">remove</div>
-    </div>
-    <p>{{ cart.item_count }}</p>
+    {% comment %} <p>{{ cart.item_count }}</p> {% endcomment %}
     {% for item in cart.items %}
-        {% render 'c-n-cart-prod-card' product_title: item.title product_price: item.final_line_price %}
-        <p>{{ item.product.title }}&nbsp;{{ item.unit_price }}</p>
+        {% render 'c-n-cart-prod-card' 
+            product_title: item.title 
+            product_price: item.final_line_price 
+            product_id: item.id
+            product_cart_quantity: item.quantity
+        %}
     {% endfor %}
-    <p>Total:&nbsp;{{ cart.total_price | money }}</p>
+    <p id="customer-navigation-cart-total">Total:&nbsp;{{ cart.total_price | money }}</p>
     {% comment %} add subtotal {% endcomment %}
     {% comment %} add update cart {% endcomment %}
     <a href="/cart">Checkout your Cart</a>

@@ -65,7 +65,93 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
 
 
 
+// CART API 
 
+    const DOMStrings = {
+        customerNavigationCart: document.getElementById('customer-navigation-cart'),
+        customerNavigationCartTotal: document.getElementById('customer-navigation-cart-total'),
+        cartProductCardAll: document.querySelectorAll('.cart-product-card'),
+        cartProductQuantity: document.getElementById('cart-product__quantity'),
+    }
+
+    // NOT NEEDED HERE
+    const addToCart = async () => {
+        const addToCartReq = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+
+        const addToCartRes = await addToCartReq.json()
+
+        console.log(addToCartRes)
+    }
+
+    // addToCart()
+
+    const updateCartPrice = async (productId) => {
+        const url = new URLParse(window.location.href, true)
+        console.log(url)
+        
+        const newUrl = url.toString()
+        console.log(newUrl)
+     
+      
+        try {
+            // REQUEST HTML WITH UPDATED CART
+            const getPriceReq = await fetch(newUrl)
+            const getPriceRes = await getPriceReq.text()
+            const parser = new DOMParser
+            const html = parser.parseFromString(getPriceRes,'text/html')
+      
+            // UPDATE TOTAL CART PRICE
+
+            const newCartTotal = html.getElementById('customer-navigation-cart-total').textContent
+            DOMStrings.customerNavigationCartTotal.textContent = newCartTotal
+      
+            const newProductTotal = html.getElementById(`cpc-total-price-#${productId}`).textContent
+            document.getElementById(`cpc-total-price-#${productId}`).textContent = newProductTotal
+
+        } catch(error){
+            console.log(error)
+        }   
+    }
+
+    const updateProductQuantity = async (event) => {
+        
+        if(event.data === null || event.inputType === 'deleteContentBackward') {
+            return
+        }
+
+        try {
+            const productId = event.target.dataset.pid
+
+            const updates = {
+                [productId]: event.data
+            }
+           
+            const updateProductQuantityReq = await fetch(`${window.Shopify.routes.root}cart/update.js`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ updates })
+            })
+            
+            const updateProductQuantityRes = await updateProductQuantityReq.json()
+
+            await updateCartPrice(productId)
+            
+        } catch (error) {
+            console.error(error.message)
+        }
+    }
+
+    DOMStrings.cartProductCardAll.forEach(
+        (el) => el.addEventListener('input',(e)=>updateProductQuantity(e))
+    )
 {% endjavascript %}
 
 {% comment %} {% schema %}
