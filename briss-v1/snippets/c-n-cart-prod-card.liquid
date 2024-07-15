@@ -1,10 +1,14 @@
-<div id="cart-product__quantity" class="cart-product-card">
-        <div class="cart-product-card__title">{{ product_title }}</div>
-        <div class="cart-product-card__quantity">
-            <input data-pid="{{ product_id }}" id="cart-product__quantity222" type="text" value="{{ product_cart_quantity }}"/>
+<div id="cart-product-card-#{{ product_id }}" class="cart-product-card" data-pid="{{ product_id }}">
+        <div class="cart-product-card__item cart-product-card__title">{{ product_title }}</div>
+        <div class="cart-product-card__item cart-product-card__quantity">
+            <input  class="cart-product__quantity" type="text" value="{{ product_cart_quantity }}"/>
         </div>
-        <div id="cpc-total-price-#{{ product_id }}" >{{ product_tprice | money}}</div>
-        <div class="cart-product-card__refresh">R</div>
-        <div class="cart-product-card__price"class>{{ product_price | money }}</div>
-        <div class="cart-product-card__remove">X</div>
+        <div id="cpc-total-price-#{{ product_id }}" class="cart-product-card__item">{{ product_tprice | money}}</div>
+        <div class="cart-product-card__item cart-product-card__refresh">
+            <button class="cpc-btn__refresh">R</button>
+        </div>
+        <div class="cart-product-card__item cart-product-card__price"class>{{ product_price | money }}</div>
+        <div class="cart-product-card__item cart-product-card__remove">
+            <button class="cpc-btn__remove">X</button>
+        </div>
 </div>

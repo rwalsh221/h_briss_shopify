@@ -68,30 +68,33 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
 // CART API 
 
     const DOMStrings = {
+        // SELECTORS
+        cartCardContainer: document.querySelector('.cart-card-container'),
         customerNavigationCart: document.getElementById('customer-navigation-cart'),
         customerNavigationCartTotal: document.getElementById('customer-navigation-cart-total'),
         cartProductCardAll: document.querySelectorAll('.cart-product-card'),
         cartProductQuantity: document.getElementById('cart-product__quantity'),
+        // STRINGS
+        cartProductCardBtnRefresh: '.cpc-btn__refresh',
+        cartProductCardBtnRemove: '.cpc-btn__remove'
+        
     }
 
-    // NOT NEEDED HERE
-    const addToCart = async () => {
-        const addToCartReq = await fetch(`${window.Shopify.routes.root}cart/add.js`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
+    const getProductCardId = (event) => {
+        let parentElement = event.target
 
-        const addToCartRes = await addToCartReq.json()
+        while(true) {
+            if(parentElement.classList.contains('cart-product-card')) {
+                console.log('sjsjjsjss')
+                break
+            }
+            parentElement = parentElement.parentNode
+        }
 
-        console.log(addToCartRes)
+        return parentElement.id
     }
 
-    // addToCart()
-
-    const updateCartPrice = async (productId) => {
+    const updateCartPrice = async (productId = null) => {
         const url = new URLParse(window.location.href, true)
         console.log(url)
         
@@ -111,8 +114,10 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
             const newCartTotal = html.getElementById('customer-navigation-cart-total').textContent
             DOMStrings.customerNavigationCartTotal.textContent = newCartTotal
       
+            if(productId) {
             const newProductTotal = html.getElementById(`cpc-total-price-#${productId}`).textContent
             document.getElementById(`cpc-total-price-#${productId}`).textContent = newProductTotal
+            }
 
         } catch(error){
             console.log(error)
@@ -120,16 +125,21 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
     }
 
     const updateProductQuantity = async (event) => {
-        
-        if(event.data === null || event.inputType === 'deleteContentBackward') {
+
+        const parentProductCardId = getProductCardId(event)
+        const parentProductCard = document.getElementById(parentProductCardId)
+
+        const quantityInputEl = parentProductCard.querySelector('.cart-product__quantity')
+       
+        if(!quantityInputEl.value) {
             return
         }
-
+        
         try {
-            const productId = event.target.dataset.pid
+            const productId = parentProductCard.dataset.pid
 
             const updates = {
-                [productId]: event.data
+                [productId]: quantityInputEl.value
             }
            
             const updateProductQuantityReq = await fetch(`${window.Shopify.routes.root}cart/update.js`, {
@@ -141,7 +151,7 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
             })
             
             const updateProductQuantityRes = await updateProductQuantityReq.json()
-
+            
             await updateCartPrice(productId)
             
         } catch (error) {
@@ -149,8 +159,43 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
         }
     }
 
-    DOMStrings.cartProductCardAll.forEach(
-        (el) => el.addEventListener('input',(e)=>updateProductQuantity(e))
+    const removeProductFromCart = async (event) => {
+        const parentProductCardId = getProductCardId(event)
+        const parentProductCard = document.getElementById(parentProductCardId)
+
+        try {
+
+            const productId = parentProductCard.dataset.pid
+
+            const updates = {
+                [productId]: 0
+            }
+
+            const removeProductReq = await fetch(`${window.Shopify.routes.root}cart/update.js`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ updates })
+                })
+
+            const removeProductRes = await removeProductReq.json()
+            await updateCartPrice()
+            parentProductCard.remove()
+            
+
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    document.querySelectorAll(DOMStrings.cartProductCardBtnRefresh).forEach(
+        (el) => el.addEventListener('click',(e) => updateProductQuantity(e))
+    )
+    document.querySelectorAll(DOMStrings.cartProductCardBtnRemove).forEach(
+        (el) => el.addEventListener('click', (e) => removeProductFromCart(e))
     )
 {% endjavascript %}
 
