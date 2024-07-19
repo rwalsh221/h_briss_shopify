@@ -5,6 +5,21 @@
   position: relative;
 }
 
+.customer-navigation__cart {
+  display: flex;
+  flex-direction: column;
+}
+.customer-navigation__cart > p {
+  text-align: center;
+  background-color: var(--primary-color-red-500);
+  width: 80%;
+  margin: 0 auto;
+  font-size: 18px;
+  color: var(--primary-color-white-500);
+  transform: translateY(-7px);
+  border-radius: 100%;
+}
+
 .customer-navigation > ul {
   list-style: none;
   display: flex;
