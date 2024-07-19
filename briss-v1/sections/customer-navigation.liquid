@@ -80,6 +80,13 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
         
     }
 
+    const showSpinner = (parentElement) => {
+        while(parentElement.firstChild) {
+            parentElement.removeChild(parentElement.lastChild)
+        }
+        parentElement.insertAdjacentHTML('beforeend', '<span class="loader"></span>')
+    }
+
     const getProductCardId = (event) => {
         let parentElement = event.target
 
@@ -95,6 +102,11 @@ document.getElementById('customer-navigation__cart').addEventListener('click', (
     }
 
     const updateCartPrice = async (productId = null) => {
+        showSpinner(DOMStrings.customerNavigationCartTotal)
+        if(productId) {
+            showSpinner(document.getElementById(`cpc-total-price-#${productId}`))
+        }
+
         const url = new URLParse(window.location.href, true)
         console.log(url)
         

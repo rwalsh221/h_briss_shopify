@@ -196,6 +196,28 @@
   grid-column: 2 / span 1;
 }
 
+.cart-card-total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.customer-navigation-cart-total,
+.customer-navigation-cart-checkout {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-red-2px);
+  color: var(--primary-color-red-500);
+  font-size: var(--font-size-200);
+  padding: 0 var(--padding-100);
+  min-width: 25%;
+}
+
+.customer-navigation-cart-checkout:hover {
+  border-radius: 10px;
+}
+
 @keyframes tilt {
   0% {
     rotate: 0deg;

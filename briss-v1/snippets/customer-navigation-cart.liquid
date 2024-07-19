@@ -12,8 +12,9 @@
             %}
         {% endfor %}
     </div>
-    <p id="customer-navigation-cart-total">Total:&nbsp;{{ cart.total_price | money }}</p>
-    {% comment %} add subtotal {% endcomment %}
-    {% comment %} add update cart {% endcomment %}
-    <a href="/cart">Checkout your Cart</a>
+    <div class="cart-card-total">
+        <p id="customer-navigation-cart-total" class="customer-navigation-cart-total">Total:&nbsp;{{ cart.total_price | money }}</p>
+        <a class="customer-navigation-cart-checkout" href="/cart">Checkout your Cart</a>
+    </div>
+    
 </div>
