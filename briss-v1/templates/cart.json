@@ -1,7 +1,7 @@
 {
   "sections": {
-    "customer-section": {
-      "type": "customer-section"
+    "continue-shopping": {
+      "type": "continue-shopping"
     },
     "navigation": {
       "type": "navigation"
@@ -13,5 +13,5 @@
       "type": "product-featured"
     }
   },
-  "order": ["navigation", "cart", "customer-section", "product-featured"]
+  "order": ["navigation", "cart", "continue-shopping", "product-featured"]
 }

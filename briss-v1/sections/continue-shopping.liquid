@@ -1,0 +1,8 @@
+{{ 'briss-continue-shopping.css' | asset_url | stylesheet_tag }}
+
+<section class="continue-shopping">
+    <div class="continue-shopping-container">
+        <a href="{{ routes.all_products_collection_url }}">Continue Shopping</a>
+        {{ request.path }}
+    </div>
+</section>
