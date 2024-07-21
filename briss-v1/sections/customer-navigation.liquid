@@ -14,6 +14,7 @@
             </div>
             {% render 'customer-navigation-customer' %}
         </li>
+        {% if  request.path != '/cart' %}
         <li id="customer-navigation__cart" class="customer-navigation__cart">
             <div class="customer-navigation__icon">
                 {{ images['icons_basket.png'] | image_url: width:48, height: 48 | image_tag }}
@@ -25,6 +26,7 @@
             {% endif %}
             {% render 'customer-navigation-cart' %}
         </li>
+        {% endif %}
     </ul>
 </nav>
 

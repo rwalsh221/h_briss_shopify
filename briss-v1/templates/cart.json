@@ -1,17 +1,20 @@
 {
   "sections": {
-    "continue-shopping": {
-      "type": "continue-shopping"
-    },
     "navigation": {
       "type": "navigation"
     },
+    "customer-navigation": {
+      "type": "customer-navigation"
+    },
     "cart": {
       "type": "cart"
+    },
+    "continue-shopping": {
+      "type": "continue-shopping"
     },
     "product-featured": {
       "type": "product-featured"
     }
   },
-  "order": ["navigation", "cart", "continue-shopping", "product-featured"]
+  "order": ["navigation", "customer-navigation", "cart", "continue-shopping", "product-featured"]
 }
