@@ -2,7 +2,8 @@
 
 <div class="search">
     <form action="{{ routes.search_url }}">
-    <input class="search_input" 
+    <input id="search_input"
+    class="search_input" 
     type="text"
     placeholder="Search"
     name="q"
@@ -13,13 +14,14 @@
     <input class="search_btn" type="submit" value="Search">
 </form>
 
-<p class="search_results__num">{{ search.results_count }} results found for "{{ search.terms }}"</p>
+<p  class="search_results__num"><span id="search-results-count">{{ search.results_count }}</span> results found for "<span id="search-results-term">{{ search.terms }}</span>"</p>
 
 <div class="search_results">
 
 
 {% if search.results_count > 0 %}
     <div class="search_results__container">
+    {% comment %} {% render 'loader' %} {% endcomment %}
     {% for item in search.results %}
         {% comment %} {{ item.type }} {% endcomment %}
         <div class="search_results__card">
@@ -44,6 +46,90 @@
 {% endif %}
 </div>
 </div>
+
+{% javascript %}
+
+    // GLOBAL VARS
+    let searchTimer
+    const domStrings = {
+        searchResultsContainer: document.querySelector('.search_results__container'),
+        loader: document.getElementById('loader'),
+        searchResultsCount: document.getElementById('search-results-count'),
+        searchResultsTerm: document.getElementById('search-results-term')
+    }
+
+    const searchResultCardHtml = (imgUrl, title, price, url) => {
+        return`<div class="search_results__card">
+            <div class="search_results__card--img">
+                <img src="${imgUrl}" width="200" height="200"/>
+            </div>
+                <div class="search_results__card--content">
+                <div class="search_results__card--title"><p>&nbsp;${title}</p></div>
+                <div>
+                    <p>&nbsp;${price}</p>
+                </div>
+                <div class="search_results__card--more">
+                    <a href="${url}">More Information</a>
+                </div>
+            </div>
+            
+        </div>`
+    }
+
+    const updateResultsCount = (count, searchTerm) => {
+        domStrings.searchResultsCount.textContent = count
+        domStrings.searchResultsTerm.textContent = searchTerm
+    }
+
+    const clearSearchResults = (loading = false) => {
+        if(domStrings.searchResultsContainer.firstChild) {
+            while (domStrings.searchResultsContainer.firstChild) {  
+                domStrings.searchResultsContainer.removeChild(domStrings.searchResultsContainer.lastChild)
+            }
+
+            if(loading){
+                domStrings.searchResultsContainer.insertAdjacentHTML('beforeend', '<span id="loader" class="loader"></span>')
+            }
+            
+        }
+    }
+
+    const searchRequest = async (query) => {
+try {
+            const searchReq = await fetch(`${window.Shopify.routes.root}search/suggest.json?q=${query}&resources[type]=product&resources[options][fields]=title,product_type,variants.title`)
+            const searchRes = await searchReq.json()
+            const productsArr = searchRes.resources.results.products
+
+            clearSearchResults()
+
+            updateResultsCount(productsArr.length, query)
+
+            productsArr.forEach(el=>{
+                domStrings.searchResultsContainer.insertAdjacentHTML('beforeend', searchResultCardHtml(el.image,el.title,el.price,el.url))
+            })
+
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    
+    const searchHandler = async (query) => {
+        clearTimeout(searchTimer)
+        
+        if(!query) {
+            return
+        }
+
+        searchTimer = setTimeout(() => {
+                clearSearchResults(true)
+                searchRequest(query)
+        }, 1000);
+        
+    }
+
+    // search()
+    document.getElementById('search_input').addEventListener('input', (event)=>{searchHandler(event.target.value)})
+{% endjavascript %}
 
 {% schema %}
     {
