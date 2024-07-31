@@ -1,43 +1,38 @@
 {{ 'briss-search.css' | asset_url | stylesheet_tag }}
-
-<div class="search">
-    <form action="{{ routes.search_url }}">
-    <input id="search_input"
-    class="search_input" 
-    type="text"
-    placeholder="Search"
-    name="q"
-    types="products"
-    value="{{ search.terms | escape }}">
+{% comment %} TODO: get html for price  {% endcomment %}
+<section class="search">
+    <form class="search_form" action="{{ routes.search_url }}">
+        <label for="search_input" class="search_label">Search</label>
+        <input id="search_input"
+        class="search_input" 
+        type="text"
+        placeholder="Search"
+        name="q"
+        types="products"
+        value="{{ search.terms | escape }}">
+        
     
-    <input type="hidden" name="type" value="product" />
-    <input class="search_btn" type="submit" value="Search">
-</form>
+        <input type="hidden" name="type" value="product" />
+    </form>
+    <p class="search_results__num"><span id="search-results-count">{{ search.results_count }}</span> results found for "<span id="search-results-term">{{ search.terms }}</span>"</p>
 
-<p  class="search_results__num"><span id="search-results-count">{{ search.results_count }}</span> results found for "<span id="search-results-term">{{ search.terms }}</span>"</p>
-
-<div class="search_results">
-
-
+    <div class="search_results">
 {% if search.results_count > 0 %}
     <div class="search_results__container">
-    {% comment %} {% render 'loader' %} {% endcomment %}
     {% for item in search.results %}
-        {% comment %} {{ item.type }} {% endcomment %}
-        <div class="search_results__card">
+        <div id="srcard--#{{ item.id }}" class="search_results__card">
             <div class="search_results__card--img">
-                {{ item.featured_image | image_url: width: 200, height: 200 | image_tag  }}
+                {{ item.featured_image | image_url: width: 200, height: 200 | image_tag: class: 'srcard--img'  }}
             </div>
                 <div class="search_results__card--content">
-                <div class="search_results__card--title"><p>&nbsp;{{ item.title }}</p></div>
-                <div>
-                    <p>&nbsp;{{ item.price | money}}</p>
+                <div class="search_results__card--title"><p class="srcard--title">{{ item.title }}</p></div>
+                <div class="search_results__card--price">
+                    <p class="srcard--price">{{ item.price | money}}</p>
                 </div>
                 <div class="search_results__card--more">
-                    <a href="{{ item.url }}">More Information</a>
+                    <a class="srcard--url" href="{{ item.url }}">More Information</a>
                 </div>
             </div>
-            
         </div>
     {% endfor %}
     </div>
@@ -45,7 +40,7 @@
     <p class="search_results__false">no results found for "{{ search.terms }}" check the spelling or saerch again</p>
 {% endif %}
 </div>
-</div>
+</section>
 
 {% javascript %}
 
@@ -58,22 +53,21 @@
         searchResultsTerm: document.getElementById('search-results-term')
     }
 
-    const searchResultCardHtml = (imgUrl, title, price, url) => {
-        return`<div class="search_results__card">
-            <div class="search_results__card--img">
-                <img src="${imgUrl}" width="200" height="200"/>
-            </div>
-                <div class="search_results__card--content">
-                <div class="search_results__card--title"><p>&nbsp;${title}</p></div>
-                <div>
-                    <p>&nbsp;${price}</p>
-                </div>
-                <div class="search_results__card--more">
-                    <a href="${url}">More Information</a>
-                </div>
-            </div>
-            
-        </div>`
+    const searchResultCardHtml = (id, imgUrl, title, price, url) => {
+        return `<div id="srcard--#${id}" class="search_results__card">
+                    <div class="search_results__card--img">
+                        <img class="srcard--img" src="${imgUrl}" width="200" height="200"/>
+                    </div>
+                    <div class="search_results__card--content">
+                        <div class="search_results__card--title"><p class="srcard--title">${title}</p></div>
+                        <div class="search_results__card--price">
+                            <p class="srcard--price">${price}</p>
+                        </div>
+                        <div class="search_results__card--more">
+                            <a class="srcard--url" href="${url}">More Information</a>
+                        </div>
+                    </div>
+                </div>`
     }
 
     const updateResultsCount = (count, searchTerm) => {
@@ -94,7 +88,7 @@
         }
     }
 
-    const searchRequest = async (query) => {
+    const searchRequest = async (query, productsObj) => {
 try {
             const searchReq = await fetch(`${window.Shopify.routes.root}search/suggest.json?q=${query}&resources[type]=product&resources[options][fields]=title,product_type,variants.title`)
             const searchRes = await searchReq.json()
@@ -104,8 +98,14 @@ try {
 
             updateResultsCount(productsArr.length, query)
 
+            console.log(productsObj)
+
             productsArr.forEach(el=>{
-                domStrings.searchResultsContainer.insertAdjacentHTML('beforeend', searchResultCardHtml(el.image,el.title,el.price,el.url))
+                const product = productsObj[el.id]
+                console.log('#sadkjsakdjlkasjlkdjskadkljds')
+                console.log(product.imgUrl)
+                domStrings.searchResultsContainer.insertAdjacentHTML('beforeend', 
+                    searchResultCardHtml(product.id, product.imgUrl, product.title, product.price, product.url))
             })
 
         } catch (error) {
@@ -113,7 +113,7 @@ try {
         }
     }
     
-    const searchHandler = async (query) => {
+    const searchHandler = async (query, productsObj) => {
         clearTimeout(searchTimer)
         
         if(!query) {
@@ -122,13 +122,44 @@ try {
 
         searchTimer = setTimeout(() => {
                 clearSearchResults(true)
-                searchRequest(query)
+                searchRequest(query, productsObj)
         }, 1000);
         
     }
 
+    const getAllProducts = async () => {
+        const allProducts = {}
+        
+        try {
+
+            const htmlReq = await fetch(`${window.Shopify.routes.root}search?q=*&type=product`)
+            const htmlRes = await htmlReq.text()
+        
+            const parser = new DOMParser
+            const html = parser.parseFromString(htmlRes,'text/html')
+
+            const searchResultsCards = html.querySelectorAll('.search_results__card')
+            
+            searchResultsCards.forEach(el => {
+                allProducts[el.id.split('#')[1]] = {
+                    id: el.id.split('#')[1],
+                    title: el.querySelector('.srcard--title').textContent,
+                    price: el.querySelector('.srcard--price').textContent,
+                    imgUrl: el.querySelector('.srcard--img').src,
+                    url: el.querySelector('.srcard--url').href
+                }
+            })
+        
+            document.getElementById('search_input').addEventListener('input', (event)=>{searchHandler(event.target.value, allProducts)})
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    getAllProducts()
+
     // search()
-    document.getElementById('search_input').addEventListener('input', (event)=>{searchHandler(event.target.value)})
+    
 {% endjavascript %}
 
 {% schema %}
