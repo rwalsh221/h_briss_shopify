@@ -1,10 +1,29 @@
 {
   "sections": {
+    "customer-navigation": {
+      "type": "customer-navigation",
+      "blocks": {
+        "cn-search": {
+          "type": "navigation_link",
+          "settings": {
+            "icon_url": "icons_search.png",
+            "navigation_content": "search",
+            "element_id": "customer-navigation__search"
+          }
+        },
+        "cn-customer": {
+          "type": "navigation_link",
+          "settings": {
+            "icon_url": "icons_customer.png",
+            "navigation_content": "customer",
+            "element_id": "customer-navigation__account"
+          }
+        }
+      },
+      "block_order": ["cn-search", "cn-customer", "cn-cart"]
+    },
     "navigation": {
       "type": "navigation"
-    },
-    "customer-navigation": {
-      "type": "customer-navigation"
     },
     "cart": {
       "type": "cart"
@@ -16,5 +35,5 @@
       "type": "product-featured"
     }
   },
-  "order": ["navigation", "customer-navigation", "cart", "continue-shopping", "product-featured"]
+  "order": ["customer-navigation", "navigation", "cart", "continue-shopping", "product-featured"]
 }

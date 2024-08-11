@@ -1,5 +1,7 @@
 {{ 'briss-customer-navigation.css' | asset_url | stylesheet_tag }}
 
+{% comment %} TODO: MOVE JS TO SEPERATE FILES AS CAUSING ERROR WHEN CANT FIND ELEMENTS {% endcomment %}
+
 <nav aria-label="customer navigation" class="customer-navigation">
     <ul role="list">
         {% for block in section.blocks %}
