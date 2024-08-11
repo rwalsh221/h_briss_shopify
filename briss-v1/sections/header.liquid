@@ -1,13 +1,13 @@
 {{ 'briss-header.css' | asset_url | stylesheet_tag }}
 
-<header class="grid__header header" id="btn__home">
+
     <div class="icon__header">
       {% render 'header-icon-select' icon_position: section.settings.header_icon_right %}
       {% render 'header-icon-select' icon_position: section.settings.header_icon_middle %}
       {% render 'header-icon-select' icon_position: section.settings.header_icon_left %}
     </div>
     
-    <div class="header-container">
+    <div id="header-container" class="header-container">
       <h1 class="heading__primary">
         <span>{{ section.settings.header_primary__top }}</span>
         <span>{{ section.settings.header_primary__btm }}</span>
@@ -20,11 +20,14 @@
       {% render 'header-icon-select' icon_position: section.settings.header_icon_middle %}
       {% render 'header-icon-select' icon_position: section.settings.header_icon_left %}
     </div>
-  </header>
+
 
   {% schema %}
     {
       "name": "header",
+      "tag": "header",
+      "class": "grid__header header",
+      "limit": 2,
       "settings": [
         {
           "type": "text",
@@ -35,7 +38,7 @@
         {
           "type": "text",
           "id": "header_primary__btm",
-          "label": "primary heading btm",
+          "label": "primary heading bottom",
           "default": "& SON"},
         {
           "type": "text",

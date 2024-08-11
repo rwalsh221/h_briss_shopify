@@ -1,15 +1,15 @@
 {% if customer %}
-    <div class="customer-navigation__content">
+    
         <ul class="customer-navigation__account--links">
             <li><a href="{{ routes.account_url }}">Dashboard</a></li>
             <li><a href="{{ routes.account_logout_url }}">Logout</a></li>
         </ul>
-    </div>
+
 {% else %}
-    <div class="customer-navigation__content">
+    
         <ul class="customer-navigation__account--links">
             <li><a href="{{ routes.account_register_url }}">Sign up</a></li>
             <li><a href="{{ routes.account_login_url }}">Sign in</a></li>
         </ul>
-    </div>
+
 {% endif %}

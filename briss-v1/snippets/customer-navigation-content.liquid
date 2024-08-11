@@ -1,0 +1,16 @@
+{% comment %} 
+    Renders content for customer-navigation.liquid 
+    VARS:
+        element_id: Sets id of html element
+        navigation_content: renders required snippet
+{% endcomment %}
+
+<div {% if element_id %} id="{{ element_id }}" {% endif %} class="customer-navigation__content">
+    {% if navigation_content == 'cart' %}
+        {% render 'customer-navigation-cart' %}
+    {% elsif navigation_content == 'customer' %}
+        {% render 'customer-navigation-customer' %}
+    {% elsif navigation_content == 'search' %}
+        {% render 'customer-navigation-search' %}
+    {% endif %}
+</div>
