@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "name": "colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "primary-color-red-500",
+        "label": "Primary Color Red 500",
+        "default": "#920e0e"
+      },
+      {
+        "type": "color",
+        "id": "primary-color-white-500",
+        "label": "Primary Color White 500",
+        "default": "#fcffc2"
+      },
+      {
+        "type": "color",
+        "id": "primary-color-red-400",
+        "label": "Primary Color Red 400",
+        "default": "#ff3e3e"
+      },
+      {
+        "type": "color",
+        "id": "--secondary-color-gray",
+        "label": "Secondary color gray",
+        "default": "#efe3e3"
+      },
+      {
+        "type": "color",
+        "id": "--secondary-color-black",
+        "label": "Secondary Color Black",
+        "default": "#1e1c1c"
+      }
+    ]
+  }
+]

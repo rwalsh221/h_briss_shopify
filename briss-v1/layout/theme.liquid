@@ -56,13 +56,13 @@
         /* ***** VARIABLES ***** */
         :root {
         /* Color Variables */
-        --primary-color-red-500: #920e0e;
-        --primary-color-white-500: #fcffc2;
+        --primary-color-red-500: {{ settings.primary-color-red-500 }};
+        --primary-color-white-500: {{ settings.primary-color-white-500 }};
 
-        --primary-color-red-400: #ff3e3e;
+        --primary-color-red-400: {{ settings.primary-color-red-400 }};
 
-        --secondary-color-gray: #efe3e3;
-        --secondary-color-black: #1e1c1c;
+        --secondary-color-gray: {{ settings.--secondary-color-gray }};
+        --secondary-color-black: {{ settings.--secondary-color-black }};
 
         /* Border Variables */
         --border-red-5px: 5px solid var(--primary-color-red-500);
