@@ -101,6 +101,7 @@ body {
 }
 
 .heading__primary {
+  font-family: var(--header-font);
   font-size: var(--font-size-800);
   color: var(--primary-color-red-500);
   border-bottom: var(--border-red-5px);

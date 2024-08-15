@@ -35,7 +35,16 @@
       "type": "navigation"
     },
     "about-page": {
-      "type": "about-page"
+      "type": "about-page",
+      "blocks": {
+        "about-top-image": {
+          "type": "about-top-image"
+        },
+        "about-btm-image": {
+          "type": "about-btm-image"
+        }
+      },
+      "block_order": ["about-top-image", "about-btm-image"]
     },
     "browse-all": {
       "type": "browse-all"

@@ -14,10 +14,15 @@
       href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
       rel="stylesheet"
     />
+    {{ 'theme.css.liquid' | asset_url | stylesheet_tag }}
+
     
     {{ content_for_header }}
 
     {% style %}
+        /* SHOPIFY FONT LIBRARY */
+        {{ settings.header-font | font_face }};
+
         /* CSS RESET */
         /* https://alligator.io/css/minimal-css-reset/ */
         html {
@@ -61,15 +66,23 @@
 
         --primary-color-red-400: {{ settings.primary-color-red-400 }};
 
-        --secondary-color-gray: {{ settings.--secondary-color-gray }};
-        --secondary-color-black: {{ settings.--secondary-color-black }};
+        --secondary-color-gray: {{ settings.secondary-color-gray }};
+        --secondary-color-black: {{ settings.secondary-color-black }};
 
         /* Border Variables */
         --border-red-5px: 5px solid var(--primary-color-red-500);
 
         /* Font Variables */
+     
+
         --font-dancing-script: 'Dancing Script', cursive;
+
+        --header-font: {{settings.header-font.family}};
+
         }
+
+        
+        
     {% endstyle %}
 
     {{ 'index.css' | asset_url | stylesheet_tag }}

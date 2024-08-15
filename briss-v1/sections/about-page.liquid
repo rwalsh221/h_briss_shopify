@@ -1,17 +1,80 @@
 {{ 'briss-about-page.css' | asset_url | stylesheet_tag }}
 
-<h2 class="about__heading heading__secondary" id="hover">Our Story</h2>
+<h2 class="about__heading heading__secondary" id="hover">{{ section.settings.about-header }}</h2>
 <div class="about__img--container tab-fade">
-    {{ images['briss_1.jpg'] | image_url: width: 615, height: 427 | image_tag: class: 'about__img img__top' }}
-    {{ images['shop.jpg'] | image_url: width: 420, height: 326 | image_tag: class: 'about__img img__bottom' }}
+    {% for block in section.blocks %}
+        {% comment %} RENDERS ABOUT IMG. IF IMG PICKER NOT USED RENDERS PRESET IMG {% endcomment %}
+        {% if block.type == 'about-top-image' %}
+            {% if block.settings.about-top-image == nil %}
+                {{ images['briss_1.jpg'] | image_url: width: 615, height: 427 | image_tag: class: 'about__img img__top' }}
+            {% else %}
+                {{ block.settings.about-top-image | image_url: width: 615, height: 427 | image_tag: class: 'about__img img__top' }}
+            {% endif %}
+            
+        {% elsif block.type == 'about-btm-image' %}
+            {% if block.settings.about-btm-image == nil %}
+                {{ images['shop.jpg'] | image_url: width: 615, height: 427 | image_tag: class: 'about__img img__top' }}
+            {% else %}
+                {{ block.settings.about-btm-image | image_url: width: 615, height: 427 | image_tag: class: 'about__img img__top' }}
+            {% endif %}
+        {% endif %}
+    {% endfor %} 
 </div>
 <div class="about__text tab-fade">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat atque esse tenetur, architecto nulla in magnam dignissimos optio hic eveniet nesciunt ipsum ullam inventore ab laboriosam aspernatur! Beatae deleniti vel adipisci aperiam ex at? Possimus mollitia recusandae sequi magni expedita quia nemo culpa cum placeat nobis sint, eveniet ullam optio cupiditate ut. Eligendi doloremque rerum facilis quisquam a dolor similique veniam atque quod officia consectetur dignissimos ipsum veritatis, libero et maxime molestiae numquam vitae nemo rem? Esse ab possimus inventore! Eius velit, soluta assumenda non dicta labore fugit laudantium tempora aspernatur, officia asperiores blanditiis explicabo suscipit maiores quas nesciunt praesentium.</p>
+    <p>{{ section.settings.about-text }}</p>
 </div>
+{% for block in section.blocks %}
+    
+{% endfor %}
+
 
 {% schema %}
     {
         "name": "about-page",
-        "class": "grid__about-page"
+        "class": "grid__about-page",
+        "tag": "section",
+        "limit": 1,
+        "settings": [
+            {
+                "type": "text",
+                "id": "about-header",
+                "label": "About Header",
+                "default": "Our Story"
+            },
+            {
+                "type": "textarea",
+                "id": "about-text",
+                "label": "About Text",
+                "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fringilla maximus nulla, non tincidunt quam mollis eget. Morbi at lorem fringilla, porta neque a, mattis."
+            }
+        ],
+        "blocks": [
+            {
+                "name": "About Top Image",
+                "type": "about-top-image",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "about-top-image",
+                        "label": "About Top Image"
+                    }
+                ]
+            },
+            {
+                "name": "About Bottom Image",
+                "type": "about-btm-image",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "image_picker",
+                        "id": "about-btm-image",
+                        "label": "About Bottom Image"
+                    }
+                ]
+            }
+
+        ]
+
     }
 {% endschema %}

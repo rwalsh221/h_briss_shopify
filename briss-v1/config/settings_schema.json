@@ -3,10 +3,19 @@
     "name": "colors",
     "settings": [
       {
+        "type": "header",
+        "content": "All of"
+      },
+      {
+        "type": "paragraph",
+        "content": "All of your collections are listed by default. To customize your list, choose 'Selected' and add collections."
+      },
+      {
         "type": "color",
         "id": "primary-color-red-500",
         "label": "Primary Color Red 500",
-        "default": "#920e0e"
+        "default": "#920e0e",
+        "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/online-store/dynamic-checkout)"
       },
       {
         "type": "color",
@@ -22,15 +31,26 @@
       },
       {
         "type": "color",
-        "id": "--secondary-color-gray",
+        "id": "secondary-color-gray",
         "label": "Secondary color gray",
         "default": "#efe3e3"
       },
       {
         "type": "color",
-        "id": "--secondary-color-black",
+        "id": "secondary-color-black",
         "label": "Secondary Color Black",
         "default": "#1e1c1c"
+      }
+    ]
+  },
+  {
+    "name": "Fonts",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "header-font",
+        "label": "Header Font",
+        "default": "goudy_old_style_n4"
       }
     ]
   }
