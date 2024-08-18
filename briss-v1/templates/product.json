@@ -38,7 +38,16 @@
       "type": "product"
     },
     "browse-all": {
-      "type": "browse-all"
+      "type": "browse-all",
+      "blocks": {
+        "browse-all-heading": {
+          "type": "browse-all-heading"
+        },
+        "browse-all-link-text": {
+          "type": "browse-all-link-text"
+        }
+      },
+      "block_order": ["browse-all-heading", "browse-all-link-text"]
     },
     "product-featured": {
       "type": "product-featured"

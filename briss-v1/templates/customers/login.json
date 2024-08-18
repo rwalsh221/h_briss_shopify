@@ -1,41 +1,22 @@
 {
   "sections": {
     "navigation": {
-      "type": "navigation",
-      "blocks": {
-        "cn-search": {
-          "type": "navigation_link",
-          "settings": {
-            "icon_url": "icons_search.png",
-            "navigation_content": "search",
-            "element_id": "customer-navigation__search"
-          }
-        },
-        "cn-customer": {
-          "type": "navigation_link",
-          "settings": {
-            "icon_url": "icons_customer.png",
-            "navigation_content": "customer",
-            "element_id": "customer-navigation__account"
-          }
-        },
-        "cn-cart": {
-          "type": "navigation_link",
-          "settings": {
-            "icon_url": "icons_cart.png",
-            "navigation_content": "cart",
-            "element_id": "customer-navigation__cart",
-            "navigation_content_element_id": "customer-navigation-cart"
-          }
-        }
-      },
-      "block_order": ["cn-search", "cn-customer", "cn-cart"]
+      "type": "navigation"
     },
     "customer-account-login": {
       "type": "customer-account-login"
     },
     "browse-all": {
-      "type": "browse-all"
+      "type": "browse-all",
+      "blocks": {
+        "browse-all-heading": {
+          "type": "browse-all-heading"
+        },
+        "browse-all-link-text": {
+          "type": "browse-all-link-text"
+        }
+      },
+      "block_order": ["browse-all-heading", "browse-all-link-text"]
     },
     "subscribe": {
       "type": "subscribe"

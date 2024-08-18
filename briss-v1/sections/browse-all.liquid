@@ -2,14 +2,86 @@
 
 <div class="section">
     <div class="browse-all">
-        <h2 class="heading__secondary">come and have a butchers</h2>
-        <a href="collections/all">shop all products</a>
+        {% for block in section.blocks %}
+            {% if block.type == 'browse-all-heading' %}
+                <h2 class="heading__secondary">{{ block.settings.browse-all-heading }}</h2>
+            {% elsif block.type == 'browse-all-link-text' %}
+                <a href="collections/all">{{ block.settings.browse-all-link-text }}</a>
+            {% endif %}
+        {% endfor %}
+        
+        
     </div>
 </div>
 
 {% schema %}
     {
-        "name": "product-featured",
-        "class": "grid__browse-all"
+        "name": "Browse All",
+        "tag": "section",
+        "limit": 1,
+        "settings": [
+            {
+                "type": "text",
+                "id": "browse-all-heading",
+                "label": "Browse All Heading",
+                "default": "come and have a butchers"
+            },
+            {
+                "type": "text",
+                "id": "browse-all-link-text",
+                "label": "Browse All Link Text",
+                "default": "shop all products"
+            }
+        ],
+        "presets": [
+            {
+                "name": "Default Browse All Section",
+                "blocks": [
+                    {
+                        "type": "browse-all-heading",
+                        "settings": {
+                            "browse-all-heading": "come and have a butchers"
+                        }
+                    },
+                    {
+                        "type": "browse-all-link-text",
+                        "settings": {
+                            "browse-all-link-text": "shop all products"
+                        }
+                    }
+                ]
+
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Browse All Heading",
+                "type": "browse-all-heading",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "browse-all-heading",
+                        "label": "Browse All Heading",
+                        "default": "come and have a butchers"
+                    }
+                    
+                ]
+            },
+            {
+                "name": "Browse All Link Text",
+                "type": "browse-all-link-text",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "browse-all-link-text",
+                        "label": "Browse All Link Text",
+                        "default": "shop all products"
+                    }
+                ]
+            }
+    
+        ]
     }
 {% endschema %}
