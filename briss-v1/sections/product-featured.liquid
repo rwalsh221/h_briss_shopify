@@ -1,9 +1,14 @@
 {{ 'briss-product-featured.css' | asset_url | stylesheet_tag }}
 
-
-<div class="section">
+<div>
     <h3 class="heading__tertiary featured__heading">Our Favorites</h3>
-    <div class="featured__container">
+    <div 
+        {% if section.settings.featured-layout == 'inline' %}
+            class="featured-container featured-container__inline"
+        {% elsif section.settings.featured-layout == 'grid' %}
+            class="featured-container featured-container__grid"
+        {% endif %}
+    >
         {% for collection in collections %}
             {% if collection.title == 'featured' %}
                 {% for product in collection.products %}
@@ -28,6 +33,24 @@
 {% schema %}
     {
         "name": "product-featured",
-        "class": "grid__product-featured"
+        "tag": "section",
+        "settings": [
+            {
+                "type": "select",
+                "id": "featured-layout",
+                "label": "Featured Product Layout",
+                "options": [
+                    {
+                        "value": "inline",
+                        "label": "Inline"
+                    },
+                    {
+                        "value": "grid",
+                        "label": "Grid"
+                    }
+                ],
+                "default": "inline"
+            }
+        ]
     }
 {% endschema %}
