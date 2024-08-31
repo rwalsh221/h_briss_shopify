@@ -50,10 +50,25 @@
       "block_order": ["browse-all-heading", "browse-all-link-text"]
     },
     "product-featured": {
-      "type": "product-featured"
+      "type": "product-featured",
+      "blocks": {
+        "product-featured-layout": {
+          "type": "product-featured-layout"
+        }
+      },
+      "block_order": ["product-featured-layout"]
     },
     "subscribe": {
-      "type": "subscribe"
+      "type": "subscribe",
+      "blocks": {
+        "subscribe-heading": {
+          "type": "subscribe-heading"
+        },
+        "subscribe-form": {
+          "type": "subscribe-form"
+        }
+      },
+      "block_order": ["subscribe-heading", "subscribe-form"]
     }
   },
   "order": [

@@ -19,7 +19,16 @@
       "block_order": ["browse-all-heading", "browse-all-link-text"]
     },
     "subscribe": {
-      "type": "subscribe"
+      "type": "subscribe",
+      "blocks": {
+        "subscribe-heading": {
+          "type": "subscribe-heading"
+        },
+        "subscribe-form": {
+          "type": "subscribe-form"
+        }
+      },
+      "block_order": ["subscribe-heading", "subscribe-form"]
     }
   },
   "order": ["navigation", "customer-account-login", "browse-all", "subscribe"]
