@@ -59,7 +59,16 @@
       "block_order": ["product-featured-layout"]
     },
     "subscribe": {
-      "type": "subscribe"
+      "type": "subscribe",
+      "blocks": {
+        "subscribe-heading": {
+          "type": "subscribe-heading"
+        },
+        "subscribe-form": {
+          "type": "subscribe-form"
+        }
+      },
+      "block_order": ["subscribe-heading", "subscribe-form"]
     },
     "custom-section": {
       "type": "custom-section"

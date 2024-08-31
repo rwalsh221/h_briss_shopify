@@ -1,22 +1,81 @@
 {{ 'briss-subscribe.css' | asset_url | stylesheet_tag }}
-<div class="subscribe subscribe-container"> 
-<h2 class="heading__secondary subscribe__heading">Join our newsletter!</h2>
-<div class="subscribe-form-container">
-    {% form 'customer', class:'subscribe-form' %}
-    <div class="email subscribe-form-input-container">
-        <input type="email" name="contact[email]" placeholder="email" />
-        <label for="email" class="subscribe-form-label">Email</label>
-    </div>
+<div class="subscribe subscribe-container">
+    {% for block in section.blocks %} 
+        {% if block.type == "subscribe-heading" %}
+            <h2 class="heading__secondary subscribe__heading">{{ block.settings.subscribe-heading }}</h2>
+        {% elsif block.type == "subscribe-form" %}
+            <div class="subscribe-form-container">
+                {% form 'customer', class:'subscribe-form' %}
+                <div class="email subscribe-form-input-container">
+                    <input type="email" name="contact[email]" placeholder="email" />
+                    <label for="email" class="subscribe-form-label">{{block.settings.subscribe-input-label}}</label>
+                </div>
 
-    <div class="submit subscribe-btn-container">
-        <input type="submit" value="Join"  class="subscribe-btn"/>
-    </div>
-    {% if form.posted_successfully? %}
-        <div class="subscribe-form__success">
-            <p>Thank you for subscribing!</p>
-        </div>
-    {% endif %}
-    {% endform %}
+                <div class="submit subscribe-btn-container">
+                    <input type="submit" value="{{ block.settings.subscribe-button-label }}"  class="subscribe-btn"/>
+                </div>
+                {% if form.posted_successfully? %}
+                    <div class="subscribe-form__success">
+                        <p>Thank you for subscribing!</p>
+                    </div>
+                {% endif %}
+                {% endform %}
+            </div>
+        {% endif %}
+    {% endfor %}
 </div>
 
-</div>
+{% schema %}
+    {
+        "name": "Subscribe Section",
+        "tag": "section",
+        "limit": 1,
+        "presets": [
+            {
+                "name": "default Subscribe Section",
+                "blocks": [
+                    {
+                        "type": "subscribe-heading",
+                    },
+                    {
+                        "type": "subscribe-form"
+                    }
+                ]
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Subscribe Heading",
+                "type": "subscribe-heading",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "subscribe-heading",
+                        "label": "Subscribe Heading",
+                        "default": "Join our newsletter!"
+                    },
+                ]
+            },
+            {
+                "name":"Subscribe Form",
+                "type": "subscribe-form",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "subscribe-input-label",
+                        "label": "Subscribe Input Label",
+                        "default": "Email"
+                    },
+                    {
+                        "type": "text",
+                        "id": "subscribe-button-label",
+                        "label": "Subscribe button Label",
+                        "default": "Join"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
