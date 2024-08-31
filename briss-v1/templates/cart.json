@@ -32,7 +32,13 @@
       "type": "continue-shopping"
     },
     "product-featured": {
-      "type": "product-featured"
+      "type": "product-featured",
+      "blocks": {
+        "product-featured-layout": {
+          "type": "product-featured-layout"
+        }
+      },
+      "block_order": ["product-featured-layout"]
     }
   },
   "order": ["customer-navigation", "navigation", "cart", "continue-shopping", "product-featured"]

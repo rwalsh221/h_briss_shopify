@@ -1,56 +1,100 @@
 {{ 'briss-product-featured.css' | asset_url | stylesheet_tag }}
 
 <div>
-    <h3 class="heading__tertiary featured__heading">Our Favorites</h3>
-    <div 
-        {% if section.settings.featured-layout == 'inline' %}
-            class="featured-container featured-container__inline"
-        {% elsif section.settings.featured-layout == 'grid' %}
-            class="featured-container featured-container__grid"
+    <h3 class="heading__tertiary featured__heading">{{section.settings.featured-heading}}</h3>
+     {% for block in section.blocks %}
+        {% if block.type == 'product-featured-layout' %}
+            <div  
+                {% if block.settings.featured-layout == 'inline' %}
+                    class="featured-container featured-container__inline"
+                {% elsif block.settings.featured-layout == 'grid' %}
+                    class="featured-container featured-container__grid"
+                {% endif %}
+            >
+                {% for collection in collections %}
+                    {% if collection.title == 'featured' %}
+                        {% for product in collection.products %}
+                            <div class="featured__card">
+                                <div class="featured__card--title">
+                                    <h4>{{ product.title }}</h4>
+                                </div>
+                                <div class="featured__card--img">
+                                    {{ product.featured_image | image_url: width: 200, height: 200 | image_tag }}
+                                </div>
+                                <div class="featured__card--more"> 
+                                    <a href="{{ product.url }}">More Information</a>
+                                </div>
+                            </div>
+                        {% endfor %} 
+                    {% endif %}
+                {% endfor %}
+            </div>
         {% endif %}
-    >
-        {% for collection in collections %}
-            {% if collection.title == 'featured' %}
-                {% for product in collection.products %}
-                    <div class="featured__card">
-                        <div class="featured__card--title">
-                            <h4>{{ product.title }}</h4>
-                        </div>
-                        <div class="featured__card--img">
-                            {{ product.featured_image | image_url: width: 200, height: 200 | image_tag }}
-                        </div>
-                        <div class="featured__card--more"> 
-                            <a href="{{ product.url }}">More Information</a>
-                        </div>
-                    </div>
-                {% endfor %} 
-            {% endif %}
-        {% endfor %}
-    </div>
-    
+    {% endfor %}
 </div>
 
 {% schema %}
     {
         "name": "product-featured",
         "tag": "section",
+        "limit": 1,
         "settings": [
             {
-                "type": "select",
-                "id": "featured-layout",
-                "label": "Featured Product Layout",
-                "options": [
+                "type": "text",
+                "id": "featured-heading",
+                "label": "Featured Heading",
+                "default": "Our Favourites"
+            },
+        ],
+        "presets":[
+            {
+                "name": "Default Product Featured Layout",
+                "blocks": [
                     {
-                        "value": "inline",
-                        "label": "Inline"
-                    },
-                    {
-                        "value": "grid",
-                        "label": "Grid"
+                        "type": "product-featured-layout",
+                        "settings": {
+                            "featured-layout": "inline"
+                        }
                     }
-                ],
-                "default": "inline"
+                ]
+            },
+            {
+                "name": "Grid Product Featured Layout",
+                "blocks": [
+                    {
+                        "type": "product-featured-layout",
+                        "settings": {
+                            "featured-layout": "grid"
+                        }
+                    }
+                ]
             }
+        ],
+        "blocks": [
+            {
+                "name": "Product Featured Layout",
+                "type": "product-featured-layout",
+                "limit": 1,
+                "settings": [
+                    {
+                        "type": "select",
+                        "id": "featured-layout",
+                        "label": "Featured Product Layout",
+                        "options": [
+                            {
+                                "value": "inline",
+                                "label": "Inline"
+                            },
+                            {
+                                "value": "grid",
+                                "label": "Grid"
+                            }
+                        ],
+                        "default": "inline"
+                    }
+                    
+                ]
+            },
         ]
     }
 {% endschema %}
