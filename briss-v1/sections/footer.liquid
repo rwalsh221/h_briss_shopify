@@ -1,22 +1,67 @@
 {{ 'briss-footer.css' | asset_url | stylesheet_tag }}
 
 
-<footer class="footer grid__footer">
-    <h3 class="heading__tertiary footer__header">EST. 1999 ROYSTON VASEY</h3>
+<div class="footer grid__footer">
+    <h3 class="heading__tertiary footer__header">{{ section.settings.footer-header }}</h3>
     <ul class="footer__social_links">
-      <li>
-        {{ images['icons_facebook.png'] | image_url: width: 30, height: 30 | image_tag }}
-        <a>facebook</a>
-      </li>
-      <li>{{ images['icons_facebook.png'] | image_url: width: 30, height: 30 | image_tag }}
-        <a>twitter</a></li>
-      <li>{{ images['icons_facebook.png'] | image_url: width: 30, height: 30 | image_tag }}
-        <a>instagram</a></li>
-      <li>{{ images['icons_facebook.png'] | image_url: width: 30, height: 30 | image_tag }}
-        <a>linkedin</a></li><li>{{ images['icons_facebook.png'] | image_url: width: 30, height: 30 | image_tag }}
-        <a>name</a></li>
+        {% for block in section.blocks %}
+          <li>
+            <a href="{{ block.settings.social-link-url }}" class="footer__social_links--container">
+              {{ block.settings.social-link-icon | image_url: width: 30, height: 30 | image_tag }}
+              <p>{{ block.settings.social-link-name }}</p>
+            </a>
+        </li>
+        {% endfor %}
     </ul>
-    <div class="icon__info">
-      <a href="https://icons8.com/">icons by Icons8</a>
-    </div>
-</footer>
+    {% if section.settings.footer-icon-link %}
+      <div class="icon__info">
+        <a href="https://icons8.com/">icons by Icons8</a>
+      </div>
+    {% endif %}
+  </div>
+
+{% schema %}
+{
+  "name": "footer",
+  "tag": "footer",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer-header",
+      "label": "Footer Header",
+      "default": "EST. 1999 ROYSTON VASEY"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer-icon-link",
+      "label": "Footer Icon Link",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "name": "social Link",
+      "type": "social-link",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "social-link-icon",
+          "label": "Social Link Icon"
+        },
+        {
+          "type": "text",
+          "id": "social-link-name",
+          "label": "Social Link Name"
+        },
+        {
+          "type": "url",
+          "id": "social-link-url",
+          "label": "Social Link Url"
+        }
+      ]
+    }
+  ]
+  
+}
+{% endschema %}
