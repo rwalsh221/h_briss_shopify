@@ -35,7 +35,40 @@
       "type": "navigation"
     },
     "contact-page": {
-      "type": "contact-page"
+      "type": "contact-page",
+      "blocks": {
+        "address-line-1": {
+          "type": "address-line",
+          "settings": {
+            "address-line-content": "H. BRISS & SON"
+          }
+        },
+        "address-line-2": {
+          "type": "address-line",
+          "settings": {
+            "address-line-content": "86 Station RD"
+          }
+        },
+        "address-line-3": {
+          "type": "address-line",
+          "settings": {
+            "address-line-content": "Royston Vasey"
+          }
+        },
+        "address-line-4": {
+          "type": "address-line",
+          "settings": {
+            "address-line-content": "England"
+          }
+        },
+        "address-line-5": {
+          "type": "address-line",
+          "settings": {
+            "address-line-content": "01457 555555"
+          }
+        }
+      },
+      "block_order": ["address-line-1", "address-line-2", "address-line-3", "address-line-4", "address-line-5"]
     },
     "browse-all": {
       "type": "browse-all",

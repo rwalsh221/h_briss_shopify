@@ -1,34 +1,45 @@
 {{ 'briss-contact-page.css' | asset_url | stylesheet_tag }}
 
 <div class="map-container tab-fade">
-    <div class="map" id='map'></div>
+    <div class="map" id='map' data-lat="{{ section.settings.contact-map-latitude }}" data-lng="{{ section.settings.contact-map-longitude }}" data-marker="{{ section.settings.contact-map-marker }}"></div>
 </div>
 <div class="contact tab-fade">
-    <h3 class="contact__heading heading__tertiary">COME AND HAVE A BUTCHERS!</h3>
+    <h3 class="contact__heading heading__tertiary">{{ section.settings.contact-address-heading }}</h3>
     <ul class="contact__address">
-        <li>H. BRISS & sSON</li>
-        <li>86 Station RD</li>
-        <li>Royston Vasey</li>
-        <li>England</li>
-        <li>01457 555555</li>
+        {% for block in section.blocks %}
+            {% if block.type == "address-line" %}
+                <li>{{ block.settings.address-line-content }}</li>
+            {% endif %}        
+        {% endfor %}
     </ul>
 </div>
 <div class="contact__img--container tab-fade">
-    {{ images['royston.jpg'] | image_url: width: 615, height: 409 | image_tag: class: 'contact__img' }}
+    {% if section.settings.contact-image == nil %}
+        {{ images['royston.jpg'] | image_url: width: 615, height: 409 | image_tag: class: 'contact__img' }}
+    {% else %}
+        {{ section.settings.contact-image | image_url: width: 615, height: 409 | image_tag: class: 'contact__img' }} 
+    {% endif %}
 </div>
 
 {% javascript %}
     const displayMap = () => {
+
+        const mapContainer = document.querySelector('.map')
+        console.dir(mapContainer)
+        const dataLng = mapContainer.dataset.lng
+        const dataLat = mapContainer.dataset.lat
+        const dataMarker = mapContainer.dataset.marker
+
         mapboxgl.accessToken = 'pk.eyJ1Ijoicmlja3lyaWNhcmRpbmhvIiwiYSI6ImNrZTRuMGJteTAycWEyenBvbDRpZW12ZDcifQ.P0eovMFE3-zpXFL8TXAnhg';
   
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/rickyricardinho/ckgf9w7h12h7n19pds7npab31',
-            center: [-1.9683, 53.46315],
+            center: [dataLng, dataLat],
             zoom: 15,
         });
 
-        new mapboxgl.Marker().setLngLat([-1.9683, 53.46315]).addTo(map);
+        new mapboxgl.Marker().setLngLat([dataLng, dataLat]).addTo(map);
 
         var markerHeight = 50,
         markerRadius = 10,
@@ -47,7 +58,7 @@
   
     new mapboxgl.Popup({ offset: popupOffsets, className: 'map__popup' })
         .setLngLat([-1.9683, 53.46315])
-        .setHTML('<h4>H BRISS & SON</h4>')
+        .setHTML(`<h4>${dataMarker}</h4>`)
         .setMaxWidth('none')
         .addTo(map);
     };
@@ -58,6 +69,51 @@
 {% schema %}
     {
         "name": "contact-page",
-        "class": "grid__contact-page"
+        "class": "grid__contact-page",
+        "tag": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "contact-address-heading",
+                "label": "Contact Address Heading",
+                "default": "COME AND HAVE A BUTCHERS!"
+            },
+            {
+                "type": "text",
+                "id": "contact-map-longitude",
+                "label": "Contact Map Longitude",
+                "default": "-1.9683"
+            },
+            {
+                "type": "text",
+                "id": "contact-map-latitude",
+                "label": "Contact Map Latitude",
+                "default": "53.46315"
+            },
+            {
+                "type": "text",
+                "id": "contact-map-marker",
+                "label": "Contact Map Marker",
+                "default": "H BRISS & SON"
+            },
+            {
+                "type": "image_picker",
+                "id": "contact-image",
+                "label": "Contact Image",
+            }
+        ],
+        "blocks": [
+            {
+                "name": "Address Line",
+                "type": "address-line",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "address-line-content",
+                        "label": "Address Line",
+                    }
+                ]
+            }
+        ]
     }
 {% endschema %}
