@@ -1,5 +1,7 @@
 {{ 'briss-collection.css' | asset_url | stylesheet_tag }}
 
+{% comment %} TODO: CHECK ERROR IN QURYSELCTOR FOR CART DRAWER WHEN EMPTY {% endcomment %}
+
 <nav class="collection-nav">
     <div id="collection-nav__btn-container__back" class="collection-nav__btn-container collection-nav__btn-container--back">
         <button id="cn-btn__back" class="collection-nav__btn">{{ section.settings.cn-btn-back-label }}</button>
@@ -86,15 +88,34 @@
 
 {% javascript %}
 
-    const domStrings = {
-        cnLinkContainer: document.getElementById('cn__link-container'),
-        cnBtnContainerBack: document.getElementById('collection-nav__btn-container__back'),
-        cnBtnContainerFwd: document.getElementById('collection-nav__btn-container__fwd'),
-        cnBtnBack: document.getElementById('cn-btn__back'),
-        cnBtnFwd: document.getElementById('cn-btn__fwd'),
-        cssShadowLeft:'collection-nav__btn-shadow--l',
-        cssShadowRight:'collection-nav__btn-shadow--r',
+    const setDomstrings = () => {
+        return {
+            cnLinkContainer: document.getElementById('cn__link-container'),
+            cnBtnContainerBack: document.getElementById('collection-nav__btn-container__back'),
+            cnBtnContainerFwd: document.getElementById('collection-nav__btn-container__fwd'),
+            cnBtnBack: document.getElementById('cn-btn__back'),
+            cnBtnFwd: document.getElementById('cn-btn__fwd'),
+            cssShadowLeft:'collection-nav__btn-shadow--l',
+            cssShadowRight:'collection-nav__btn-shadow--r',
+        }
     }
+    
+    let domStrings = setDomstrings()
+
+    document.addEventListener('shopify:section:load',()=>{
+        console.log('************************** UPDATED ***************************************')
+        domStrings = setDomstrings()
+        if(domStrings.cnLinkContainer.offsetWidth < domStrings.cnLinkContainer.scrollWidth) {
+        console.log(domStrings)
+        domStrings.cnBtnContainerFwd.classList.add(domStrings.cssShadowLeft)
+        domStrings.cnBtnBack.style.display = 'flex'
+        domStrings.cnBtnFwd.style.display = 'flex'
+    }
+    domStrings.cnBtnFwd.addEventListener('click', scrollCollectionNavFwd)
+    domStrings.cnBtnBack.addEventListener('click', scrollCollectionNavBack)
+    })
+
+    
 
     if(domStrings.cnLinkContainer.offsetWidth < domStrings.cnLinkContainer.scrollWidth) {
         console.log(domStrings)
