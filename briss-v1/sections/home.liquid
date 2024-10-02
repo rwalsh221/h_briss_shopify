@@ -1,16 +1,37 @@
 {{ 'briss-home.css' | asset_url | stylesheet_tag }}
 
-<section class="home content__grid">
-    <h2 class="home__heading heading__secondary" id="hover">WELCOME!</h2>
+<h2 class="home__heading heading__secondary" id="hover">{{ section.settings.home-heading }}</h2>
+{% if section.settings.home-image %}
+    {{ section.settings.home-image | image_url: width: 600, height: 400 | image_tag: class: 'home__img' }}
+{% else %}
     {{ images['hillary_welcome.jpg'] | image_url: width: 600, height: 400 | image_tag: class: 'home__img' }}
-    <div class="home__text tab-fade">It's like I always say. I'm a business man</div>
-</section>
-
-
+{% endif %}
+<div class="home__text tab-fade">{{ section.settings.home-sub-heading }}</div>
 
 {% schema %}
     {
         "name": "home",
-        "class": "grid__home"
+        "class": "home",
+        "tag": "section",
+        "limit": 1,
+        "settings": [
+            {
+                "type": "text",
+                "id": "home-heading",
+                "label": "Home Heading",
+                "default":"WELCOME!",
+            },
+            {
+                "type": "image_picker",
+                "id": "home-image",
+                "label": "Home Image"
+            },
+            {
+                "type": "text",
+                "id": "home-sub-heading",
+                "label": "Home Sub Heading",
+                "default":"It's like I always say. I'm a business man" 
+            }
+        ]
     }
 {% endschema %}
