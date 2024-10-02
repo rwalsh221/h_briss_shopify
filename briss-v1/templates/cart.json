@@ -25,10 +25,13 @@
     "navigation": {
       "type": "navigation"
     },
+    "continue-shopping-top": {
+      "type": "continue-shopping"
+    },
     "cart": {
       "type": "cart"
     },
-    "continue-shopping": {
+    "continue-shopping-btm": {
       "type": "continue-shopping"
     },
     "product-featured": {
@@ -41,5 +44,12 @@
       "block_order": ["product-featured-layout"]
     }
   },
-  "order": ["customer-navigation", "navigation", "cart", "continue-shopping", "product-featured"]
+  "order": [
+    "customer-navigation",
+    "navigation",
+    "continue-shopping-top",
+    "cart",
+    "continue-shopping-btm",
+    "product-featured"
+  ]
 }

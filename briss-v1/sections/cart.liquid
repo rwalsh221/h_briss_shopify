@@ -1,47 +1,74 @@
 {{ 'briss-cart.css' | asset_url | stylesheet_tag }}
 
-<section class="cart">
-    <div class="cart-container">
-{% form 'cart', cart %}
-
-    <h3 class="heading__tertiary cart-title">Shopping Cart</h3>
-    {% if cart.empty? %}
-        <p>Hey your cart is empty</p>
-    {% else %}
-        <div class="product-container">
-            {% for item in cart.items %}
-                <div class="product-container__row">
-                    <div>
-                        {{ item.image | image_url: width: 80, height: 80 | image_tag  }}
+<div class="cart-container">
+    {% form 'cart', cart %}
+        <h3 class="heading__tertiary cart-title">{{ section.settings.cart-heading}}</h3>
+        {% if cart.empty? %}
+            <p>{{ section.settings.cart-empty-text }}</p>
+        {% else %}
+            <div class="product-container">
+                {% for item in cart.items %}
+                    <div class="product-container__row">
+                        <div>
+                            {{ item.image | image_url: width: 80, height: 80 | image_tag  }}
+                        </div>
+                        <div class="product-container__row--title">
+                            <p>{{ item.title }}</p>
+                        </div>
+                        <div> 
+                            <p>{{ item.final_line_price | money }}</p> 
+                        </div>
+                        <div>
+                            <input name="updates[]" value="{{ item.quantity }}"/>
+                        </div>
+                        <div class="product-container__row--remove">
+                            <a class="remove-cart-btn" type="button" href="{{ item.url_to_remove }}">Remove</a>
+                        </div>
                     </div>
-                    <div class="product-container__row--title">
-                        <p>{{ item.title }}</p>
-                    </div>
-                    <div> 
-                        <p>{{ item.final_line_price | money }}</p> 
-                    </div>
-                    <div>
-                        <input name="updates[]" value="{{ item.quantity }}"/>
-                    </div>
-                    <div class="product-container__row--remove">
-                        <a class="remove-cart-btn" type="button" href="{{ item.url_to_remove }}">Remove</a>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <div class="cart-total-container">
-            <p class="cart-total">Total: {{ cart.total_price | money }}</p>
-        </div>
-        
-        <div class="cart-btn-container">
-            <button class="cart-btn" type="submit" name="update">Update</button>
-            <button class="cart-btn" type="submit" name="checkout">Checkout</button>
-        </div>
-
-        
-    {% endif %}
-
-{% endform %}
+                {% endfor %}
+            </div>
+            <div class="cart-total-container">
+                <p class="cart-total">Total: {{ cart.total_price | money }}</p>
+            </div>
+            
+            <div class="cart-btn-container">
+                <button class="cart-btn" type="submit" name="update">{{ section.settings.cart-btn-update-text }}</button>
+                <button class="cart-btn" type="submit" name="checkout">{{ section.settings.cart-btn-checkout-text }}</button>
+            </div>
+        {% endif %}
+    {% endform %}
 </div>
-</section>
 
+{% schema %}
+    {
+        "name": "cart",
+        "limit": 1,
+        "tag": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "cart-heading",
+                "label": "Cart Heading",
+                "default": "Shopping Cart"
+            },
+            {
+                "type": "text",
+                "id": "cart-empty-text",
+                "label": "Cart Empty Text",
+                "default": "Hey your cart is empty"
+            },
+            {
+                "type": "text",
+                "id": "cart-btn-update-text",
+                "label": "Cart Button Update Text",
+                "default": "Update"
+            },
+            {
+                "type": "text",
+                "id": "cart-btn-checkout-text",
+                "label": "Cart Button Checkout Text",
+                "default": "Checkout"
+            }
+        ]
+    }
+{% endschema %}

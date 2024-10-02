@@ -1,12 +1,12 @@
 .continue-shopping {
-  padding: var(--padding-200);
+  padding: var(--padding-100);
   background-color: var(--primary-color-white-500);
   border-top: var(--border-red-5px);
   border-bottom: var(--border-red-5px);
 }
 
 .continue-shopping-container {
-  padding: var(--padding-400);
+  padding: var(--padding-200);
   background-color: var(--primary-color-red-500);
   text-align: center;
 }
