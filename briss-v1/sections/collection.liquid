@@ -4,7 +4,13 @@
 
 <nav class="collection-nav">
     <div id="collection-nav__btn-container__back" class="collection-nav__btn-container collection-nav__btn-container--back">
-        <button id="cn-btn__back" class="collection-nav__btn">{{ section.settings.cn-btn-back-label }}</button>
+        <button id="cn-btn__back" class="collection-nav__btn">
+            {% if section.settings.cn-btn-back-icon %} 
+                {{ section.settings.cn-btn-back-icon | image_url: width: 30, height: 30| image_tag }}
+            {% else %} 
+                {{ section.settings.cn-btn-back-label }} 
+            {% endif %}
+        </button>
     </div>
     <ul id="cn__link-container" class="collection-nav__link-container">
         {% for collection in collections %}
@@ -12,7 +18,13 @@
         {% endfor %}
     </ul>
     <div id="collection-nav__btn-container__fwd" class="collection-nav__btn-container collection-nav__btn-container--fwd">
-        <button id="cn-btn__fwd" class="collection-nav__btn">FWD</button>
+        <button id="cn-btn__fwd" class="collection-nav__btn">
+            {% if section.settings.cn-btn-fwd-icon %}
+                {{ section.settings.cn-btn-fwd-icon | image_url: width: 30, height: 30| image_tag }}
+            {% else %}
+                {{ section.settings.cn-btn-fwd-label }}
+            {% endif %}
+        </button>
     </div>
 </nav>
     {% if section.settings.paginate-collection %}
@@ -42,20 +54,22 @@
                     </div>
                 {% endfor %}
             </div>
-            <nav class="paginate_nav">
-                <ul>
-                    <li>
-                        {% if paginate.previous %}
-                            <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
-                        {% endif %}
-                    </li>
-                    <li>
-                        {% if paginate.next %}
-                            <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
-                        {% endif %}
-                    </li>
-                </ul>
-            </nav>
+            {% if paginate.pages > 1 %}
+                <nav class="paginate_nav">
+                    <ul>
+                        <li>
+                            {% if paginate.previous %}
+                                <a href="{{ paginate.previous.url }}">{{ paginate.previous.title }}</a>
+                            {% endif %}
+                        </li>
+                        <li>
+                            {% if paginate.next %}
+                                <a href="{{ paginate.next.url }}">{{ paginate.next.title }}</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
         {% endpaginate %}
     {% else %}
         <div class="collection-grid">
@@ -87,9 +101,9 @@
 
 
 {% javascript %}
-
-    const setDomstrings = () => {
-        return {
+    // needed for shopify theme editor as js breaks when changes made
+    const init = () => {
+        const domStrings = {
             cnLinkContainer: document.getElementById('cn__link-container'),
             cnBtnContainerBack: document.getElementById('collection-nav__btn-container__back'),
             cnBtnContainerFwd: document.getElementById('collection-nav__btn-container__fwd'),
@@ -98,69 +112,56 @@
             cssShadowLeft:'collection-nav__btn-shadow--l',
             cssShadowRight:'collection-nav__btn-shadow--r',
         }
-    }
-    
-    let domStrings = setDomstrings()
 
-    document.addEventListener('shopify:section:load',()=>{
-        console.log('************************** UPDATED ***************************************')
-        domStrings = setDomstrings()
-        if(domStrings.cnLinkContainer.offsetWidth < domStrings.cnLinkContainer.scrollWidth) {
-        console.log(domStrings)
+        if (domStrings.cnLinkContainer.offsetWidth < domStrings.cnLinkContainer.scrollWidth) {
         domStrings.cnBtnContainerFwd.classList.add(domStrings.cssShadowLeft)
         domStrings.cnBtnBack.style.display = 'flex'
         domStrings.cnBtnFwd.style.display = 'flex'
+
+        }
+
+        const scrollCollectionNavBack = () => {
+            // GET MAX SCROLL
+            const collectionNavMaxScroll = domStrings.cnLinkContainer.scrollWidth - domStrings.cnLinkContainer.offsetWidth
+            
+            domStrings.cnLinkContainer.scrollLeft -= 20;
+            const currScrollPos = domStrings.cnLinkContainer.scrollLeft
+
+            if(currScrollPos === 0) {
+                domStrings.cnBtnContainerBack.classList.remove(domStrings.cssShadowRight)
+                return
+            }
+        
+            if(currScrollPos === collectionNavMaxScroll - 20){
+                domStrings.cnBtnContainerFwd.classList.add(domStrings.cssShadowLeft)
+            }
+        }
+
+        const scrollCollectionNavFwd = () => {
+            // GET MAX SCROLL
+            const collectionNavMaxScroll = domStrings.cnLinkContainer.scrollWidth - domStrings.cnLinkContainer.offsetWidth
+            domStrings.cnLinkContainer.scrollLeft += 20;
+            const currScrollPos = domStrings.cnLinkContainer.scrollLeft
+
+            if(currScrollPos === 20){
+                domStrings.cnBtnContainerBack.classList.add(domStrings.cssShadowRight)
+                return
+            }
+            
+            if(currScrollPos === collectionNavMaxScroll) {
+                domStrings.cnBtnContainerFwd.classList.remove(domStrings.cssShadowLeft)
+            }
+        }
+
+        domStrings.cnBtnFwd.addEventListener('click', scrollCollectionNavFwd)
+        domStrings.cnBtnBack.addEventListener('click', scrollCollectionNavBack)
     }
-    domStrings.cnBtnFwd.addEventListener('click', scrollCollectionNavFwd)
-    domStrings.cnBtnBack.addEventListener('click', scrollCollectionNavBack)
+
+    init()
+
+    document.addEventListener('shopify:section:load',() => {
+        init()
     })
-
-    
-
-    if(domStrings.cnLinkContainer.offsetWidth < domStrings.cnLinkContainer.scrollWidth) {
-        console.log(domStrings)
-        domStrings.cnBtnContainerFwd.classList.add(domStrings.cssShadowLeft)
-        domStrings.cnBtnBack.style.display = 'flex'
-        domStrings.cnBtnFwd.style.display = 'flex'
-
-    }
-
-    const scrollCollectionNavBack = () => {
-        // GET MAX SCROLL
-        const collectionNavMaxScroll = domStrings.cnLinkContainer.scrollWidth - domStrings.cnLinkContainer.offsetWidth
-        
-        domStrings.cnLinkContainer.scrollLeft -= 20;
-        const currScrollPos = domStrings.cnLinkContainer.scrollLeft
-
-        if(currScrollPos === 0) {
-            domStrings.cnBtnContainerBack.classList.remove(domStrings.cssShadowRight)
-            return
-        }
-       
-        if(currScrollPos === collectionNavMaxScroll - 20){
-            domStrings.cnBtnContainerFwd.classList.add(domStrings.cssShadowLeft)
-        }
-    }
-
-    const scrollCollectionNavFwd = () => {
-        // GET MAX SCROLL
-        const collectionNavMaxScroll = domStrings.cnLinkContainer.scrollWidth - domStrings.cnLinkContainer.offsetWidth
-        domStrings.cnLinkContainer.scrollLeft += 20;
-        const currScrollPos = domStrings.cnLinkContainer.scrollLeft
-
-        if(currScrollPos === 20){
-            domStrings.cnBtnContainerBack.classList.add(domStrings.cssShadowRight)
-            return
-        }
-        
-        if(currScrollPos === collectionNavMaxScroll) {
-            domStrings.cnBtnContainerFwd.classList.remove(domStrings.cssShadowLeft)
-        }
-    }
-
-    domStrings.cnBtnFwd.addEventListener('click', scrollCollectionNavFwd)
-    domStrings.cnBtnBack.addEventListener('click', scrollCollectionNavBack)
-
 {% endjavascript %}
 
 {% schema %}
@@ -177,8 +178,8 @@
             },
             {
                 "type": "image_picker",
-                "id": "cn-btn-back-image",
-                "label": "Collection Nav Button Back Image",
+                "id": "cn-btn-back-icon",
+                "label": "Collection Nav Button Back Icon",
             },
             {
                 "type": "text",
@@ -188,8 +189,8 @@
             },
             {
                 "type": "image_picker",
-                "id": "cn-btn-fwd-image",
-                "label": "Collection Nav Button Forward Image",
+                "id": "cn-btn-fwd-icon",
+                "label": "Collection Nav Button Forward Icon",
             },
             {
                 "type": "checkbox",
