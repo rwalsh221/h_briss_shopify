@@ -26,13 +26,31 @@
       "type": "navigation"
     },
     "continue-shopping-top": {
-      "type": "continue-shopping"
+      "type": "continue-shopping",
+      "blocks": {
+        "continue-shopping-text": {
+          "type": "continue-shopping-text",
+          "settings": {
+            "continue-shopping-text": "Continue Shopping"
+          }
+        }
+      },
+      "block_order": ["continue-shopping-text"]
     },
     "cart": {
       "type": "cart"
     },
     "continue-shopping-btm": {
-      "type": "continue-shopping"
+      "type": "continue-shopping",
+      "blocks": {
+        "continue-shopping-text": {
+          "type": "continue-shopping-text",
+          "settings": {
+            "continue-shopping-text": "Continue Shopping"
+          }
+        }
+      },
+      "block_order": ["continue-shopping-text"]
     },
     "product-featured": {
       "type": "product-featured",
