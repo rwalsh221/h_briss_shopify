@@ -1,7 +1,38 @@
 {{ 'briss-not-found.css' | asset_url | stylesheet_tag }}
 
 <div class="not-found-container">
-    <h2 class="heading__secondary">Page not found!</h2>
-    {{ images['briss_1.jpg'] | image_url: width: 400, height: 400 | image_tag: class: 'not-found__img' }}
-    <a class="not-found__link" href="{{ routes.root_url }}">continue shopping</a>
+    <h2 class="heading__secondary">{{ section.settings.not-found-heading }}</h2>
+    {% if section.settings.not-found-image %}
+        {{ section.settings.not-found-image | image_url: width: 400, height: 400 | image_tag: class: 'not-found__img' }}    
+    {% else %}
+        {{ images['briss_1.jpg'] | image_url: width: 400, height: 400 | image_tag: class: 'not-found__img' }}
+    {% endif %}
+    <a class="not-found__link" href="{{ routes.root_url }}">{{ section.settings.not-found-link-text }}</a>
 </div>
+
+{% schema %}
+    {
+        "name": "404",
+        "limit": 1,
+        "tag": "section",
+        "settings": [
+            {
+                "type": "text",
+                "id": "not-found-heading",
+                "label": "Not Found Heading",
+                "default": "Page Not Found!"
+            },
+            {
+                "type": "image_picker",
+                "id": "not-found-image",
+                "label": "Not Found Image",
+            },
+            {
+                "type": "text",
+                "id": "not-found-link-text",
+                "label": "Not Found Link Text",
+                "default": "Continue Shopping"
+            }
+        ]
+    }
+{% endschema %}
