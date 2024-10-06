@@ -1,6 +1,4 @@
 {{ 'briss-search.css' | asset_url | stylesheet_tag }}
-{% comment %} TODO: get html for price  {% endcomment %}
-{% comment %} CHANGE FORM TO CUSTOM TO PREVENT SUBMITTING {% endcomment %}
     <form class="search_form" action="{{ routes.search_url }}">
         <label for="search_input" class="search_label">Search</label>
         <input id="search_input"
