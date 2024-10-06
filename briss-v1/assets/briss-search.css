@@ -1,7 +1,7 @@
 .search {
   margin: var(--margin-200);
   padding: var(--padding-200);
-  grid-area: content;
+
   height: max-content;
   background-color: var(--primary-color-white-500);
   border: var(--border-red-2px);

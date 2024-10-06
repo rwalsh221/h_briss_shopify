@@ -1,6 +1,6 @@
 {{ 'briss-search.css' | asset_url | stylesheet_tag }}
 {% comment %} TODO: get html for price  {% endcomment %}
-<section class="search">
+{% comment %} CHANGE FORM TO CUSTOM TO PREVENT SUBMITTING {% endcomment %}
     <form class="search_form" action="{{ routes.search_url }}">
         <label for="search_input" class="search_label">Search</label>
         <input id="search_input"
@@ -40,9 +40,18 @@
     <p class="search_results__false">no results found for "{{ search.terms }}" check the spelling or saerch again</p>
 {% endif %}
 </div>
-</section>
 
 {% javascript %}
+    // Prevents form submiting when enter pressed causing page reload
+    window.addEventListener('keydown',function(e) {
+        if (e.keyIdentifier=='U+000A' || e.keyIdentifier=='Enter' || e.keyCode==13) {
+            if (e.target.nodeName=='INPUT' && e.target.type=='text') {
+                e.preventDefault();
+
+                return false;
+            }
+        }
+    }, true);
 
     // GLOBAL VARS
     let searchTimer
@@ -80,16 +89,15 @@
             while (domStrings.searchResultsContainer.firstChild) {  
                 domStrings.searchResultsContainer.removeChild(domStrings.searchResultsContainer.lastChild)
             }
-
-            if(loading){
+        }
+        if(loading){
                 domStrings.searchResultsContainer.insertAdjacentHTML('beforeend', '<span id="loader" class="loader"></span>')
             }
-            
-        }
     }
 
     const searchRequest = async (query, productsObj) => {
-try {
+        
+        try { 
             const searchReq = await fetch(`${window.Shopify.routes.root}search/suggest.json?q=${query}&resources[type]=product&resources[options][fields]=title,product_type,variants.title`)
             const searchRes = await searchReq.json()
             const productsArr = searchRes.resources.results.products
@@ -98,12 +106,10 @@ try {
 
             updateResultsCount(productsArr.length, query)
 
-            console.log(productsObj)
+            // console.log(productsObj)
 
             productsArr.forEach(el=>{
                 const product = productsObj[el.id]
-                console.log('#sadkjsakdjlkasjlkdjskadkljds')
-                console.log(product.imgUrl)
                 domStrings.searchResultsContainer.insertAdjacentHTML('beforeend', 
                     searchResultCardHtml(product.id, product.imgUrl, product.title, product.price, product.url))
             })
@@ -114,9 +120,11 @@ try {
     }
     
     const searchHandler = async (query, productsObj) => {
+        console.log(query)
         clearTimeout(searchTimer)
-        
+
         if(!query) {
+            console.log('no query')
             return
         }
 
@@ -124,7 +132,6 @@ try {
                 clearSearchResults(true)
                 searchRequest(query, productsObj)
         }, 1000);
-        
     }
 
     const getAllProducts = async () => {
@@ -150,7 +157,8 @@ try {
                 }
             })
         
-            document.getElementById('search_input').addEventListener('input', (event)=>{searchHandler(event.target.value, allProducts)})
+            document.getElementById('search_input').addEventListener('input', (event)=>{
+                searchHandler(event.target.value, allProducts)})
         } catch (error) {
             console.error(error)
         }
@@ -158,13 +166,14 @@ try {
 
     getAllProducts()
 
-    // search()
     
 {% endjavascript %}
 
 {% schema %}
     {
         "name": "search",
-        "class": "grid__search"
+        "class": "search",
+        "tag": "section",
+
     }
 {% endschema %}
