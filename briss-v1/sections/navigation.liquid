@@ -1,6 +1,5 @@
 {{ 'briss-navigation.css' | asset_url | stylesheet_tag }}
 
-<div>
   {% comment %} NAV BAR {% endcomment %}
   <nav aria-label="primary navigation" class="nav-bar nav_grid_area">
     <div class="dash-short"></div>
@@ -43,8 +42,6 @@
       </ul>
     </nav>
   </div>
-  
-</div>
 
 {% javascript %}
   const DOMStrings = {
@@ -111,6 +108,7 @@
 {% schema %}
     {
         "name": "navigation",
-        "class": "grid__nav"
+        "tag":"div",
+        "limit": 1
     }
 {% endschema %}
