@@ -9,7 +9,6 @@
 {% endfor %}
 
 <div class="product">
-  
   <div class="product-img">
     {{ product.featured_image | image_url: width: 800, height: 800 | image_tag  }}
   </div>
@@ -21,7 +20,6 @@
     </div>
     <div id="price-container" class="product-card__price-container">
       <h4 id="price-container-heading">Price</h4>
-      {% comment %} {% render 'product-price' %} {% endcomment %}
        {% if product.selected_or_first_available_variant.compare_at_price %}
         <p class="price product-card__price--old">{{- product.selected_or_first_available_variant.compare_at_price | money -}}</p>
         <p class="price product-card__price--new">{{- product.selected_or_first_available_variant.price | money -}}</p>
@@ -29,285 +27,258 @@
       {% else %}
         <p class="price product-card__price">{{ product.selected_or_first_available_variant.price | money }}</p>
       {% endif %} 
-      {% comment %} hide compare at price if non or same. try do it. video 20:30 {% endcomment %}
       
     </div>
     <div class="product-card__form"> 
-    {% form 'product', product %}
-      <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {% form 'product', product %}
+        <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-      {% if product.variants.size > 1 %}
-        <div class="product-option">
-          {% for option in product.options_with_values %}
-            <fieldset id="{{ product.options_with_values }}">
-              <legend>{{ option.name }}</legend>
-              <ul class="option-container">
-                {% for value in option.values %}
+        {% if product.variants.size > 1 %}
+          <div class="product-option">
+            {% for option in product.options_with_values %}
+              <fieldset id="{{ product.options_with_values }}">
+                <legend>{{ option.name }}</legend>
+                <ul class="option-container">
+                  {% for value in option.values %}
+                  
+                    <li id="radio-container-{{ value }}" class="radio-container">
+                      <input
+                        {% if option.selected_value == value %}checked{% endif %}
+                        class="product_select_input"
+                        type="radio"
+                        name="{{ option.name }}"
+                        value="{{ value }}"
+                        id="{{ option.name | handleize }}-{{ value | handleize }}"
+                      >
+                      <label class="product_select_label" for="{{ option.name | handleize }}-{{ value | handleize }}">
+                        {{ value }}
+                      </label>
+                    </li>
                 
-                  <li id="radio-container-{{ value }}" class="radio-container">
-                    <input
-                      {% if option.selected_value == value %}checked{% endif %}
-                      class="product_select_input"
-                      type="radio"
-                      name="{{ option.name }}"
-                      value="{{ value }}"
-                      id="{{ option.name | handleize }}-{{ value | handleize }}"
-                    >
-                    <label class="product_select_label" for="{{ option.name | handleize }}-{{ value | handleize }}">
-                      {{ value }}
-                    </label>
-                  </li>
-               
-              {% endfor %}
-            </ul>
-            </fieldset> 
-            
-          {% endfor %}
-        </div>
-      {% endif %}
-      <div class="quantity-container">
-        <p>
-          {% if product.selected_or_first_available_variant.inventory_quantity > 9 %}
-            <span id="quantity-avaliable">10+</span>&nbsp;available 
-          {% else %}  
-            <span id="quantity-avaliable">{{ product.selected_or_first_available_variant.inventory_quantity}}</span>&nbsp;available  
-          {% endif %}
-        </p>
-        <button id="quantity-decrease">-</button>
-        {% if product.selected_or_first_available_variant.available %}
-          <input type="text" name="quantity" min="1" max="{{ product.selected_or_first_available_variant.inventory_quantity }}" value="1" id="quantity" class="quantity-input">
-        {% else %}
-          <input type="text" name="quantity" min="0" max="0" value="0" id="quantity" class="quantity-input">
+                {% endfor %}
+              </ul>
+              </fieldset> 
+              
+            {% endfor %}
+          </div>
         {% endif %}
-        <button id="quantity-increase">+</button>
-      </div>
 
-      <div class="product-card__add-to-cart">
-        {% if product.selected_or_first_available_variant.available %}
-          <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ product.selected_or_first_available_variant.price | money }}</span></p>
-          <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
+        <div class="quantity-container">
+          <p>
+            {% if product.selected_or_first_available_variant.inventory_quantity > 9 %}
+              <span id="quantity-avaliable">10+</span>&nbsp;available 
+            {% else %}  
+              <span id="quantity-avaliable">{{ product.selected_or_first_available_variant.inventory_quantity}}</span>&nbsp;available  
+            {% endif %}
+          </p>
+          <button id="quantity-decrease">-</button>
+          {% if product.selected_or_first_available_variant.available %}
+            <input type="text" name="quantity" min="1" max="{{ product.selected_or_first_available_variant.inventory_quantity }}" value="1" id="quantity" class="quantity-input">
           {% else %}
-          <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ 0.00 | money }}</span></p>
-          <input type="submit" disabled value="unavaliable" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
-        {% endif %}
-        
-      </div>
+            <input type="text" name="quantity" min="0" max="0" value="0" id="quantity" class="quantity-input">
+          {% endif %}
+          <button id="quantity-increase">+</button>
+        </div>
 
-
-
-      
-    {% endform %}
+        <div class="product-card__add-to-cart">
+          {% if product.selected_or_first_available_variant.available %}
+            <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ product.selected_or_first_available_variant.price | money }}</span></p>
+            <input type="submit" value="Add to cart" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
+            {% else %}
+            <p class="product-card__add-to-cart--subtotal">Subtotal:&nbsp;<span id="subtotal">{{ 0.00 | money }}</span></p>
+            <input type="submit" disabled value="unavaliable" id='add-to-cart' class="product-card__add-to-cart--btn" data-price="{{ product.selected_or_first_available_variant.price }}">
+          {% endif %}
+        </div>
+      {% endform %}
     </div>
-
-    
-
-   
   </div>
 </div>
 
 <script>
-{% comment %} REFACTOR CREATE CUSTOM ELEMENT {% endcomment %}
-{% comment %} ******************* ADD EVENT LISTNER UPDATE PRICE WHEN WRITING QUANTITY IN INPUT {% endcomment %}
+  {% comment %} REFACTOR CREATE CUSTOM ELEMENT {% endcomment %}
 
+  {% comment %} GET JSON FROM LIQUID VARIABLEs {% endcomment %}
   const variantQuantitys = {{ variant_quantity_array | json }}
-  console.log(variantQuantitys)
   const product = {{ product | json }}
 
-console.log(product)
+  const updateSubtotal = (quantity) => {
+    const variantPrice = document.getElementById("add-to-cart").dataset.price;
 
-const updateSubtotal = (quantity) => {
-  const variantPrice = document.getElementById("add-to-cart").dataset.price;
+    const subtotal = variantPrice * quantity;
 
-  const subtotal = variantPrice * quantity;
+    // convert to pounds pence
+    let penceToPounds = subtotal / 100;
+    penceToPounds = penceToPounds.toString();
 
-  // convert to pounds pence
-  let penceToPounds = subtotal / 100;
-  penceToPounds = penceToPounds.toString();
+    if (penceToPounds.indexOf(".") === penceToPounds.length - 2) {
+      penceToPounds = `${penceToPounds}0`;
+    }
+    if (!penceToPounds.includes(".")) {
+      penceToPounds = `${penceToPounds}.00`;
+    }
 
-  if (penceToPounds.indexOf(".") === penceToPounds.length - 2) {
-    penceToPounds = `${penceToPounds}0`;
+    document.getElementById("subtotal").textContent = `£${penceToPounds}`;
+  };
+
+  const increaseQuantity = (event) => {
+    event.preventDefault()
+    
+    const quantityInput = document.getElementById('quantity');
+    if (parseInt(quantityInput.value) >= parseInt(quantityInput.max)) {
+      return 
+    }
+    quantityInput.value = +quantityInput.value + 1;
+    updateSubtotal(quantityInput.value)
+  };
+
+  const decreaseQuantity = (event) => {
+    event.preventDefault()
+    
+    const quantityInput = document.getElementById('quantity');
+    if (quantityInput.value === quantityInput.min) {
+      return
+    }
+    quantityInput.value = +quantityInput.value - 1;
+    updateSubtotal(quantityInput.value)
+  };
+
+  const setVariantUnavailable = () => {
+    document.querySelectorAll('.radio-container').forEach(el=>{
+      el.classList.remove('disabled')
+    })
+
+    const selectedRadio = document.querySelectorAll('.product-option input[type="radio"]:checked');
+
+    const unavailableVariants = [];
+
+    product.variants.forEach((el) => {
+      if (el.option1 === selectedRadio[0].value && el.available === false) {
+        unavailableVariants.push(el);
+      }
+    });
+
+    unavailableVariants.forEach((el) => {
+      document.getElementById(`radio-container-${el.option2}`).classList.add('disabled');
+    });
+  };
+
+  // UPDATE VARIANT PRICE 
+  const updateVariantPrice = async (matchedVariantId) => {
+  
+  const url = new URLParse(window.location.href, true);
+  url.query.variant = matchedVariantId;
+  const newUrl = url.toString();
+  window.history.replaceState(null, null, newUrl);
+
+  
+  try {
+    const htmlReq = await fetch(newUrl);
+    const htmlRes = await htmlReq.text();
+    const parser = new DOMParser();
+    const html = parser.parseFromString(htmlRes, "text/html");
+    const priceContainer = document.getElementById("price-container");
+
+    while (
+      priceContainer.lastChild &&
+      priceContainer.lastChild.id !== "price-container-heading"
+    ) {
+      priceContainer.removeChild(priceContainer.lastChild);
+    }
+
+    const newPriceContent = html.querySelectorAll(".price");
+
+    newPriceContent.forEach((el) => {
+      priceContainer.insertAdjacentElement("beforeend", el);
+    });
+  } catch (error) {
+    console.log(error);
   }
-  if (!penceToPounds.includes(".")) {
-    penceToPounds = `${penceToPounds}.00`;
-  }
-
-  document.getElementById("subtotal").textContent = `£${penceToPounds}`;
 };
 
-{% comment %} set max on quantitiy input {% endcomment %}
-const increaseQuantity = (event) => {
-  event.preventDefault()
-  
-  const quantityInput = document.getElementById('quantity');
-  console.log(typeof quantityInput.max)
-  console.log(typeof quantityInput.value)
-  if(parseInt(quantityInput.value) >= parseInt(quantityInput.max)) {
-    console.log('return increase')
-  return }
-  
-  quantityInput.value = +quantityInput.value + 1;
-
-  updateSubtotal(quantityInput.value)
+const disableAddToCart = (matchedVariantAvaliable) => {
+  if (matchedVariantAvaliable === false) {
+    document.querySelector("#add-to-cart").disabled = true;
+    document.querySelector("#add-to-cart").value = "unavaliable";
+  } else {
+    document.querySelector("#add-to-cart").disabled = false;
+    document.querySelector("#add-to-cart").value = "add to cart";
+  }
 };
 
-const decreaseQuantity = (event) => {
-  event.preventDefault()
-  
-  const quantityInput = document.getElementById('quantity');
-  
-  if(quantityInput.value === quantityInput.min) {
-    return
+{% comment %} SETS QUANTITY OF VARIANT AND INCREMENT {% endcomment %}
+const setVariantQuantity = (matchedVariantId) => {
+  const variantQuantity =
+    variantQuantitys[variantQuantitys.indexOf(matchedVariantId) + 1];
+  document.getElementById("quantity").max = variantQuantity;
+
+  if (variantQuantity > 9) {
+    document.getElementById("quantity-avaliable").textContent = "10+";
+  } else {
+    document.getElementById("quantity-avaliable").textContent = variantQuantity;
   }
 
-  quantityInput.value = +quantityInput.value - 1;
-
-  updateSubtotal(quantityInput.value)
+  if (variantQuantity > 0) {
+    document.getElementById("quantity").value = 1;
+    updateSubtotal(1);
+  } else {
+    document.getElementById("quantity").value = 0;
+    document.getElementById("subtotal").textContent = "£0.00";
+  }
 };
 
+const onVariantChange = async () => {
+  // find selected options
+  const selectedOptions = [];
 
-document.getElementById('quantity-increase').addEventListener('click', increaseQuantity)
-document.getElementById('quantity-decrease').addEventListener('click', decreaseQuantity)
+  document
+    .querySelectorAll('.product-option input[type="radio"]:checked')
+    .forEach((radio) => selectedOptions.push(radio.value));
 
-const setVariantUnavailable = () => {
-  document.querySelectorAll('.radio-container').forEach(el=>{
-  el.classList.remove('disabled')})
+  // find matched variant
+  const matchedVariant = product.variants.find((variant) => {
+    let pass = true;
 
-  const selectedRadio = document.querySelectorAll(
-    '.product-option input[type="radio"]:checked'
+    for (let i = 0; i < selectedOptions.length; i++) {
+      if (selectedOptions.indexOf(variant.options[i]) === -1) {
+        pass = false;
+        break;
+      }
+    }
+    return pass;
+  });
+
+  // Change product form variant id for add to cart
+  document.querySelector("#product-id").value = matchedVariant.id;
+
+  await updateVariantPrice(matchedVariant.id);
+
+  setVariantUnavailable();
+
+  setVariantQuantity(matchedVariant.id);
+
+  disableAddToCart(matchedVariant.available);
+};
+
+document
+  .querySelectorAll('.product-option input[type="radio"]')
+  .forEach((radio) =>
+    radio.addEventListener("change", async () => {
+      onVariantChange();
+    })
   );
 
-  console.log(selectedRadio);
+  {% comment %} EVENT LISTENERS {% endcomment %}
+  document.getElementById('quantity-increase').addEventListener('click', increaseQuantity)
+  document.getElementById('quantity-decrease').addEventListener('click', decreaseQuantity)
 
-  const unavailableVariants = [];
-
-  product.variants.forEach((el) => {
-    if (el.option1 === selectedRadio[0].value && el.available === false) {
-      unavailableVariants.push(el);
-    }
-  });
-
-
-  console.log(unavailableVariants);
-
-  unavailableVariants.forEach((el) => {
-    console.log(el.option2)
-    console.log(document.querySelector(`#radio-container-${el.option2}`))
-    document.getElementById(`radio-container-${el.option2}`).classList.add('disabled');
-  });
-
-  {% comment %} console.log(selectedVariants); {% endcomment %}
-  
-};
-
-setVariantUnavailable()
-
-  document.querySelectorAll('.product-option input[type="radio"]')
-  .forEach(radio => radio.addEventListener('change', async ()=>{
-    // find selected options  
-    const selectedOptions = []
-  
-      document.querySelectorAll('.product-option input[type="radio"]:checked')
-      .forEach(radio => selectedOptions.push(radio.value))
-  
-      // find matched variant
-      const matchedVariant = product.variants.find(variant => {
-        console.log('hehe')
-        console.log(variant)
-        console.log('hehe')
-          let pass = true
-  
-          for (let i = 0; i < selectedOptions.length; i++) {
-              if(selectedOptions.indexOf(variant.options[i]) === -1) {
-                  pass = false
-                  break
-              }
-          }
-          return pass
-      })
-
-      // Change product form variant id
-      document.querySelector('#product-id').value = matchedVariant.id
-      console.log(matchedVariant)
-
-      // change url
-      const url = new URLParse(window.location.href, true)
-      console.log(url)
-      url.query.variant = matchedVariant.id
-      const newUrl = url.toString()
-      console.log(newUrl)
-      window.history.replaceState(null,null,newUrl)
-
-      {% comment %} UPDATE VARIANT PRICE {% endcomment %}
-try {
-   const test = await fetch(newUrl)
-      const testres = await test.text()
-      const parser = new DOMParser
-      const html = parser.parseFromString(testres,'text/html')
-      const priceContainer = document.getElementById('price-container')
-      while(priceContainer.lastChild && priceContainer.lastChild.id !== 'price-container-heading'){
-        priceContainer.removeChild(priceContainer.lastChild)
-      }
-
-      const newPriceContent = html.querySelectorAll('.price')
-      console.log(newPriceContent)
-      newPriceContent.forEach(el=>{
-        console.log('el')
-        priceContainer.insertAdjacentElement('beforeend',el)
-      })
-
-} catch(error){
-  console.log(error)
-}
-      
-
-      // change prices
-      {% comment %} document.querySelector(".product-card__price").textContent = matchedVariant.price {% endcomment %}
-      {% comment %} document.querySelector(".product-card__price--compare").textContent = matchedVariant.compare_at_price {% endcomment %}
-
-      setVariantUnavailable()
-
-      const disableAddToCart = () => {
-        console.log(matchedVariant)
-        if (matchedVariant.available === false) {
-          document.querySelector('#add-to-cart').disabled = true;
-          document.querySelector('#add-to-cart').value = 'unavaliable';
-
-        } else {
-          document.querySelector('#add-to-cart').disabled = false;
-          document.querySelector('#add-to-cart').value = 'add to cart';
-
-
-        }
-      };
-
-      console.log('elelelelee')
-      const variantQuantity =
-  variantQuantitys[variantQuantitys.indexOf(matchedVariant.id) + 1];
-document.getElementById('quantity').max = variantQuantity
-variantQuantity > 9 ? document.getElementById('quantity-avaliable').textContent = '10+' 
-                    : document.getElementById('quantity-avaliable').textContent = variantQuantity  
-  console.log('HELLOWOWOWW',variantQuantity)
-variantQuantity > 0 ? document.getElementById('quantity').value = 1 : document.getElementById('quantity').value = 0
-      disableAddToCart()
-variantQuantity > 0 ? updateSubtotal(1) : document.getElementById('subtotal').textContent = '£0.00';
-
-
-  
-
-
-}))
-
-
-
-  console.log(product)
-
-  {% comment %} update subtotal {% endcomment %}
+  {% comment %} INIT {% endcomment %}
+  setVariantUnavailable()
 </script>
 
 {% schema %}
     {
         "name": "product",
-        
-    }
-    
+        "tag": "section",
+        "limit": 1
+     }
 {% endschema %}
