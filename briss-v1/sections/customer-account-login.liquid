@@ -1,5 +1,7 @@
 {{ 'briss-customer-account.css' | asset_url | stylesheet_tag }}
 
+<script src="{{ 'briss-customer-account__login.js' | asset_url }}" defer></script>
+
 <div class="customer-container">
     <div class="customer-form-container">
 <div id="recover" class="customer-form-recover">
@@ -51,34 +53,3 @@
     </div>
 </div>
 
-{% javascript %}
-
-const displayForm = (currentUrl) => {
-
-    const formId = currentUrl.split('#')[1]
-    loginForm = document.getElementById('login')
-    recoverForm =  document.getElementById('recover')
-
-    switch (formId) {
-        case 'login':
-            loginForm.style.display = 'block'
-            recoverForm.style.display ='none'
-            break;
-        case 'recover':
-            recoverForm.style.display = 'block'
-            loginForm.style.display='none'
-            break
-        default:
-            loginForm.style.display = 'block'
-            recoverForm.style.display = 'none'
-            break;
-    }
-}
-
-window.addEventListener('hashchange', () => {
-    displayForm(window.location.href)
-})
-
-displayForm(window.location.href)
-
-{% endjavascript %}
