@@ -1,5 +1,7 @@
 {{ 'briss-contact-page.css' | asset_url | stylesheet_tag }}
 
+<script src="{{ 'briss-contact-page.js' | asset_url }}" defer></script>
+
 <div class="map-container tab-fade">
     <div class="map" id='map' data-lat="{{ section.settings.contact-map-latitude }}" data-lng="{{ section.settings.contact-map-longitude }}" data-marker="{{ section.settings.contact-map-marker }}"></div>
 </div>
@@ -20,51 +22,6 @@
         {{ section.settings.contact-image | image_url: width: 615, height: 409 | image_tag: class: 'contact__img' }} 
     {% endif %}
 </div>
-
-{% javascript %}
-    const displayMap = () => {
-
-        const mapContainer = document.querySelector('.map')
-        console.dir(mapContainer)
-        const dataLng = mapContainer.dataset.lng
-        const dataLat = mapContainer.dataset.lat
-        const dataMarker = mapContainer.dataset.marker
-
-        mapboxgl.accessToken = 'pk.eyJ1Ijoicmlja3lyaWNhcmRpbmhvIiwiYSI6ImNrZTRuMGJteTAycWEyenBvbDRpZW12ZDcifQ.P0eovMFE3-zpXFL8TXAnhg';
-  
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/rickyricardinho/ckgf9w7h12h7n19pds7npab31',
-            center: [dataLng, dataLat],
-            zoom: 15,
-        });
-
-        new mapboxgl.Marker().setLngLat([dataLng, dataLat]).addTo(map);
-
-        var markerHeight = 50,
-        markerRadius = 10,
-        linearOffset = 25;
-        
-        var popupOffsets = {
-            top: [0, 0],
-            'top-left': [0, 0],
-            'top-right': [0, 0],
-            bottom: [0, -markerHeight],
-            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1,],
-            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1,],
-            left: [markerRadius, (markerHeight - markerRadius) * -1],
-            right: [-markerRadius, (markerHeight - markerRadius) * -1],
-        };
-  
-    new mapboxgl.Popup({ offset: popupOffsets, className: 'map__popup' })
-        .setLngLat([-1.9683, 53.46315])
-        .setHTML(`<h4>${dataMarker}</h4>`)
-        .setMaxWidth('none')
-        .addTo(map);
-    };
-
-    displayMap()
-{% endjavascript %}
 
 {% schema %}
     {
