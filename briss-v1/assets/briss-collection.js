@@ -1,5 +1,6 @@
 // init needed for shopify theme editor as js breaks when changes made
 // iffe needed for js files to create scope to prevent variable clash.
+// TODO: create custom html element and test nav buttons when chnage shopify section settings
 (() => {
   const init = () => {
     const DOMStrings = {
