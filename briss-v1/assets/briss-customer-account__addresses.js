@@ -1,3 +1,4 @@
+// TODO: REFACTOR
 // init needed for shopify theme editor as js breaks when changes made
 // iffe needed for js files to create scope to prevent variable clash.
 (() => {

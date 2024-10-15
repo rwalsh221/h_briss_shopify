@@ -149,6 +149,12 @@ body {
   transform: translateX(-50%);
 }
 
+.custom_element_error {
+  padding: 5px;
+  background-color: black;
+  color: darkorange;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);

@@ -1,33 +1,37 @@
 {{ 'briss-collection.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'briss-collection.js' | asset_url }}" defer="defer"></script>
+{% comment %} <script src="{{ 'briss-collection.js' | asset_url }}" defer></script> {% endcomment %}
+<script src="{{ 'briss-collection-navigation.js'| asset_url }}" defer></script>
 
 {% comment %} TODO: CHECK ERROR IN QURYSELCTOR FOR CART DRAWER WHEN EMPTY {% endcomment %}
 
-<nav class="collection-nav">
-    <div id="collection-nav__btn-container__back" class="collection-nav__btn-container collection-nav__btn-container--back">
-        <button id="cn-btn__back" class="collection-nav__btn">
-            {% if section.settings.cn-btn-back-icon %} 
-                {{ section.settings.cn-btn-back-icon | image_url: width: 30, height: 30| image_tag }}
-            {% else %} 
-                {{ section.settings.cn-btn-back-label }} 
-            {% endif %}
-        </button>
-    </div>
-    <ul id="cn__link-container" class="collection-nav__link-container">
-        {% for collection in collections %}
-            <li>{{- collection.title | link_to: collection.url }}</li>
-        {% endfor %}
-    </ul>
-    <div id="collection-nav__btn-container__fwd" class="collection-nav__btn-container collection-nav__btn-container--fwd">
-        <button id="cn-btn__fwd" class="collection-nav__btn">
-            {% if section.settings.cn-btn-fwd-icon %}
-                {{ section.settings.cn-btn-fwd-icon | image_url: width: 30, height: 30| image_tag }}
-            {% else %}
-                {{ section.settings.cn-btn-fwd-label }}
-            {% endif %}
-        </button>
-    </div>
+<button id="test">helo</button>
+<nav>
+    <collection-navigation>
+        <div id="collection-nav__btn-container__back" class="collection-nav__btn-container collection-nav__btn-container--back">
+            <button id="cn-btn__back" class="collection-nav__btn">
+                {% if section.settings.cn-btn-back-icon %} 
+                    {{ section.settings.cn-btn-back-icon | image_url: width: 30, height: 30| image_tag }}
+                {% else %} 
+                    {{ section.settings.cn-btn-back-label }} 
+                {% endif %}
+            </button>
+        </div>
+        <ul id="cn__link-container" class="collection-nav__link-container">
+            {% for collection in collections %}
+                <li>{{- collection.title | link_to: collection.url }}</li>
+            {% endfor %}
+        </ul>
+        <div id="collection-nav__btn-container__fwd" class="collection-nav__btn-container collection-nav__btn-container--fwd">
+            <button id="cn-btn__fwd" class="collection-nav__btn">
+                {% if section.settings.cn-btn-fwd-icon %}
+                    {{ section.settings.cn-btn-fwd-icon | image_url: width: 30, height: 30| image_tag }}
+                {% else %}
+                    {{ section.settings.cn-btn-fwd-label }}
+                {% endif %}
+            </button>
+        </div>
+    </collection-navigation>
 </nav>
     {% if section.settings.paginate-collection %}
         {% paginate collection.products by section.settings.paginate-collection-amount %}

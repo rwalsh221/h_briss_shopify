@@ -13,7 +13,8 @@
       cssShadowRight: 'collection-nav__btn-shadow--r',
     };
     console.log(DOMStrings);
-
+    console.log(DOMStrings.cnLinkContainer.offsetWidth);
+    console.log(DOMStrings.cnLinkContainer.scrollWidth);
     if (DOMStrings.cnLinkContainer.offsetWidth < DOMStrings.cnLinkContainer.scrollWidth) {
       DOMStrings.cnBtnContainerFwd.classList.add(DOMStrings.cssShadowLeft);
       DOMStrings.cnBtnBack.style.display = 'flex';
