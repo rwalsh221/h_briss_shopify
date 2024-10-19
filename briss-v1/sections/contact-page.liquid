@@ -1,10 +1,12 @@
 {{ 'briss-contact-page.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'briss-contact-page.js' | asset_url }}" defer></script>
+<script src="{{ 'briss-MapContainer.js'|asset_url }}" defer></script>
 
-<div class="map-container tab-fade">
+<map-container>
     <div class="map" id='map' data-lat="{{ section.settings.contact-map-latitude }}" data-lng="{{ section.settings.contact-map-longitude }}" data-marker="{{ section.settings.contact-map-marker }}"></div>
-</div>
+</map-container>
+
 <div class="contact tab-fade">
     <h3 class="contact__heading heading__tertiary">{{ section.settings.contact-address-heading }}</h3>
     <ul class="contact__address">
