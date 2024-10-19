@@ -1,44 +1,47 @@
 {{ 'briss-search.css' | asset_url | stylesheet_tag }}
 
 <script src="{{ 'briss-search.js' | asset_url }}" defer></script>
+<script src="{{ 'briss-SearchContainer.js'|asset_url }}" defer></script>
 
-<form class="search_form" action="{{ routes.search_url }}">
-    <label for="search_input" class="search_label">Search</label>
-    <input id="search_input"
-    class="search_input" 
-    type="text"
-    placeholder="Search"
-    name="q"
-    types="products"
-    value="{{ search.terms | escape }}">
-    <input type="hidden" name="type" value="product" />
-</form>
-<p class="search_results__num"><span id="search-results-count">{{ search.results_count }}</span> results found for "<span id="search-results-term">{{ search.terms }}</span>"</p>
+<search-container>
+    <form class="search_form" action="{{ routes.search_url }}">
+        <label for="search_input" class="search_label">Search</label>
+        <input id="search_input"
+        class="search_input" 
+        type="text"
+        placeholder="Search"
+        name="q"
+        types="products"
+        value="{{ search.terms | escape }}">
+        <input type="hidden" name="type" value="product" />
+    </form>
+    <p class="search_results__num"><span id="search-results-count">{{ search.results_count }}</span> results found for "<span id="search-results-term">{{ search.terms }}</span>"</p>
 
-<div class="search_results">
-    {% if search.results_count > 0 %}
-        <div class="search_results__container">
-        {% for item in search.results %}
-            <div id="srcard--#{{ item.id }}" class="search_results__card">
-                <div class="search_results__card--img">
-                    {{ item.featured_image | image_url: width: 200, height: 200 | image_tag: class: 'srcard--img'  }}
-                </div>
-                    <div class="search_results__card--content">
-                    <div class="search_results__card--title"><p class="srcard--title">{{ item.title }}</p></div>
-                    <div class="search_results__card--price">
-                        <p class="srcard--price">{{ item.price | money}}</p>
+    <div class="search_results">
+        {% if search.results_count > 0 %}
+            <div class="search_results__container">
+            {% for item in search.results %}
+                <div id="srcard--#{{ item.id }}" class="search_results__card">
+                    <div class="search_results__card--img">
+                        {{ item.featured_image | image_url: width: 200, height: 200 | image_tag: class: 'srcard--img'  }}
                     </div>
-                    <div class="search_results__card--more">
-                        <a class="srcard--url" href="{{ item.url }}">More Information</a>
+                        <div class="search_results__card--content">
+                        <div class="search_results__card--title"><p class="srcard--title">{{ item.title }}</p></div>
+                        <div class="search_results__card--price">
+                            <p class="srcard--price">{{ item.price | money}}</p>
+                        </div>
+                        <div class="search_results__card--more">
+                            <a class="srcard--url" href="{{ item.url }}">More Information</a>
+                        </div>
                     </div>
                 </div>
+            {% endfor %}
             </div>
-        {% endfor %}
-        </div>
-    {% else %}
-        <p class="search_results__false">no results found for "{{ search.terms }}" check the spelling or saerch again</p>
-    {% endif %}
-</div>
+        {% else %}
+            <p class="search_results__false">no results found for "{{ search.terms }}" check the spelling or saerch again</p>
+        {% endif %}
+    </div>
+</search-container>
 
 {% schema %}
     {
