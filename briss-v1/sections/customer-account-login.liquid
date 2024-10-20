@@ -1,8 +1,11 @@
+{% comment %} TODO: Add input snippet {% endcomment %}
+
 {{ 'briss-customer-account.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'briss-customer-account__login.js' | asset_url }}" defer></script>
+{% comment %} <script src="{{ 'briss-customer-account__login.js' | asset_url }}" defer></script> {% endcomment %}
+<script src="{{ 'briss-customer-account__LoginContainer.js' | asset_url }}" defer></script>
 
-<div class="customer-container">
+<login-container class="customer-container">
     <div class="customer-form-container">
 <div id="recover" class="customer-form-recover">
     <h2 class="heading__secondary">Reset your password</h2>
@@ -51,5 +54,5 @@
         <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
     </div>
     </div>
-</div>
+</login-container>
 
