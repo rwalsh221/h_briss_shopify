@@ -1,7 +1,7 @@
 {{ 'briss-search.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'briss-search.js' | asset_url }}" defer></script>
-<script src="{{ 'briss-SearchContainer.js'|asset_url }}" defer></script>
+{% comment %} <script src="{{ 'briss-search.js' | asset_url }}" defer></script> {% endcomment %}
+<script src="{{ 'briss-SearchContainer.js'| asset_url }}" defer></script>
 
 <search-container>
     <form class="search_form" action="{{ routes.search_url }}">

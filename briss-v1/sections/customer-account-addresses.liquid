@@ -3,10 +3,11 @@
 
 {{ 'briss-customer-account.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'briss-customer-account__addresses.js' | asset_url }}" defer></script>
+{% comment %} <script src="{{ 'briss-customer-account__addresses.js' | asset_url }}" defer></script> {% endcomment %}
+<script src="{{ 'briss-customer-account__AddressesContainer.js' | asset_url }}" defer></script>
 
 
-<div class="customer-container">
+<addresses-container>
    
     <div class="customer-form-container"> 
     <h2 class="heading__secondary customer-heading__primary">Your Saved Addresses</h2>
@@ -231,13 +232,7 @@
     <p>no addresss saved</p>
 {% endif %}
 </div>
-</div>
+</addresses-container>
 
-
-   {% comment %} <div class="customer-address-form-input-container">
-                <input type="text" name="address[password]" placeholder="">
-                <label class="customer-address-form-label" for=""></label>
-            </div>
- {% endcomment %}
 
  
