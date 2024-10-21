@@ -1,8 +1,9 @@
 {{ 'briss-customer-navigation.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'briss-customer-navigation.js' | asset_url }}" defer></script>
+{% comment %} <script src="{{ 'briss-customer-navigation.js' | asset_url }}" defer></script> {% endcomment %}
+<script src="{{ 'briss-CustomerNavigationContainer.js' | asset_url }}" defer></script>
 
-<nav aria-label="customer navigation" class="customer-navigation">
+<customer-navigation-container>
     <ul role="list">
         {% for block in section.blocks %}
               <li id="{{block.settings.element_id}}">
@@ -15,7 +16,7 @@
             </li>
         {% endfor %}
     </ul>
-</nav>
+</customer-navigation-container>
 
 {% schema %}
 {

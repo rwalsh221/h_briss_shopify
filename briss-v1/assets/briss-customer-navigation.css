@@ -1,4 +1,5 @@
 .customer-navigation {
+  display: block;
   background-color: var(--primary-color-white-500);
   border-bottom: var(--border-red-5px);
   width: 100%;
