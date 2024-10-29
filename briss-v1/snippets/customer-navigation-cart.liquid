@@ -1,19 +1,24 @@
-    <h3 class="heading__tertiary cart-heading">Your Cart</h3>
-    {% comment %} <p>{{ cart.item_count }}</p> {% endcomment %}
-    <div class="cart-card-container">
-        {% for item in cart.items %}
-            {% render 'c-n-cart-prod-card' 
-                product_title: item.title 
-                product_price: item.variant.price
-                product_tprice: item.final_line_price 
-                product_id: item.id
-                product_cart_quantity: item.quantity
-            %}
-        {% endfor %}
-    </div>
-    <div class="cart-card-total">
-        <p id="customer-navigation-cart-total" class="customer-navigation-cart-total">Total:&nbsp;{{ cart.total_price | money }}</p>
-        <a class="customer-navigation-cart-checkout" href="/cart">Checkout your Cart</a>
-    </div>
+    <script src="{{ 'briss-CustomerNavigationCart.js' | asset_url }}" defer></script>
     
+    <customer-navigation-cart style="display: block">
+        <div>
+        <h3 class="heading__tertiary cart-heading">Your Cart</h3>
+        {% comment %} <p>{{ cart.item_count }}</p> {% endcomment %}
+        <div class="cart-card-container">
+            {% for item in cart.items %}
+                {% render 'c-n-cart-prod-card' 
+                    product_title: item.title 
+                    product_price: item.variant.price
+                    product_tprice: item.final_line_price 
+                    product_id: item.id
+                    product_cart_quantity: item.quantity
+                %}
+            {% endfor %}
+        </div>
+        <div class="cart-card-total">
+            <p id="customer-navigation-cart-total" class="customer-navigation-cart-total">Total:&nbsp;{{ cart.total_price | money }}</p>
+            <a class="customer-navigation-cart-checkout" href="/cart">Checkout your Cart</a>
+        </div>
+    </div>
+    </customer-navigation-cart>
 
