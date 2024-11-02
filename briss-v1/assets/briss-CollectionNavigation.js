@@ -13,7 +13,6 @@ class CollectionNavigation extends HTMLElement {
     };
 
     this.cssClass = {
-      cssCollectionNav: 'collection-nav',
       cssShadowLeft: 'collection-nav__btn-shadow--l',
       cssShadowRight: 'collection-nav__btn-shadow--r',
     };
@@ -89,8 +88,6 @@ class CollectionNavigation extends HTMLElement {
   }
 
   connectedCallback() {
-    this.setAttribute('class', this.cssClass.cssCollectionNav);
-
     this.checkAllRequiredChildNodes();
 
     if (this.hasAllRequiredChildNodes) {
