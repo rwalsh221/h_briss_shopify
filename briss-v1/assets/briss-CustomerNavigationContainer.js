@@ -10,6 +10,7 @@ class CustomerNavigationContainer extends HTMLElement {
       customerNavigationCart: document.getElementById('customer-navigation__cart'),
     };
   }
+
   closeCustomerNavigationModal(event, parentId, signal) {
     if (event.target.id === parentId.id || parentId.contains(event.target)) {
       return;

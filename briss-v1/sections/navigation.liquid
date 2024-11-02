@@ -1,6 +1,7 @@
 {{ 'briss-navigation.css' | asset_url | stylesheet_tag }}
 
-<script src="{{ 'briss-navigation.js' | asset_url }}" defer></script>
+{% comment %} <script src="{{ 'briss-navigation.js' | asset_url }}" defer></script> {% endcomment %}
+<script src="{{ 'briss-NavigationContainer.js' | asset_url }}" defer></script>
 
   {% comment %} NAV BAR {% endcomment %}
   <nav aria-label="primary navigation" class="nav-bar nav_grid_area">
@@ -15,6 +16,7 @@
     <div class="dash-short"></div>
   </nav>
   {% comment %} NAV DRAWER {% endcomment %}
+  <navigation-container>
   <div class="nav-drawer-container">
     <div id="nav-drawer-container__show" class="nav-drawer-container__show">
       <button id="nav-bar-btn-show" class="nav-bar__btn--show ">
@@ -44,6 +46,7 @@
       </ul>
     </nav>
   </div>
+  </navigation-container>
 
 {% schema %}
     {
