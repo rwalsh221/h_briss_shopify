@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "customer-navigation": {
@@ -29,46 +38,69 @@
           }
         }
       },
-      "block_order": ["cn-search", "cn-customer", "cn-cart"]
+      "block_order": [
+        "cn-search",
+        "cn-customer",
+        "cn-cart"
+      ],
+      "settings": {}
     },
     "navigation": {
-      "type": "navigation"
+      "type": "navigation",
+      "settings": {}
     },
     "customer-account-addresses": {
-      "type": "customer-account-addresses"
+      "type": "customer-account-addresses",
+      "settings": {}
     },
     "browse-all": {
       "type": "browse-all",
       "blocks": {
         "browse-all-heading": {
-          "type": "browse-all-heading"
+          "type": "browse-all-heading",
+          "settings": {}
         },
         "browse-all-link-text": {
-          "type": "browse-all-link-text"
+          "type": "browse-all-link-text",
+          "settings": {}
         }
       },
-      "block_order": ["browse-all-heading", "browse-all-link-text"]
+      "block_order": [
+        "browse-all-heading",
+        "browse-all-link-text"
+      ],
+      "settings": {}
     },
     "product-featured": {
       "type": "product-featured",
       "blocks": {
         "product-featured-layout": {
-          "type": "product-featured-layout"
+          "type": "product-featured-layout",
+          "settings": {}
         }
       },
-      "block_order": ["product-featured-layout"]
+      "block_order": [
+        "product-featured-layout"
+      ],
+      "settings": {}
     },
     "subscribe": {
       "type": "subscribe",
       "blocks": {
         "subscribe-heading": {
-          "type": "subscribe-heading"
+          "type": "subscribe-heading",
+          "settings": {}
         },
         "subscribe-form": {
-          "type": "subscribe-form"
+          "type": "subscribe-form",
+          "settings": {}
         }
       },
-      "block_order": ["subscribe-heading", "subscribe-form"]
+      "block_order": [
+        "subscribe-heading",
+        "subscribe-form"
+      ],
+      "settings": {}
     }
   },
   "order": [

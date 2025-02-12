@@ -8,13 +8,8 @@
  * ------------------------------------------------------------
  */
 {
-  "sections": {
-    "customer-account-reset": {
-      "type": "customer-account-reset",
-      "settings": {}
-    }
-  },
-  "order": [
-    "customer-account-reset"
-  ]
+  "current": {
+    "header-font": "times_new_roman_n4",
+    "content_for_index": []
+  }
 }

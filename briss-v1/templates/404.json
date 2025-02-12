@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "customer-navigation": {
@@ -29,14 +38,25 @@
           }
         }
       },
-      "block_order": ["cn-search", "cn-customer", "cn-cart"]
+      "block_order": [
+        "cn-search",
+        "cn-customer",
+        "cn-cart"
+      ],
+      "settings": {}
     },
     "navigation": {
-      "type": "navigation"
+      "type": "navigation",
+      "settings": {}
     },
     "404": {
-      "type": "404-not-found"
+      "type": "404-not-found",
+      "settings": {}
     }
   },
-  "order": ["customer-navigation", "navigation", "404"]
+  "order": [
+    "customer-navigation",
+    "navigation",
+    "404"
+  ]
 }

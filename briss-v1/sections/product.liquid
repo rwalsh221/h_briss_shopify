@@ -1,4 +1,7 @@
 {{ 'briss-product.css' | asset_url | stylesheet_tag }}
+
+<script src="{{'briss-ProductContainer.js' | asset_url}}" defer></script>
+
 {% assign variant_quantity_array = null | sort %}
 {% for variant in product.variants %}
   {% assign variant_quantity = variant.inventory_quantity | sort %}
@@ -8,6 +11,7 @@
   {% assign variant_quantity_array = variant_quantity_array | concat: variant_quantity %}
 {% endfor %}
 
+<product-container id="product-container" data-variant-quantity='{{ variant_quantity_array | json }}' data-product='{{ product | json}}'>
 <div class="product">
   <div class="product-img">
     {{ product.featured_image | image_url: width: 800, height: 800 | image_tag  }}
@@ -92,15 +96,21 @@
       {% endform %}
     </div>
   </div>
-</div>
+</div></product-container>
 
-<script>
+{% comment %} <script> {% endcomment %}
+  {% comment %} shopify loads first product layout. add json as properrty of custom element. set selected variant as a attribute and wathc for change {% endcomment %}
   {% comment %} REFACTOR CREATE CUSTOM ELEMENT {% endcomment %}
 
   {% comment %} GET JSON FROM LIQUID VARIABLEs {% endcomment %}
-  const variantQuantitys = {{ variant_quantity_array | json }}
+  {% comment %} const variantQuantitys = {{ variant_quantity_array | json }}
   const product = {{ product | json }}
-
+const productContainer =document.getElementById('product-container')
+console.log(product)
+productContainer.productData = product
+productContainer.variantQuantitys = variantQuantitys
+productContainer.test = 'hello'
+console.dir(productContainer)
   const updateSubtotal = (quantity) => {
     const variantPrice = document.getElementById("add-to-cart").dataset.price;
 
@@ -132,6 +142,7 @@
   };
 
   const decreaseQuantity = (event) => {
+    console.log('hghghghg')
     event.preventDefault()
     
     const quantityInput = document.getElementById('quantity');
@@ -273,6 +284,11 @@ document
 
   {% comment %} INIT {% endcomment %}
   setVariantUnavailable()
+</script> {% endcomment %}
+
+<script>
+  console.log('this is the liquid')
+  {% comment %} console.log(productContainer) {% endcomment %}
 </script>
 
 {% schema %}
