@@ -18,7 +18,7 @@ class ProductContainer extends HTMLElement {
     this.productVariantQuantity = JSON.parse(this.dataset.variantQuantity);
     console.log(this.productVariantQuantity);
     this.productData = JSON.parse(this.dataset.product);
-    console.log(this.product);
+    console.log(this.productData);
   }
 
   test() {
@@ -75,7 +75,7 @@ class ProductContainer extends HTMLElement {
     });
 
     const selectedRadio = document.querySelectorAll('.product-option input[type="radio"]:checked');
-
+    console.log('this', selectedRadio);
     const unavailableVariants = [];
 
     this.productData.variants.forEach((el) => {
