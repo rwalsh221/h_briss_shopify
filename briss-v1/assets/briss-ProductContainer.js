@@ -12,8 +12,10 @@ class ProductContainer extends HTMLElement {
       quantityDecrease: document.getElementById('quantity-decrease'),
       priceContainer: document.getElementById('price-container'),
       productId: document.getElementById('product-id'),
+      productOption: document.getElementById('product-option'),
     };
 
+    console.log(this.domElements);
     console.log(this.dataset);
     this.productVariantQuantity = JSON.parse(this.dataset.variantQuantity);
     console.log(this.productVariantQuantity);
@@ -77,6 +79,13 @@ class ProductContainer extends HTMLElement {
     const selectedRadio = document.querySelectorAll('.product-option input[type="radio"]:checked');
     console.log('this', selectedRadio);
     const unavailableVariants = [];
+    console.log(selectedRadio[0].value);
+    console.log(this.productData.variants);
+    console.log('una', unavailableVariants);
+
+    this.productData.options.forEach((option) => {
+      console.log(option);
+    });
 
     this.productData.variants.forEach((el) => {
       if (el.option1 === selectedRadio[0].value && el.available === false) {

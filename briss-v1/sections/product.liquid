@@ -38,7 +38,7 @@
         <input id="product-id" type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
         {% if product.variants.size > 1 %}
-          <div class="product-option">
+          <div class="product-option" id="product-option">
             {% for option in product.options_with_values %}
               <fieldset id="{{ product.options_with_values }}">
                 <legend>{{ option.name }}</legend>
