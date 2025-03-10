@@ -14,8 +14,9 @@
                     {{ form.errors | default_errors }}
                 {% endif %}
 
-                {% render 'customer_form_input', input_type: 'email', input_name: 'email' 
-                    input_placeholder: 'Email', label_for: 'email', label_content: 'Email' 
+                {% render 'customer-form-input', input_type: 'email', input_name: 'email', 
+                    input_placeholder: 'Email', label_for: 'email', label_content: 'Email',
+                    input_container_width: '60%'
                 %}
 
                 <div class="submit">
@@ -35,12 +36,14 @@
                     {{ form.errors | default_errors }}
                 {% endif %}
 
-                {% render 'customer_form_input', input_type: 'email', input_name="customer[email]", 
-                    input_placeholder: 'Email', label_for: 'email', label_content: 'Email'
+                {% render 'customer-form-input', input_type: 'email', input_name="customer[email]", 
+                    input_placeholder: 'Email', label_for: 'email', label_content: 'Email',
+                    input_container_width: '60%'
                 %}
 
-                {% render 'customer_form_input', input_type: 'password', input_name: 'customer[password]',
-                    input_placeholder: 'Password', label_for: 'password', label_content: 'Password'
+                {% render 'customer-form-input', input_type: 'password', input_name: 'customer[password]',
+                    input_placeholder: 'Password', label_for: 'password', label_content: 'Password',
+                    input_container_width: '60%'
                 %}
 
                 <div class="submit">

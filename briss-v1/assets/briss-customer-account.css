@@ -68,26 +68,6 @@
   text-align: center;
 }
 
-::-webkit-input-placeholder {
-  /* WebKit browsers */
-  color: transparent;
-}
-:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  color: transparent;
-}
-::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  color: transparent;
-}
-:-ms-input-placeholder {
-  /* Internet Explorer 10+ */
-  color: transparent;
-}
-input::placeholder {
-  color: transparent;
-}
-
 /* CUSTOMER DASHBOARD STYLES */
 .customer-dashboard {
   width: 80%;

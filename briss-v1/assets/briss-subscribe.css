@@ -88,22 +88,23 @@
   right: 2%;
 }
 
-::-webkit-input-placeholder {
+/* HIDES INPUT PLACEHOLDER */
+.subscribe ::-webkit-input-placeholder {
   /* WebKit browsers */
   color: transparent;
 }
-:-moz-placeholder {
+.subscribe :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: transparent;
 }
-::-moz-placeholder {
+.subscribe ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: transparent;
 }
-:-ms-input-placeholder {
+.subscribe :-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: transparent;
 }
-input::placeholder {
+.subscribe input::placeholder {
   color: transparent;
 }
