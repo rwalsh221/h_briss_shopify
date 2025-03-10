@@ -1,58 +1,55 @@
-{% comment %} TODO: Add input snippet {% endcomment %}
-
 {{ 'briss-customer-account.css' | asset_url | stylesheet_tag }}
 
-{% comment %} <script src="{{ 'briss-customer-account__login.js' | asset_url }}" defer></script> {% endcomment %}
 <script src="{{ 'briss-customer-account__LoginContainer.js' | asset_url }}" defer></script>
 
 <login-container class="customer-container">
     <div class="customer-form-container">
-<div id="recover" class="customer-form-recover">
-    <h2 class="heading__secondary">Reset your password</h2>
-        {% form 'recover_customer_password' %}
-  {% if form.errors %}
-                <h3 class="heading__tertiary error-heading">Attention</h3>
-                {{ form.errors | default_errors }}
-            {% endif %}
+        {% comment %} CONTENT FOR RECOVER PASSWORD DEFAULT DISPLAY NONE {% endcomment %}
+        <div id="recover" class="customer-form-recover">
+            <h2 class="heading__secondary">Reset your password</h2>
+            {% form 'recover_customer_password' %}
+                
+                {% if form.errors %}
+                    <h3 class="heading__tertiary error-heading">Attention</h3>
+                    {{ form.errors | default_errors }}
+                {% endif %}
 
-  <div class="email customer-form-input-container">
-    <input type="email" name="email" placeholder="Email">
-    <label class="customer-form-label" for="email">Email</label>
-  </div>
+                {% render 'customer_form_input', input_type: 'email', input_name: 'email' 
+                    input_placeholder: 'Email', label_for: 'email', label_content: 'Email' 
+                %}
 
-  <div class="submit">
-    <input  class="customer-btn" type="submit" value="Submit">
-  </div>
-{% endform %}
-<a href="#login" class="customer-form-container__create">Cancel</a>
-        <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
-</div>
-    <div id="login" class="customer-form-login">
-        <h2 class="heading__secondary">Login</h2>
-        {% form 'customer_login' %}
-            
-            {% if form.errors %}
-                <h3 class="heading__tertiary error-heading">Attention</h3>
-                {{ form.errors | default_errors }}
-            {% endif %}
+                <div class="submit">
+                    <input  class="customer-btn" type="submit" value="Submit">
+                </div>
+            {% endform %}
+            <a href="#login" class="customer-form-container__create">Cancel</a>
+            <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
+        </div>
+        {% comment %} CONTENT FOR LOGIN FORM DEFAULT DISPLAY BLOCK {% endcomment %}
+        <div id="login" class="customer-form-login">
+            <h2 class="heading__secondary">Login</h2>
+            {% form 'customer_login' %}
+                
+                {% if form.errors %}
+                    <h3 class="heading__tertiary error-heading">Attention</h3>
+                    {{ form.errors | default_errors }}
+                {% endif %}
 
-            <div class="email customer-form-input-container">
-                <input  type="email" name="customer[email]" placeholder="Email">
-                <label class="customer-form-label" for="email">Email</label>
-            </div>
+                {% render 'customer_form_input', input_type: 'email', input_name="customer[email]", 
+                    input_placeholder: 'Email', label_for: 'email', label_content: 'Email'
+                %}
 
-            <div class="password customer-form-input-container">
-                <input type="password" name="customer[password]" placeholder="Password">
-                <label class="customer-form-label" for="password">Password</label>
-            </div>
+                {% render 'customer_form_input', input_type: 'password', input_name: 'customer[password]',
+                    input_placeholder: 'Password', label_for: 'password', label_content: 'Password'
+                %}
 
-            <div class="submit">
-                <input class="customer-btn" type="submit" value="login">
-            </div>
-        {% endform %}
-        <a href="#recover" class="customer-form-container__create">Forgot your password?</a>
-        <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
-    </div>
+                <div class="submit">
+                    <input class="customer-btn" type="submit" value="login">
+                </div>
+            {% endform %}
+            <a href="#recover" class="customer-form-container__create">Forgot your password?</a>
+            <a href="{{ routes.account_register_url }}" class="customer-form-container__create" >Create an account</a>
+        </div>
     </div>
 </login-container>
 

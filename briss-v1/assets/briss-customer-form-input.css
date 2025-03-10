@@ -1,0 +1,31 @@
+.customer-form-input-container input {
+  display: block;
+  margin: 0 auto;
+  width: 60%;
+  height: 4rem;
+  color: var(--primary-color-red-500);
+  margin-bottom: var(--margin-100);
+  padding: var(--padding-100);
+  font-size: 16px;
+}
+
+.customer-form-input-container {
+  position: relative;
+}
+
+.customer-form-label {
+  display: block;
+  color: var(--primary-color-red-500);
+  font-size: 18px;
+  position: absolute;
+  top: 21px;
+  left: 22%;
+  pointer-events: none;
+  transition: all 0.1s;
+}
+
+.customer-container input:focus + .customer-form-label,
+.customer-container input:not(:placeholder-shown) + .customer-form-label {
+  font-size: 14px;
+  top: 5px;
+}

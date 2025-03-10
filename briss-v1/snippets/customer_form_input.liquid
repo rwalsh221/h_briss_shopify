@@ -1,0 +1,6 @@
+{{ 'briss-customer-form-input.css' | asset_url | stylesheet_tag }}
+
+<div class="customer-form-input-container">
+    <input type="{{ input_type }}" name="{{ input_name }}" placeholder="{{ input_placeholder }}">
+    <label class="customer-form-label" for="{{ label_for }}">{{ label_content }}</label>
+</div>
