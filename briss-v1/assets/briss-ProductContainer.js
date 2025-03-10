@@ -83,10 +83,6 @@ class ProductContainer extends HTMLElement {
     console.log(this.productData.variants);
     console.log('una', unavailableVariants);
 
-    this.productData.options.forEach((option) => {
-      console.log(option);
-    });
-
     this.productData.variants.forEach((el) => {
       if (el.option1 === selectedRadio[0].value && el.available === false) {
         unavailableVariants.push(el);
@@ -189,17 +185,61 @@ class ProductContainer extends HTMLElement {
     this.disableAddToCart(matchedVariant.available);
   }
 
+  // CREATE FORM CONTENT
+
+  initProductOptions() {
+    this.productData.options.forEach((option) => {
+      console.log(option);
+      const fieldset = document.createElement('fieldset');
+      const legend = document.createElement('legend');
+      legend.innerHTML = option;
+      const unorderedList = document.createElement('ul');
+      unorderedList.className = 'option-container';
+      unorderedList.appendChild(this.createVariantRadio('test', 'hello'));
+      fieldset.appendChild(legend);
+      fieldset.appendChild(unorderedList);
+      console.log(fieldset);
+      console.log(typeof this.domElements.productOption);
+
+      this.domElements.productOption.appendChild(fieldset);
+    });
+  }
+
+  createVariantRadio(name, value) {
+    // create listitem
+    const listItem = document.createElement('li');
+    listItem.className = 'radio-container';
+    listItem.id = `radio-container-${value}`;
+
+    // create input
+    const input = document.createElement('input');
+    input.className = 'product_select_input';
+    input.type = 'radio';
+    input.name = name;
+    input.value = value;
+    input.id = `${name}-${value}`;
+
+    // create label
+    const label = document.createElement('label');
+    label.className = 'product_select_label';
+    label.for = `${name}-${value}`;
+    label.innerHTML = value;
+
+    listItem.appendChild(input);
+    listItem.appendChild(label);
+    return listItem;
+  }
+
   connectedCallback() {
     console.log('this.connectedCallback');
     console.log(this.domElements);
     console.log(this.productData);
-
+    this.initProductOptions();
     // if (this.productData == null || this.variantQuantitys === null) {
     //   console.log('retunr');
     //   return;
     // }
 
-    console.log('hello');
     document.querySelectorAll('.product-option input[type="radio"]').forEach((radio) =>
       radio.addEventListener('change', async () => {
         this.onVariantChange();

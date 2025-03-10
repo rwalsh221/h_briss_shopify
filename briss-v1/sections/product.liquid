@@ -40,7 +40,7 @@
         {% if product.variants.size > 1 %}
           <div class="product-option" id="product-option">
             {% for option in product.options_with_values %}
-              <fieldset id="{{ product.options_with_values }}">
+              <fieldset>
                 <legend>{{ option.name }}</legend>
                 <ul class="option-container">
                   {% for value in option.values %}
