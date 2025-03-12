@@ -3,62 +3,34 @@
 <div class="customer-container">
     <div class="customer-form-container">
         <h2 class="heading__secondary">Create Account</h2>
-        {% form 'create_customer' %}
-        {% if form.errors %}
-                <h3 class="heading__tertiary error-heading">Attention</h3>
-                {{ form.errors | default_errors }}
-        {% endif %}
+        <div class="customer-create-form-container">
+            {% form 'create_customer' %}
+            {% if form.errors %}
+                    <h3 class="heading__tertiary error-heading">Attention</h3>
+                    {{ form.errors | default_errors }}
+            {% endif %}
 
-        {% render 'customer-form-input', input_type: 'text', input_name: 'customer[first_name]', 
-            input_placeholder: 'first name', label_for: 'first-name',  label_content: 'First Name',
-            input_container_width: '60%'
-        %}
+            {% render 'customer-form-input', input_type: 'text', input_name: 'customer[first_name]', 
+                input_placeholder: 'first name', label_for: 'first-name',  label_content: 'First Name',
+            %}
 
-        {% render 'customer-form-input', input_type: 'text', input_name: 'customer[last_name]',
-            input_placeholder: 'last name', label_for: 'last-name', label_content: 'Last Name',
-            input_container_width: '60%'
-        %}
+            {% render 'customer-form-input', input_type: 'text', input_name: 'customer[last_name]',
+                input_placeholder: 'last name', label_for: 'last-name', label_content: 'Last Name',
+            %}
 
-        {% render 'customer-form-input', input_type: 'email', input_name: 'customer[email]',
-            input_placeholder: 'email', label_for: 'email', label_content: 'Email',
-            input_container_width: '60%'
-        %}
+            {% render 'customer-form-input', input_type: 'email', input_name: 'customer[email]',
+                input_placeholder: 'email', label_for: 'email', label_content: 'Email',
+            %}
 
-        {% render 'customer-form-input', input_type: 'password', input_name: 'customer[password]',
-            input_placeholder: 'password', label_for: 'password', label_content: 'Password',
-            input_container_width: '60%'
-        %}
+            {% render 'customer-form-input', input_type: 'password', input_name: 'customer[password]',
+                input_placeholder: 'password', label_for: 'password', label_content: 'Password',  
+            %}
 
-        {% comment %} <div class="first-name customer-form-input-container">
-            <input type="text" name="customer[first_name]" placeholder="first name">
-            <label class="customer-form-label" for="first-name">First name</label>
-        </div> {% endcomment %}
-
-        {% comment %} <div class="first-name customer-form-input-container">
-            <input type="text" name="customer[first_name]" placeholder="first name">
-            <label class="customer-form-label" for="first-name">First name</label>
-        </div> {% endcomment %}
-        
-        {% comment %} 
-        <div class="last-name customer-form-input-container">
-            <input type="text" name="customer[last_name]" placeholder="Last name">
-            <label class="customer-form-label" for="last-name">Last name</label>
-        </div> {% endcomment %}
-{% comment %} 
-        <div class="email customer-form-input-container">
-            <input type="email" name="customer[email]" placeholder="email">
-            <label class="customer-form-label" for="email">Email</label>
-        </div>
-
-        <div class="password customer-form-input-container">
-            <input type="password" name="customer[password]" placeholder="password" autocomplete="new-password">
-            <label class="customer-form-label" for="password">Password</label>
-        </div> {% endcomment %}
-
-        <div class="submit">
-            <input class="customer-btn" type="submit" value="Create">
-        </div>
+            <div class="submit">
+                <input class="customer-btn" type="submit" value="Create">
+            </div>
         {% endform %}
+        </div>
         <a href="{{ routes.account_login_url }}" class="customer-form-container__create">sign in here</a>
     </div>
 </div>

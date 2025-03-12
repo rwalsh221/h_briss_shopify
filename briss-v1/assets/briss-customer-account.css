@@ -156,6 +156,41 @@
   display: none;
 }
 
+/* CUSTOMER FORM STYLES */
+
+.customer-address-form-select-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--margin-100);
+  color: var(--primary-color-red-500);
+}
+
+.customer-address-form-select-container label {
+  width: max-content;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.customer-address-form-select-container select {
+  height: 4rem;
+  font-size: 16px;
+}
+
+.customer-address-form-select-container select option {
+  color: hotpink;
+}
+
+.customer-recover-form-container,
+.customer-login-form-container,
+.customer-create-form-container {
+  margin: 0 auto;
+  width: 60%;
+}
+
+/* .test {
+  width: 80%;
+} */
+
 @media only screen and (max-width: 970px) {
   .customer-form-container {
     width: 80%;

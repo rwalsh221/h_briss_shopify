@@ -1,6 +1,18 @@
 {{ 'briss-customer-form-input.css' | asset_url | stylesheet_tag }}
 
-<div class="customer-form-input-container" style="width: {{ input_container_width }}">
-    <input type="{{ input_type }}" name="{{ input_name }}" placeholder="{{ input_placeholder }}">
-    <label class="customer-form-label" for="{{ label_for }}">{{ label_content }}</label>
+ {% if container_class_list %}
+    {% assign class_list =  "customer-form-input-container" | append: ' ' | append: container_class_list %}
+{% else %}
+    {% assign class_list = "customer-form-input-container" %}
+{% endif %}
+
+<div class="{{ class_list }}">
+    <input 
+        {% if input_required %} required {% endif %} 
+        value="{{ input_value }}" 
+        type="{{ input_type }}" 
+        name="{{ input_name }}" 
+        placeholder="{{ input_placeholder }}"
+    >
+    <label class="customer-form-label" for="{{ label_for }}" value='{{ label_value }}'>{{ label_content }}</label>
 </div>

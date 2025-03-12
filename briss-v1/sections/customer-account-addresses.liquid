@@ -6,232 +6,219 @@
 {% comment %} <script src="{{ 'briss-customer-account__addresses.js' | asset_url }}" defer></script> {% endcomment %}
 <script src="{{ 'briss-customer-account__AddressesContainer.js' | asset_url }}" defer></script>
 
-
 <addresses-container>
-   
     <div class="customer-form-container"> 
-    <h2 class="heading__secondary customer-heading__primary">Your Saved Addresses</h2>
-    <a class="customer-container__link customer-container__link--address" href="{{ routes.account_url }}">return to your account</a>
-    
-    <div class="customer-addresses-container">
-    <div class="customer-address-form" id="address-add-new">
-    {% comment %} button will show form {% endcomment %}
-    {% form 'customer_address', customer.new_address %}
-            {% comment %} CUSTOMER NAME {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required for="address-first-name" type="text" name="address[first_name]" placeholder="first name">
-                <label class="customer-address-form-label" for="address-first-name">first name</label>
-            </div>
+        <h2 class="heading__secondary customer-heading__primary">Your Saved Addresses</h2>
+        <a class="customer-container__link customer-container__link--address" href="{{ routes.account_url }}">return to your account</a>
+        {% comment %} ADD ADDRESS FORM {% endcomment %}
+        <div class="customer-addresses-container">
+            <div class="customer-address-form" id="address-add-new">
+                {% form 'customer_address', customer.new_address %}
+                    {% comment %} CUSTOMER NAME {% endcomment %}
+                    {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[first_name]', 
+                        input_placeholder: 'first name', label_for: 'address-first-name', label_content: 'first name'  
+                    %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="address-last-name" type="text" name="address[last_name]" placeholder="last name">
-                <label class="customer-address-form-label" for="address-last-name">last name</label>
-            </div>
-            {% comment %} CUSTOMER COMPANY {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required id="address-company" type="text" name="address[company]" placeholder="company">
-                <label class="customer-address-form-label" for="address-company">company</label>
-            </div>
-            {% comment %} CUSTOMER ADDRESS {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-1" type="text" name="address[address1]" placeholder="address 1">
-                <label class="customer-address-form-label" for="customer-address-1">address 1</label>
-            </div>
+                    {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[last_name]', 
+                        input_placeholder: 'last name', label_for: 'address-last-name', label_content: 'last name'
+                    %}
+                    {% comment %} CUSTOMER COMPANY {% endcomment %}
+                    {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[company]',
+                        input_placeholder: 'company', label_for: 'address-company': label_content: 'company'
+                    %}
+                    {% comment %} CUSTOMER ADDRESS {% endcomment %}
+                    {% render 'customer-form-input' input_required: true, input_type: 'text' input_name: 'address[address1]'
+                        input_placeholder: 'address 1', label_for: 'customer-address-1', label_content: 'address 1'
+                    %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-2" type="text" name="address[address2]" placeholder="address 2">
-                <label class="customer-address-form-label" for="customer-address-2">address 2</label>
-            </div>
+                    {% render 'customer-form-input' input_required: true, input_type: 'text', input_name: 'address[address2]'
+                        input_placeholder: 'address 2', label_for: 'customer-address-2' label_content: 'address 2'
+                    %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-city" type="text" name="address[city]" placeholder="city">
-                <label class="customer-address-form-label" for="customer-address-city">city</label>
-            </div>
+                    {% render 'customer-form-input' input_required: true, input type: 'text', input_name: 'address[city]'
+                        input_placeholder: 'city', label_for: 'customer-address-city', label_content: 'city'
+                    %}
 
-            <div class="customer-address-form-input-container">
-                <label class="customer-address-form-label__select" for="customer-address-country">country</label>
-                <select required id="customer-address-country" name="address[country]" placeholder="country">
-                    {{ country_option_tags }}
-                </select>
-                
-            </div>
+                    <div class="customer-address-form-select-container">
+                        <label class="customer-address-form-label__select" for="customer-address-country">country</label>
+                        <select required id="customer-address-country" name="address[country]" placeholder="country">
+                            {{ country_option_tags }}
+                        </select>
+                    </div>
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-zip" type="text" name="address[zip]" placeholder="postal/zip code">
-                <label class="customer-address-form-label" for="customer-address-zip">postal/zip code</label>
-            </div>
+                    {% render 'customer-form-input' input_required: true, input_type: 'text', input_name: 'address[zip]',
+                        input_placeholder: 'postal/zip code', label_for: 'customer-address-zip', label_content: 'postal/zip code'
+                    %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-phone" type="number" name="address[phone]" placeholder="phone">
-                <label class="customer-address-form-label" for="customer-address-phone">phone</label>
-            </div>
+                    {% render 'customer-form-input' input_required: true, input_type: 'number', input_name: 'address[phone]',
+                        input_placeholder: 'postal/zip code', label_for: 'customer-address-phone', label_content: 'phone'
+                    %}
 
-             <div class="customer-address-form-label__default">
-                {{ form.set_as_default_checkbox }}
-                <label for="address_default_address_new">set as default address</label>
-            </div>
+                    <div class="customer-address-form-label__default">
+                        {{ form.set_as_default_checkbox }}
+                        <label for="address_default_address_new">set as default address</label>
+                    </div>
 
-            <div class="submit address-form--btns">
-                <input class="customer-btn customer-address-btn" type="submit" value="Add Address">
+                    <div class="submit address-form--btns">
+                        <input class="customer-btn customer-address-btn" type="submit" value="Add Address">
+                    </div>
+                {% endform %} 
             </div>
-            
-{% endform %} 
-</div>
-<button class="show-form-btn customer-btn customer-address-btn" data-formbtn="address-add-new" data-btnlabel="add new address">Add new address</button>
-</div>
-{% comment %} list out addresses {% endcomment %}
-{% if customer.addresses_count > 0 %}
-    {% for address in customer.addresses %}
-        {% if address.id == customer.default_address.id %}
-            <div class="customer-addresses-container">
-            <div class="customer-address customer-default-address">
-                <h3>default</h3>
-            {{ address | format_address }}
+            {% comment %} BUTTON WILL SHOW ADD ADDRESS FORM AND CHANGE TO CANCEL WHEN CLICKED{% endcomment %}
+            <button class="show-form-btn customer-btn customer-address-btn" data-formbtn="address-add-new" data-btnlabel="add new address">Add new address</button>
         </div>
-        
-        <div id="address-update-{{ forloop.index0 }}" class="customer-address-form">
-        {% form 'customer_address', address %}
-            {% comment %} CUSTOMER NAME {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required for="address-first-name" type="text" name="address[first_name]" placeholder="first name" value="{{ address.first_name }}">
-                <label class="customer-address-form-label" for="address-first-name">first name</label>
-            </div>
+        {% comment %} END OF ADD NEW ADDRESS FORM {% endcomment %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="address-last-name" type="text" name="address[last_name]" placeholder="last name" value="{{ address.first_name }}">
-                <label class="customer-address-form-label" for="address-last-name">last name</label>
-            </div>
-            {% comment %} CUSTOMER COMPANY {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required id="address-company" type="text" name="address[company]" placeholder="company" value="{{ address.last_name }}">
-                <label class="customer-address-form-label" for="address-company">company</label>
-            </div>
-            {% comment %} CUSTOMER ADDRESS {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-1" type="text" name="address[address1]" placeholder="address 1" value="{{ address.address1 }}">
-                <label class="customer-address-form-label" for="customer-address-1">address 1</label>
-            </div>
+        {% comment %} list out addresses {% endcomment %}
+        {% if customer.addresses_count > 0 %}
+            {% for address in customer.addresses %}
+                {% if address.id == customer.default_address.id %}
+                    <div class="customer-addresses-container">
+                        <div class="customer-address customer-default-address">
+                            <h3>default</h3>
+                            {{ address | format_address }}
+                        </div>
+                        <div id="address-update-{{ forloop.index0 }}" class="customer-address-form">
+                            {% form 'customer_address', address %}
+                                {% comment %} CUSTOMER NAME {% endcomment %}
+                                {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[first_name]', 
+                                    input_placeholder: 'first name', label_for: 'address-first-name', label_content: 'first name',
+                                    input_value: address.first_name 
+                                %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-2" type="text" name="address[address2]" placeholder="address 2" value="{{ address.address2 }}">
-                <label class="customer-address-form-label" for="customer-address-2">address 2</label>
-            </div>
+                                {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[last_name]', 
+                                    input_placeholder: 'last name', label_for: 'address-last-name', label_content: 'last name',
+                                    input_value: address.last_name 
+                                %}
+                                {% comment %} CUSTOMER COMPANY {% endcomment %}
+                                {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[company]',
+                                    input_placeholder: 'company', label_for: 'address-company': label_content: 'company'
+                                    input_value: address.company 
+                                %}
+                                {% comment %} CUSTOMER ADDRESS {% endcomment %}
+                                {% render 'customer-form-input' input_required: true, input_type: 'text' input_name: 'address[address1]'
+                                    input_placeholder: 'address 1', label_for: 'customer-address-1', label_content: 'address 1'
+                                    input_value: address.address1
+                                %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-city" type="text" name="address[city]" placeholder="city" value="{{ address.city }}">
-                <label class="customer-address-form-label" for="customer-address-city">city</label>
-            </div>
+                                {% render 'customer-form-input' input_required: true, input_type: 'text', input_name: 'address[address2]'
+                                    input_placeholder: 'address 2', label_for: 'customer-address-2' label_content: 'address 2'
+                                    input_value: address.address2
+                                %}
 
-            <div class="customer-address-form-input-container">
-                <label class="customer-address-form-label__select" for="customer-address-country">country</label>
-                <select required class="customer-address-select" id="customer-address-country" data-country="{{ address.country }}" name="address[country]" placeholder="country">
-                    {{ country_option_tags }}
-                </select>
-                
-            </div>
+                                {% render 'customer-form-input' input_required: true, input type: 'text', input_name: 'address[city]'
+                                    input_placeholder: 'city', label_for: 'customer-address-city', label_content: 'city'
+                                    input_value: address.city
+                                %}
+                                
+                                <div class="customer-address-form-select-container">
+                                    <label class="customer-address-form-label__select" for="customer-address-country">country</label>
+                                    <select required class="customer-address-select" id="customer-address-country" data-country="{{  address.country }}" name="address[country]" placeholder="country" >
+                                        {{ country_option_tags }}
+                                    </select>
+                                </div>
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-zip" type="text" name="address[zip]" placeholder="postal/zip code" value="{{ address.zip }}">
-                <label class="customer-address-form-label" for="customer-address-zip">postal/zip code</label>
-            </div>
+                                {% render 'customer-form-input' input_required: true, input_type: 'text', input_name: 'address[zip]',
+                                    input_placeholder: 'postal/zip code', label_for: 'customer-address-zip', label_content: 'postal/zip code'
+                                    input_value: address.zip
+                                %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-phone" type="number" name="address[phone]" placeholder="phone" value="{{ address.phone }}">
-                <label class="customer-address-form-label" for="customer-address-phone">phone</label>
-            </div>
+                                {% render 'customer-form-input' input_required: true, input_type: 'number', input_name: 'address[phone]',
+                                    input_placeholder: 'postal/zip code', label_for: 'customer-address-phone', label_content: 'phone'
+                                    input_value: address.phone
+                                %}
 
-             <div class="customer-address-form-label__default">
-                {{ form.set_as_default_checkbox }}
-                <label for="address_default_address_new">set as default address</label>
-            </div>
+                                <div class="customer-address-form-label__default">
+                                    {{ form.set_as_default_checkbox }}
+                                    <label for="address_default_address_new">set as default address</label>
+                                </div>
 
-            <div class="submit address-form--btns">
-                <input class="customer-btn customer-address-btn" type="submit" value="update Address">
-            </div>
-       
-            
-{% endform %} 
+                                <div class="submit address-form--btns">
+                                    <input class="customer-btn customer-address-btn" type="submit" value="update Address">
+                                </div>
+                            {% endform %}
+                        </div> 
+                        <button class="show-form-btn customer-btn customer-address-btn" data-btnlabel="update address" data-formbtn="address-update-{{ forloop.index0 }}">update address</button>
+                    </div>  
+                {% else %}
+                    <div class="customer-addresses-container">
+                    <div class="customer-address">
+                        {{ address | format_address }}
+                    </div>
+                    {% comment %} <button class="show-form-btn customer-btn" data-btnlabel="update address" data-formbtn="address-update-{{ forloop.index0 }}" >update address</button> {% endcomment %}
+                    <div id="address-update-{{ forloop.index0 }}" class="customer-address-form">
+                        {% form 'customer_address', address,  return_to: routes.account__addresses_url%}
+                            {% comment %} CUSTOMER NAME {% endcomment %}
+                            {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[first_name]', 
+                                input_placeholder: 'first name', label_for: 'address-first-name', label_content: 'first name',
+                                input_value: address.first_name 
+                            %}
 
-</div> 
-<button class="show-form-btn customer-btn customer-address-btn" data-btnlabel="update address" data-formbtn="address-update-{{ forloop.index0 }}">update address</button>
-</div>
-{% else %}
-<div class="customer-addresses-container">
-        <div class="customer-address">
-            {{ address | format_address }}
-        </div>
-        {% comment %} <button class="show-form-btn customer-btn" data-btnlabel="update address" data-formbtn="address-update-{{ forloop.index0 }}" >update address</button> {% endcomment %}
-        <div id="address-update-{{ forloop.index0 }}" class="customer-address-form">
-        {% form 'customer_address', address %}
-            {% comment %} CUSTOMER NAME {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required for="address-first-name" type="text" name="address[first_name]" placeholder="first name" value="{{ address.first_name }}">
-                <label class="customer-address-form-label" for="address-first-name">first name</label>
-            </div>
+                            {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[last_name]', 
+                                input_placeholder: 'last name', label_for: 'address-last-name', label_content: 'last name',
+                                input_value: address.last_name 
+                            %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="address-last-name" type="text" name="address[last_name]" placeholder="last name" value="{{ address.first_name }}">
-                <label class="customer-address-form-label" for="address-last-name">last name</label>
-            </div>
-            {% comment %} CUSTOMER COMPANY {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required id="address-company" type="text" name="address[company]" placeholder="company" value="{{ address.last_name }}">
-                <label class="customer-address-form-label" for="address-company">company</label>
-            </div>
-            {% comment %} CUSTOMER ADDRESS {% endcomment %}
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-1" type="text" name="address[address1]" placeholder="address 1" value="{{ address.address1 }}">
-                <label class="customer-address-form-label" for="customer-address-1">address 1</label>
-            </div>
+                            
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-2" type="text" name="address[address2]" placeholder="address 2" value="{{ address.address2 }}">
-                <label class="customer-address-form-label" for="customer-address-2">address 2</label>
-            </div>
+                            {% comment %} CUSTOMER COMPANY {% endcomment %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-city" type="text" name="address[city]" placeholder="city" value="{{ address.city }}">
-                <label class="customer-address-form-label" for="customer-address-city">city</label>
-            </div>
+                            {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[company]',
+                                input_placeholder: 'company', label_for: 'address-company': label_content: 'company'
+                                input_value: address.company 
+                            %}
 
-            <div class="customer-address-form-input-container">
-                <label class="customer-address-form-label__select" for="customer-address-country">country</label>
-                <select required class="customer-address-select" id="customer-address-country" data-country="{{ address.country }}" name="address[country]" placeholder="country">
-                    {{ country_option_tags }}
-                </select>
-                
-            </div>
+                            {% comment %} CUSTOMER ADDRESS {% endcomment %}
+                            {% render 'customer-form-input' input_required: true, input_type: 'text' input_name: 'address[address1]'
+                                input_placeholder: 'address 1', label_for: 'customer-address-1', label_content: 'address 1'
+                                input_value: address.address1
+                            %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-zip" type="text" name="address[zip]" placeholder="postal/zip code" value="{{ address.zip }}">
-                <label class="customer-address-form-label" for="customer-address-zip">postal/zip code</label>
-            </div>
+                            {% render 'customer-form-input' input_required: true, input_type: 'text', input_name: 'address[address2]'
+                                input_placeholder: 'address 2', label_for: 'customer-address-2' label_content: 'address 2'
+                                input_value: address.address2
+                            %}
 
-            <div class="customer-address-form-input-container">
-                <input required id="customer-address-phone" type="number" name="address[phone]" placeholder="phone" value="{{ address.phone }}">
-                <label class="customer-address-form-label" for="customer-address-phone">phone</label>
-            </div>
+                            {% render 'customer-form-input' input_required: true, input type: 'text', input_name: 'address[city]'
+                                input_placeholder: 'city', label_for: 'customer-address-city', label_content: 'city'
+                                input_value: address.city
+                            %}
 
-             <div class="customer-address-form-label__default">
-                {{ form.set_as_default_checkbox }}
-                <label for="address_default_address_new">set as default address</label>
-            </div>
+                            <div class="customer-address-form-select-container">
+                                <label class="customer-address-form-label__select" for="customer-address-country">country</label>
+                                <select required class="customer-address-select" id="customer-address-country" data-country="{{  address.country }}" name="address[country]" placeholder="country" >
+                                    {{ country_option_tags }}
+                                </select>
+                            </div>
 
-            <div class="submit address-form--btns">
-                <input class="customer-btn customer-address-btn" type="submit" value="update Address">
-            </div>
-       
-            
-{% endform %} 
-</div>
- <button class="show-form-btn customer-btn customer-address-btn" data-btnlabel="update address" data-formbtn="address-update-{{ forloop.index0 }}" >update address</button> 
-</div>
-{% endif %}
-    {% endfor %}
-{% else %}
-    <p>no addresss saved</p>
-{% endif %}
-</div>
+                            {% render 'customer-form-input' input_required: true, input_type: 'text', input_name: 'address[zip]',
+                                input_placeholder: 'postal/zip code', label_for: 'customer-address-zip', label_content: 'postal/zip code'
+                                input_value: address.zip
+                            %}
+
+                            {% render 'customer-form-input' input_required: true, input_type: 'number', input_name: 'address[phone]',
+                                input_placeholder: 'postal/zip code', label_for: 'customer-address-phone', label_content: 'phone'
+                                input_value: address.phone
+                            %}
+
+                            <div class="customer-address-form-label__default">
+                                {{ form.set_as_default_checkbox }}
+                                <label for="address_default_address_new">set as default address</label>
+                            </div>
+
+                            <div class="submit address-form--btns">
+                                <input class="customer-btn customer-address-btn" type="submit" value="update Address">
+                            </div>
+                        {% endform %} 
+                    </div>
+                    <button class="show-form-btn customer-btn customer-address-btn" data-btnlabel="update address" data-formbtn="address-update-{{ forloop.index0 }}" >update address</button> 
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>no addresss saved</p>
+        {% endif %}
+    </div>
 </addresses-container>
 
 
