@@ -1,5 +1,4 @@
 .customer-container {
-  /* background-color: aliceblue; */
   height: 100%;
   width: 100%;
   display: flex;
@@ -28,10 +27,8 @@
   background-color: var(--primary-color-red-500);
   border: var(--border-red-2px);
   border-color: transparent;
-  /* border: 5px solid var(--primary-color-red-500); */
   font-size: var(--font-size-200);
   padding: var(--padding-200);
-  /* box-shadow: 2px 2px 2px black; */
   text-transform: capitalize;
   cursor: pointer;
   background-clip: padding-box;
@@ -186,10 +183,6 @@
   margin: 0 auto;
   width: 60%;
 }
-
-/* .test {
-  width: 80%;
-} */
 
 @media only screen and (max-width: 970px) {
   .customer-form-container {

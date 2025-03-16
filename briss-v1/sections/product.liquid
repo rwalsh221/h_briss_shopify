@@ -39,15 +39,20 @@
 
         {% if product.variants.size > 1 %}
           <div class="product-option" id="product-option">
+            
             {% for option in product.options_with_values %}
               <fieldset>
                 <legend>{{ option.name }}</legend>
                 <ul class="option-container">
                   {% for value in option.values %}
-                  
-                    <li id="radio-container-{{ value }}" class="radio-container">
+                    
+                    <li id="radio-container-{{ value }}" 
+                      class="radio-container 
+                      {% if option == product.options_with_values.first and value.available == false %}option_disabled
+                      {% elsif value.available == false %}disabled{% endif %}"
+                      >
                       <input
-                        {% if option.selected_value == value %}checked{% endif %}
+                        {% if option.selected_value == value %}checked{% endif %} 
                         class="product_select_input"
                         type="radio"
                         name="{{ option.name }}"

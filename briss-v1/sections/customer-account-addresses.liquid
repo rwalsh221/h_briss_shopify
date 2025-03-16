@@ -1,9 +1,5 @@
-{% comment %} TODO: REFACTOR PLUS JS {% endcomment %}
-{% comment %} TODO: CREATE SNIPPET FOR FORM INPUT {% endcomment %}
-
 {{ 'briss-customer-account.css' | asset_url | stylesheet_tag }}
 
-{% comment %} <script src="{{ 'briss-customer-account__addresses.js' | asset_url }}" defer></script> {% endcomment %}
 <script src="{{ 'briss-customer-account__AddressesContainer.js' | asset_url }}" defer></script>
 
 <addresses-container>
@@ -158,16 +154,11 @@
                                 input_placeholder: 'last name', label_for: 'address-last-name', label_content: 'last name',
                                 input_value: address.last_name 
                             %}
-
-                            
-
                             {% comment %} CUSTOMER COMPANY {% endcomment %}
-
                             {% render 'customer-form-input' input_required: true input_type: 'text', input_name: 'address[company]',
                                 input_placeholder: 'company', label_for: 'address-company': label_content: 'company'
                                 input_value: address.company 
                             %}
-
                             {% comment %} CUSTOMER ADDRESS {% endcomment %}
                             {% render 'customer-form-input' input_required: true, input_type: 'text' input_name: 'address[address1]'
                                 input_placeholder: 'address 1', label_for: 'customer-address-1', label_content: 'address 1'

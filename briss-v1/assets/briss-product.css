@@ -180,7 +180,8 @@
   color: var(--primary-color-white-500);
 }
 
-.disabled > label::after {
+.disabled > label::after,
+.option_disabled > label::after {
   position: absolute;
   content: 'unavaliable';
   border: var(--border-red-2px);

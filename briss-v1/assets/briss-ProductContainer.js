@@ -79,9 +79,7 @@ class ProductContainer extends HTMLElement {
     const selectedRadio = document.querySelectorAll('.product-option input[type="radio"]:checked');
     console.log('this', selectedRadio);
     const unavailableVariants = [];
-    console.log(selectedRadio[0].value);
-    console.log(this.productData.variants);
-    console.log('una', unavailableVariants);
+    const unavailableOptions = [];
 
     this.productData.variants.forEach((el) => {
       if (el.option1 === selectedRadio[0].value && el.available === false) {
@@ -89,8 +87,14 @@ class ProductContainer extends HTMLElement {
       }
     });
 
+    for (let i = 0; i < this.productData.variants.length; i++) {}
+
     unavailableVariants.forEach((el) => {
-      document.getElementById(`radio-container-${el.option2}`).classList.add('disabled');
+      console.log(el);
+      const variantRadio = document.getElementById(`radio-container-${el.options[el.options.length - 1]}`);
+      if (!variantRadio.classList.contains('option_disabled')) {
+        variantRadio.classList.add('disabled');
+      }
     });
   }
 
@@ -188,14 +192,22 @@ class ProductContainer extends HTMLElement {
   // CREATE FORM CONTENT
 
   initProductOptions() {
-    this.productData.options.forEach((option) => {
+    console.log(this.productData);
+    console.log(this.productData.options);
+    console.log('length', this.productData.options.length);
+    this.productData.options.forEach((option, optionIndex) => {
       console.log(option);
+      // create fieldset element
       const fieldset = document.createElement('fieldset');
       const legend = document.createElement('legend');
       legend.innerHTML = option;
+      // end feildset element
+
       const unorderedList = document.createElement('ul');
       unorderedList.className = 'option-container';
-      unorderedList.appendChild(this.createVariantRadio('test', 'hello'));
+      this.productData.variants.forEach((variant) => {
+        unorderedList.appendChild(this.createVariantRadio(option, variant.options[optionIndex]));
+      });
       fieldset.appendChild(legend);
       fieldset.appendChild(unorderedList);
       console.log(fieldset);
@@ -234,7 +246,7 @@ class ProductContainer extends HTMLElement {
     console.log('this.connectedCallback');
     console.log(this.domElements);
     console.log(this.productData);
-    this.initProductOptions();
+    // this.initProductOptions();
     // if (this.productData == null || this.variantQuantitys === null) {
     //   console.log('retunr');
     //   return;
@@ -251,7 +263,7 @@ class ProductContainer extends HTMLElement {
     this.domElements.quantityDecrease.addEventListener('click', this.decreaseQuantity.bind(this));
 
     // INIT
-    this.setVariantUnavailable();
+    // this.setVariantUnavailable();
   }
 }
 
