@@ -1,6 +1,5 @@
 class ProductContainer extends HTMLElement {
   constructor() {
-    console.log('construct product container');
     super();
 
     this.domElements = {
@@ -15,18 +14,11 @@ class ProductContainer extends HTMLElement {
       productOption: document.getElementById('product-option'),
     };
 
-    console.log(this.domElements);
-    console.log(this.dataset);
     this.productVariantQuantity = JSON.parse(this.dataset.variantQuantity);
-    console.log(this.productVariantQuantity);
     this.productData = JSON.parse(this.dataset.product);
-    console.log(this.productData);
   }
 
-  test() {
-    console.log('testststststststs');
-  }
-
+  // ONLY WORKS FOR GBP
   updateSubtotal(quantity) {
     const variantPrice = this.domElements.addToCart.dataset.price;
 
@@ -48,7 +40,6 @@ class ProductContainer extends HTMLElement {
 
   increaseQuantity(event) {
     event.preventDefault();
-    console.log(this.domElements);
 
     if (parseInt(this.domElements.quantity.value) >= parseInt(this.domElements.quantity.max)) {
       return;
@@ -57,12 +48,8 @@ class ProductContainer extends HTMLElement {
     this.updateSubtotal(this.domElements.quantity.value);
   }
 
-  // increaseQuantity()
-
   decreaseQuantity(event) {
     event.preventDefault();
-    console.log('dec');
-    console.log(this.domElements);
 
     if (this.domElements.quantity.value === this.domElements.quantity.min) {
       return;
@@ -77,17 +64,13 @@ class ProductContainer extends HTMLElement {
     });
 
     const selectedRadio = document.querySelectorAll('.product-option input[type="radio"]:checked');
-    console.log('this', selectedRadio);
     const unavailableVariants = [];
-    const unavailableOptions = [];
 
     this.productData.variants.forEach((el) => {
       if (el.option1 === selectedRadio[0].value && el.available === false) {
         unavailableVariants.push(el);
       }
     });
-
-    for (let i = 0; i < this.productData.variants.length; i++) {}
 
     unavailableVariants.forEach((el) => {
       console.log(el);
@@ -190,7 +173,7 @@ class ProductContainer extends HTMLElement {
   }
 
   // CREATE FORM CONTENT
-
+  // NOT USED
   initProductOptions() {
     console.log(this.productData);
     console.log(this.productData.options);
@@ -217,6 +200,7 @@ class ProductContainer extends HTMLElement {
     });
   }
 
+  // NOT USED
   createVariantRadio(name, value) {
     // create listitem
     const listItem = document.createElement('li');
@@ -243,15 +227,6 @@ class ProductContainer extends HTMLElement {
   }
 
   connectedCallback() {
-    console.log('this.connectedCallback');
-    console.log(this.domElements);
-    console.log(this.productData);
-    // this.initProductOptions();
-    // if (this.productData == null || this.variantQuantitys === null) {
-    //   console.log('retunr');
-    //   return;
-    // }
-
     document.querySelectorAll('.product-option input[type="radio"]').forEach((radio) =>
       radio.addEventListener('change', async () => {
         this.onVariantChange();
@@ -261,9 +236,6 @@ class ProductContainer extends HTMLElement {
     // EVENT LISTENERS
     this.domElements.quantityIncrease.addEventListener('click', this.increaseQuantity.bind(this));
     this.domElements.quantityDecrease.addEventListener('click', this.decreaseQuantity.bind(this));
-
-    // INIT
-    // this.setVariantUnavailable();
   }
 }
 
